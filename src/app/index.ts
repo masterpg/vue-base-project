@@ -1,4 +1,3 @@
-import '../assets/styles/custom-style';
 import '../assets/styles/main.styl';
 
 import * as apis from './apis';

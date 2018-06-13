@@ -1,62 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
-@import './_colors.styl'
-@import './_flex-layout.styl'
-@import './_shadows.styl'
-@import './_spacing.styl'
-@import './_typography.styl'
+@import './_colors.styl';
+@import './_flex-layout.styl';
+@import './_shadows.styl';
+@import './_spacing.styl';
+@import './_typography.styl';
+@import './_variables.styl';
 
 /*-------------------------------------------------
   Variables
 -------------------------------------------------*/
 
 :root {
-  /**
-   * Application theme
-   */
-
-  --app-primary-text-color: var(--app-grey-900);
-  --app-secondary-text-color: var(--app-grey-600);
-  --app-disabled-text-color: var(--app-grey-400);
-  --app-accent-text-color: var(--app-pink-a200);
-  --app-error-text-color: var(--app-red-a700);
-  --app-link-color: var(--app-light-blue-a400);
-  --app-link-visited-color: var(--app-indigo-300);
-  --app-default-border-color: var(--app-grey-300);
-
-  /**
-   * Grid
-   */
-
-  --app-grid-breakpoints-xs: 0;
-  --app-grid-breakpoints-sm: 600px;
-  --app-grid-breakpoints-md: 960px;
-  --app-grid-breakpoints-lg: calc(1280px - 16px); /* Desktop gets a 16dp reduction */
-  --app-grid-breakpoints-xl: calc(1920px - 16px); /* https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints */
 
   /**
    * Components
    */
 
-  /* paper-drawer-panel */
-  --drawer-menu-color: #ffffff;
-  --drawer-border-color: 1px solid var(--appdefault-border-color);
-  --drawer-toolbar-border-color: 1px solid var(--app-default-border-color);
-
-  /* paper-menu */
-  --paper-menu-background-color: #ffffff;
-  --menu-link-color: var(--app-primary-text-color);
-
   /* greet-message */
-  --greet-message-color: var(--app-red-500);
+  --greet-message-color: $app-red-500;
+
 }
 
 /*-------------------------------------------------
   Default style
 -------------------------------------------------*/
 
+html, body {
+  height 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', 'Noto', sans-serif;
   background-color: #ffffff;
-  color: var(--app-primary-text-color);
+  color: $app-primary-text-color;
 }

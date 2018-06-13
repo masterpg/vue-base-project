@@ -1,37 +1,44 @@
 <style lang="stylus" scoped>
+  @import '../../../assets/styles/_variables.styl';
+
+  .container {
+    @extend .app-shadow-elevation-2dp;
+    @extend .app-pa-3;
+  }
+
   .greet-message {
-    --greet-message-color: var(--paper-indigo-a200);
+    --greet-message-color: $app-indigo-a700;
   }
 </style>
 
 
 <template>
   <div class="layout vertical">
-    <paper-card class="app-pa-3" :class="{ 'app-ma-12': pc, 'app-ma-6': tab, 'app-ma-3': sp }">
-      <paper-input
-        label="Input Message"
-        :value="message" @input="message = $event.target.value"
-      ></paper-input>
+    <div
+      class="container"
+      :class="{ 'app-ma-12': pc, 'app-ma-6': tab, 'app-ma-3': sp }"
+    >
+      <p>message: <input v-model="message"></p>
       <p>propA: {{ propA }}</p>
       <p>propB: {{ propB }}</p>
       <p>message: {{ message }}</p>
       <p>custom propA: {{ customPropA }}</p>
       <p>reversed message: {{ reversedMessage }}</p>
       <p>double reversed message: {{ doubleReversedMessage }}</p>
-      <div class="layout horizontal center">
+      <p class="layout horizontal center">
         <greet-message
           ref="greetMessage"
           :message="message"
           class="greet-message"
         ></greet-message>
         <button class="app-ml-3" @click="greetButtonOnClick">Greet</button>
-      </div>
+      </p>
       <p class="layout horizontal">
         <custom-input
           v-model="customInputValue"
           class="flex-3"
         ></custom-input>
-        <span class="flex-9 app-ml-3 app-mt-7">value: {{ customInputValue }}</span>
+        <span class="flex-9 app-ml-3">value: {{ customInputValue }}</span>
       </p>
       <p class="layout horizontal center">
         <custom-checkbox
@@ -40,10 +47,10 @@
         <span class="app-ml-3">checked: {{ customChecked }}</span>
       </p>
       <div class="layout horizontal end-justified">
-        <paper-button raised @click="postButtonOnClick">Post</paper-button>
-        <paper-button raised @click="sleepButtonOnClick">Sleep</paper-button>
+        <button @click="postButtonOnClick">Post</button>
+        <button class="app-ml-2" @click="sleepButtonOnClick">Sleep</button>
       </div>
-    </paper-card>
+    </div>
   </div>
 </template>
 

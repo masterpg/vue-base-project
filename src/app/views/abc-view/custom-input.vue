@@ -1,18 +1,16 @@
 <style lang="stylus" scoped>
+  .text-field {
+    width 100%;
+  }
 </style>
-
 
 <template>
   <div>
-    <paper-input
-      @input="textFieldOnChange"
-    ></paper-input>
+    <input class="text-field" @input="textFieldOnChange"/>
   </div>
 </template>
 
-
 <script lang="ts">
-import '@polymer/paper-input/paper-input';
 import { Component, Prop } from 'vue-property-decorator';
 import { ElementComponent } from '../../components';
 import { mixins } from 'vue-class-component';

@@ -1,6 +1,5 @@
 <style lang="stylus" scoped>
-  @import '../../../assets/styles/_spacing.styl';
-  @import '../../../assets/styles/_typography.styl';
+  @import '../../../assets/styles/_variables.styl';
 
   .title-text {
     @extend .app-font-title;
@@ -10,7 +9,7 @@
     @extend .app-pa-3;
 
     &.iron-selected {
-      background-color: var(--app-grid-selected-activ-item);
+      background-color: $app-grid-selected-activ-item;
     }
 
     .title {
@@ -19,17 +18,13 @@
 
     .detail {
       @extend .app-font-body1;
-      color: var(--app-secondary-text-color);
+      color: $app-secondary-text-color;
     }
   }
 
   .error-text {
     @extend .app-font-body1;
-    color: var(--app-error-text-color);
-  }
-
-  .checkout-button {
-    color: var(--app-link-color);
+    color: $app-error-text-color;
   }
 </style>
 
@@ -54,7 +49,7 @@
           </div>
         </div>
         <div class="flex"></div>
-        <paper-icon-button icon="icons:add-box" @click="addProductToCart(product)"></paper-icon-button>
+        <button @click="addProductToCart(product)">＋</button>
       </div>
     </div>
 
@@ -77,11 +72,10 @@
       </div>
       <div class="layout horizontal center">
         <div class="flex error-text">{{ checkoutStatus.message }}</div>
-        <paper-button
+        <button
           v-show="!cartIsEmpty"
-          class="checkout-button"
           @click="checkout">Checkout
-        </paper-button>
+        </button>
       </div>
     </div>
 
@@ -90,9 +84,6 @@
 
 
 <script lang="ts">
-import '@polymer/paper-button/paper-button';
-import '@polymer/paper-card/paper-card';
-import '@polymer/paper-icon-button/paper-icon-button';
 import { CartProduct, CheckoutStatus, Product } from '../../stores/types';
 import { Component } from 'vue-property-decorator';
 import { ElementComponent } from '../../components';
