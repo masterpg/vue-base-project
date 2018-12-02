@@ -1,5 +1,10 @@
 <style scoped>
+@import '../../styles/variables.css';
 @import '../../styles/typography.css';
+
+.var-message-color {
+  color: var(--comm-red-500);
+}
 
 .title {
   @extend %comm-font-subhead;
@@ -9,14 +14,10 @@
 .value {
   @extend %comm-font-subhead;
 }
-
-span {
-  color: var(--greet-message-color, var(--comm-red-500));
-}
 </style>
 
 <template>
-  <div>
+  <div class="var-message-color">
     <span class="title">greet times: </span><span class="value">{{ m_greetTimes }}</span>
   </div>
 </template>

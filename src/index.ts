@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import './styles/polymer-styles.js';
 import './index.css';
 

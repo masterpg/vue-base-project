@@ -57,6 +57,32 @@ exports.config = (targetEnv, basePath, outputPath) => {
     module: {
       rules: [
         {
+          test: /\.js$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  [
+                    '@babel/preset-env',
+                    {
+                      targets: {
+                        browsers: [
+                          // Best practice: https://github.com/babel/babel/issues/7789
+                          '>=1%',
+                          'not op_mini all',
+                          'ie 11',
+                        ]
+                      },
+                      'useBuiltIns': 'entry',
+                    },
+                  ],
+                ],
+              }
+            },
+          ],
+        },
+        {
           test: /\.ts$/,
           exclude: /node_modules|vue\/src/,
           use: [
@@ -149,8 +175,7 @@ exports.config = (targetEnv, basePath, outputPath) => {
           to: 'assets/images',
         },
         {
-          from: path.resolve(__dirname, '../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
-          to: 'node_modules/@webcomponents/webcomponentsjs',
+          from: path.resolve(__dirname, '../node_modules/@webcomponents/webcomponentsjs/**/*.js'),
         },
       ]),
     ],

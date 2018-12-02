@@ -7,21 +7,21 @@ $_documentContainer.innerHTML = `
 <custom-style>
   <style is="custom-style">
 
-    /*-------------------------------------------------
-      Components
-    -------------------------------------------------*/
+    :root {
+      --app-drawer-width: 256px;
+    }
 
     app-drawer {
       --app-drawer-content-container: {
-        background-color: var(--comm-grey-100);
+        background-color: #f5f5f5;
       }
     }
 
     @media (min-width: 600px) {
       app-drawer {
         --app-drawer-content-container: {
-          background-color: var(--comm-grey-100);
-          border-right: 1px solid var(--comm-grey-300);
+          background-color: #f5f5f5;
+          border-right: 1px solid #e0e0e0;
         }
       }
     }

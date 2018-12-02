@@ -1,8 +1,8 @@
 <style scoped>
+@import '../styles/variables.css';
 @import '../styles/typography.css';
 
 app-drawer-layout {
-  --app-drawer-width: 256px;
   &:not([narrow]) [drawer-toggle] {
     display: none;
   }

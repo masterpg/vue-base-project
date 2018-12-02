@@ -1,5 +1,4 @@
 import BreakpointMixin from './breakpoint-mixin';
-import cssVarPoly from '../css-var-polyfill';
 import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 
@@ -21,7 +20,6 @@ export class BaseComponent extends mixins(BreakpointMixin) {
   }
 
   mounted() {
-    cssVarPoly.init();
   }
 }
 

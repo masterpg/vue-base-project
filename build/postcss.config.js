@@ -7,5 +7,6 @@ module.exports = {
     'postcss-mixins': {},
     'postcss-each': {},
     'postcss-for': {},
+    'postcss-css-variables': {},
   },
 };

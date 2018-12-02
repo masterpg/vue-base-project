@@ -1,9 +1,16 @@
-<style scoped>
-@import '../../styles/typography.css';
+<style>
+@import '../../styles/variables.css';
 
-.greet-message {
-  --greet-message-color: var(--comm-indigo-a200);
+.abc-view-greet-message {
+  &.var-message-color {
+    color: var(--comm-indigo-a200);
+  }
 }
+</style>
+
+<style scoped>
+@import '../../styles/variables.css';
+@import '../../styles/typography.css';
 
 .title {
   @extend %comm-font-subhead;
@@ -51,7 +58,7 @@
         <greet-message
           ref="greetMessage"
           :message="m_message"
-          class="greet-message"
+          class="abc-view-greet-message"
         ></greet-message>
         <button class="comm-ml-12" @click="m_greetButtonOnClick">Greet</button>
       </div>
