@@ -24,6 +24,7 @@ const OUTPUT_PATH = path.resolve(__dirname, path.join('../.dist', BASE_PATH));
 module.exports = merge(base.config(TARGET_ENV, BASE_PATH, OUTPUT_PATH), {
   entry: {
     'test': path.resolve(__dirname, '../test/test.ts'),
+    playground: path.resolve(__dirname, '../src/playground'),
   },
 
   plugins: [
@@ -35,6 +36,14 @@ module.exports = merge(base.config(TARGET_ENV, BASE_PATH, OUTPUT_PATH), {
       template: './test/test.html',
       inject: false,
       bundledScript: 'test.bundle.js',
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: 'playground.html', // パスは`output.path`を基準
+      template: './src/playground.html',
+      inject: false,
+      basePath: BASE_PATH,
+      bundledScript: 'playground.bundle.js',
     }),
 
     // `to: xxx`の`xxx`は`output.path`が基準になる

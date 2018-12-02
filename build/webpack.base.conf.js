@@ -33,7 +33,7 @@ exports.config = (targetEnv, basePath, outputPath) => {
     mode: settings.mode,
 
     entry: {
-      index: path.resolve(__dirname, '../src/index.ts'),
+      index: path.resolve(__dirname, '../src/index'),
     },
 
     output: {
