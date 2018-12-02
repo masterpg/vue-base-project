@@ -1,4 +1,6 @@
 <style scoped>
+@import './styles/variables.css';
+
 .hello-world-color {
   color: var(--comm-indigo-a200);
 }
