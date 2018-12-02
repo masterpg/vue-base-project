@@ -3,6 +3,7 @@
 .dist/
 dist/
 docs/_book/
+docs/book.css
 node_modules/
 src/**/*.js.map
 test/**/*.js.map

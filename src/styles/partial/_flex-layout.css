@@ -1,0 +1,254 @@
+@import '../flex-layout.css';
+
+/*-------------------------------------------------
+  flex
+-------------------------------------------------*/
+
+.layout.horizontal,
+.layout.vertical {
+  @extend %layout;
+}
+
+.layout.inline {
+  @extend %layout-inline;
+}
+
+.layout.horizontal {
+  @extend %layout-horizontal;
+}
+
+.layout.vertical {
+  @extend %layout-vertical;
+}
+
+.layout.wrap {
+  @extend %layout-wrap;
+}
+
+.layout.no-wrap {
+  @extend %layout-no-wrap;
+}
+
+.flex-auto {
+  @extend %layout-flex-auto;
+}
+
+.flex-none {
+  @extend %layout-flex-none;
+}
+
+/*-------------------------------------------------
+  flex-reverse
+-------------------------------------------------*/
+
+.layout.horizontal-reverse,
+.layout.vertical-reverse {
+  @extend %layout;
+}
+
+.layout.horizontal-reverse {
+  @extend %layout-horizontal-reverse;
+}
+
+.layout.vertical-reverse {
+  @extend %layout-vertical-reverse;
+}
+
+.layout.wrap-reverse {
+  @extend %layout-wrap-reverse;
+}
+
+/*-------------------------------------------------
+  flex-alignment
+-------------------------------------------------*/
+
+/* alignment in cross axis */
+
+.layout.start {
+  @extend %layout-start;
+}
+
+.layout.center {
+  @extend %layout-center;
+}
+
+.layout.end {
+  @extend %layout-end;
+}
+
+.layout.baseline {
+  @extend %layout-baseline;
+}
+
+/* Alignment in main axis */
+
+.layout.start-justified {
+  @extend %layout-start-justified;
+}
+
+.layout.center-justified {
+  @extend %layout-center-justified;
+}
+
+.layout.end-justified {
+  @extend %layout-end-justified;
+}
+
+.layout.around-justified {
+  @extend %layout-around-justified;
+}
+
+.layout.justified {
+  @extend %layout-justified;
+}
+
+.layout.center-center {
+  @extend %layout-center-center;
+}
+
+/* self alignment */
+
+.self-start {
+  @extend %layout-self-start;
+}
+
+.self-center {
+  @extend %layout-self-center;
+}
+
+.self-end {
+  @extend %layout-self-end;
+}
+
+.self-stretch {
+  @extend %layout-self-stretch;
+}
+
+.self-baseline {
+  @extend %layout-self-baseline;
+}
+
+/* multi-line alignment in main axis. */
+
+.layout.start-aligned {
+  @extend %layout-start-aligned;
+}
+
+.layout.end-aligned {
+  @extend %layout-end-aligned;
+}
+
+.layout.center-aligned {
+  @extend %layout-center-aligned;
+}
+
+.layout.between-aligned {
+  @extend %layout-between-aligned;
+}
+
+.layout.around-aligned {
+  @extend %layout-around-aligned;
+}
+
+/*-------------------------------------------------
+  flex-factors
+-------------------------------------------------*/
+
+.flex,
+.flex-1 {
+  @extend %layout-flex;
+}
+
+.flex-2 {
+  @extend %layout-flex-2;
+}
+
+.flex-3 {
+  @extend %layout-flex-3;
+}
+
+.flex-4 {
+  @extend %layout-flex-4;
+}
+
+.flex-5 {
+  @extend %layout-flex-5;
+}
+
+.flex-6 {
+  @extend %layout-flex-6;
+}
+
+.flex-7 {
+  @extend %layout-flex-7;
+}
+
+.flex-8 {
+  @extend %layout-flex-8;
+}
+
+.flex-9 {
+  @extend %layout-flex-9;
+}
+
+.flex-10 {
+  @extend %layout-flex-10;
+}
+
+.flex-11 {
+  @extend %layout-flex-11;
+}
+
+.flex-12 {
+  @extend %layout-flex-12;
+}
+
+/*-------------------------------------------------
+  positioning
+-------------------------------------------------*/
+
+.block {
+  @extend %layout-block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.invisible {
+  @extend %layout-invisible;
+}
+
+.relative {
+  @extend %layout-relative;
+}
+
+.fit {
+  @extend %layout-fit;
+}
+
+body.fullbleed {
+  @extend %layout-fullbleed;
+}
+
+.scroll {
+  @extend %layout-scroll;
+}
+
+/* fixed position */
+
+.fixed-top {
+  @extend %layout-fixed-top;
+}
+
+.fixed-right {
+  @extend %layout-fixed-right;
+}
+
+.fixed-bottom {
+  @extend %layout-fixed-bottom;
+}
+
+.fixed-left {
+  @extend %layout-fixed-left;
+}

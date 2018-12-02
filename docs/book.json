@@ -1,8 +1,7 @@
 {
   "plugins": [
-    "styles-stylus"
   ],
   "styles": {
-    "website": "book.styl"
+    "website": "book.css"
   }
 }

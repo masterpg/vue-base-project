@@ -1,17 +1,31 @@
-Index: test/app/stores/product-store/index.ts
+Index: test/stores/product-store/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- test/app/stores/product-store/index.ts	(date 1528606006000)
-+++ test/app/stores/product-store/index.ts	(date 1528606014000)
-@@ -68,4 +68,39 @@
+--- test/stores/product-store/index.ts	(date 1541864345000)
++++ test/stores/product-store/index.ts	(date 1541864746000)
+@@ -2,11 +2,7 @@
+ import { Product as APIProduct } from '../../../src/apis';
+ import { Product } from '../../../src/stores';
+ import { TestStore } from '../../types';
+-import {
+-  newProductStore,
+-  ProductState,
+-  ProductStoreImpl,
+-} from '../../../src/stores/product-store';
++import { newProductStore, ProductState, ProductStoreImpl } from '../../../src/stores/product-store';
+ 
+ const assert = chai.assert;
+ 
+@@ -68,4 +64,39 @@
+     await productStore.getAllProducts();
      assert.deepEqual(productStore.allProducts, NEW_API_PRODUCTS);
    });
- 
++
 +  test('updateProduct() - 一般ケース', async () => {
 +    // 対象の商品に更新データを設定
-+    const PRODUCT_ID = 1;
++    const PRODUCT_ID = '1';
 +    const product = productStore.getProductById(PRODUCT_ID);
 +    if (!product) throw new Error(`Product \`${PRODUCT_ID}\` was not found.`);
 +    product.title = 'aaa';
@@ -20,8 +34,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +
 +    // モック処理の設定
 +    const stateProduct = {} as Product;
-+    td.replace(productStore, 'getStateProductById');
-+    td.when(productStore.getStateProductById(PRODUCT_ID)).thenReturn(stateProduct);
++    td.replace(productStore, 'm_getStateProductById');
++    td.when(productStore.m_getStateProductById(PRODUCT_ID)).thenReturn(stateProduct);
 +    td.replace(shopAPI, 'updateProduct');
 +
 +    // 商品の更新を実行
@@ -36,12 +50,11 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +
 +  test('updateProduct() - 存在しない商品を指定した場合', async () => {
 +    // 対象の商品に更新データを設定
-+    const product = productStore.getProductById(1) as Product;
-+    product.id = 9876;
++    const product = productStore.getProductById('1') as Product;
++    product.id = '9876';
 +    // 商品の更新を実行
 +    await productStore.updateProduct(product);
 +    // 何も問題は起きない
 +    assert(true);
 +  });
-+
  });

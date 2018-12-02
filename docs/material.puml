@@ -1,0 +1,34 @@
+@startuml{OnlyBox.png}
+class Vue {
+}
+
+class Stores {
+}
+
+class ProductState {
+  +all: Product[]
+}
+
+class ProductStore {
+  +allProducts: Product[]
+  +getAllProducts(): Promise<void>
+  +decrementProductInventory(productId: number): void
+}
+
+class CartState {
+  +added: Array<{ id: string; quantity: number }>
+  +checkoutStatus: CheckoutStatus
+}
+
+class CartStore {
+  +cartProducts: CartProduct[]
+  +addProductToCart(productId: string): void
+  +checkout(): Promise<void>
+}
+
+Vue -do-> "$stores" Stores
+Stores -do-> "product" ProductStore
+Stores -do-> "cart" CartStore
+ProductStore -do-> "f_state" ProductState
+CartStore -do-> "f_state" CartState
+@enduml

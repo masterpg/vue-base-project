@@ -1,90 +1,94 @@
-Index: src/app/views/product-admin-view/index.vue
+Index: src/views/product-admin-view/index.vue
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/views/product-admin-view/index.vue	(date 1528511243000)
-+++ src/app/views/product-admin-view/index.vue	(date 1528511273000)
-@@ -1,10 +1,49 @@
- <style lang="stylus" scoped>
-+  @import '../../../assets/styles/_spacing.styl';
-+  @import '../../../assets/styles/_typography.styl';
+--- src/views/product-admin-view/index.vue	(date 1541860055000)
++++ src/views/product-admin-view/index.vue	(date 1541862443000)
+@@ -1,14 +1,83 @@
+-<style lang="postcss" scoped></style>
++<style lang="postcss" scoped>
++@import '../../styles/typography.pcss';
 +
-+  .title-text {
-+    @extend .app-font-title;
++.title-text {
++  @extend %comm-font-title;
++}
++
++.product-item {
++  padding: 12px;
++
++  & .title {
++    @extend %comm-font-subhead;
 +  }
 +
-+  .product-item {
-+    @extend .app-pa-3;
-+
-+    .title {
-+      @extend .app-font-subhead;
-+    }
-+
-+    .detail {
-+      @extend .app-font-body1;
-+      color: var(--app-secondary-text-color);
-+    }
++  & .detail {
++    @extend %comm-font-body1;
++    color: var(--app-secondary-text-color);
 +  }
- </style>
- 
++}
++</style>
  
  <template>
--  <div>
--    product-admin-view
-+  <div class="layout vertical" :class="{ 'app-ma-12': pc, 'app-ma-6': tab, 'app-ma-3': sp }">
-+
+-  <div>product-admin-view</div>
++  <div
++    class="layout vertical"
++    :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }"
++  >
 +    <div>
 +      <div class="layout horizontal center">
-+        <div class="title-text">Products</div>
++        <div class="title-text">{{ $t('products') }}</div>
 +      </div>
-+      <hr style="width: 100%;">
-+      <div
-+        v-for="(product, index) in products"
-+        class="layout horizontal center product-item"
-+      >
++      <hr style="width: 100%;" />
++      <div v-for="(product, index) in m_products" class="layout horizontal center product-item">
 +        <div class="layout vertical center-justified">
 +          <div class="title">{{ product.title }}</div>
 +          <div class="detail">
-+            <span>Price</span> &mdash; {{ product.price | currency }},&nbsp;
-+            <span>Stock</span> &mdash; {{ product.inventory }}
++            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
++            <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
 +          </div>
 +        </div>
 +        <div class="flex"></div>
 +      </div>
 +    </div>
-+
-   </div>
++  </div>
  </template>
  
-@@ -12,10 +51,30 @@
  <script lang="ts">
-   import { Component } from 'vue-property-decorator';
-   import { ElementComponent } from '../../components';
-+  import { Product } from '../../stores/types';
-   import { mixins } from 'vue-class-component';
+ import { Component } from 'vue-property-decorator';
+ import { BaseComponent } from '../../base/component';
++import { Product } from '../../stores';
+ import { mixins } from 'vue-class-component';
  
-   @Component
-   export default class ProductAdminView extends mixins(ElementComponent) {
- 
-+    //----------------------------------------------------------------------
-+    //
-+    //  Variables
-+    //
-+    //----------------------------------------------------------------------
+ @Component
+-export default class ProductAdminView extends mixins(BaseComponent) {}
++export default class ProductAdminView extends mixins(BaseComponent) {
++  //----------------------------------------------------------------------
++  //
++  //  Variables
++  //
++  //----------------------------------------------------------------------
 +
-+    private get products(): Product[] {
-+      return this.$stores.product.allProducts;
-+    }
++  get m_products(): Product[] {
++    return this.$stores.product.allProducts;
++  }
 +
-+    //----------------------------------------------------------------------
-+    //
-+    //  Lifecycle hooks
-+    //
-+    //----------------------------------------------------------------------
++  //----------------------------------------------------------------------
++  //
++  //  Lifecycle hooks
++  //
++  //----------------------------------------------------------------------
 +
-+    created() {
-+    }
-+
-   }
++  created() {}
++}
  </script>
++
++<i18n>
++en:
++  products: "Products"
++  price: "Price"
++  stock: "Stock"
++ja:
++  products: "商品一覧"
++  price: "価格"
++  stock: "在庫"
++</i18n>

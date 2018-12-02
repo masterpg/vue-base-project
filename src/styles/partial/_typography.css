@@ -1,0 +1,57 @@
+@import '../typography.css';
+
+.comm-font-display4 {
+  @extend %comm-font-display4;
+}
+
+.comm-font-display3 {
+  @extend %comm-font-display3;
+}
+
+.comm-font-display2 {
+  @extend %comm-font-display2;
+}
+
+.comm-font-display1 {
+  @extend %comm-font-display1;
+}
+
+.comm-font-headline {
+  @extend %comm-font-headline;
+}
+
+.comm-font-title {
+  @extend %comm-font-title;
+}
+
+.comm-font-subhead {
+  @extend %comm-font-subhead;
+}
+
+.comm-font-body2 {
+  @extend %comm-font-body2;
+}
+
+.comm-font-body1 {
+  @extend %comm-font-body1;
+}
+
+.comm-font-caption {
+  @extend %comm-font-caption;
+}
+
+.comm-font-menu {
+  @extend %comm-font-menu;
+}
+
+.comm-font-button {
+  @extend %comm-font-button;
+}
+
+.comm-font-code2 {
+  @extend %comm-font-code2;
+}
+
+.comm-font-code1 {
+  @extend %comm-font-code1;
+}

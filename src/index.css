@@ -1,0 +1,69 @@
+@import './styles/base-styles.css';
+
+/*-------------------------------------------------
+  Variables
+-------------------------------------------------*/
+
+:root {
+
+  /*------------------------------
+    Application theme
+  ------------------------------*/
+
+  --app-primary-text-color: var(--comm-grey-900);
+  --app-secondary-text-color: var(--comm-grey-600);
+  --app-disabled-text-color: var(--comm-grey-400);
+  --app-accent-text-color: var(--comm-pink-a200);
+  --app-error-text-color: var(--comm-red-a700);
+  --app-link-color: var(--comm-indigo-500);
+  --app-link-visited-color: var(--comm-indigo-300);
+  --app-default-border-color: var(--comm-grey-300);
+
+  /*------------------------------
+    Grid
+  ------------------------------*/
+
+  --app-grid-breakpoints-xs: 0;
+  --app-grid-breakpoints-sm: 600px;
+  --app-grid-breakpoints-md: 960px;
+  --app-grid-breakpoints-lg: calc(1280px - 16px); /* Desktop gets a 16dp reduction */
+  --app-grid-breakpoints-xl: calc(1920px - 16px); /* https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints */
+}
+
+/*-------------------------------------------------
+  Default style
+-------------------------------------------------*/
+
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  background-color: #ffffff;
+  color: var(--app-primary-text-color);
+}
+
+paper-button {
+  font-weight: 500;
+  color: var(--comm-indigo-500);
+  &[raised] {
+    color: white;
+    background-color: var(--comm-indigo-500);
+  }
+}
+
+/**
+ * Edge、IE11の対応
+ * Edge、IEはpaper-inputが影響して見えないところで幅が広く取られてしまい、
+ * 横スクロールバーが表示されてしまう不具合が見つかった。以下はこの不具合に対応している。
+ * 不具合は次の画面で確認できる: src/views/abc-view/index.vue
+ */
+paper-input {
+  & paper-input-container {
+    & div.input-wrapper {
+      & div.input-content {
+        & > label[slot="label"] {
+            width: 100% !important;
+        }
+      }
+    }
+  }
+}

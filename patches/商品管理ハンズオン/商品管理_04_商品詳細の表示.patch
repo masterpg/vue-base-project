@@ -1,135 +1,159 @@
-Index: src/app/views/product-admin-view/index.vue
+Index: src/views/product-admin-view/index.vue
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/views/product-admin-view/index.vue	(date 1528511312000)
-+++ src/app/views/product-admin-view/index.vue	(date 1528511404000)
+--- src/views/product-admin-view/index.vue	(date 1541862768000)
++++ src/views/product-admin-view/index.vue	(date 1541863981000)
 @@ -1,4 +1,5 @@
- <style lang="stylus" scoped>
-+  @import '../../../assets/styles/_flex-layout.styl';
-   @import '../../../assets/styles/_spacing.styl';
-   @import '../../../assets/styles/_typography.styl';
+ <style lang="postcss" scoped>
++@import '../../styles/flex-layout.pcss';
+ @import '../../styles/typography.pcss';
  
-@@ -27,6 +28,39 @@
-       color: var(--app-secondary-text-color);
-     }
+ .title-text {
+@@ -26,6 +27,38 @@
+     color: var(--app-secondary-text-color);
    }
+ }
 +
-+  .product-detail {
-+    padding: 0 var(--app-spacer-3);
++.product-detail {
++  & .row {
++    width: 500px;
++    &.sp {
++      width: 100%;
++    }
++  }
 +
-+    .row {
-+      width: 500px;
++  & .title-area {
++    @extend %app-font-subhead;
++    @extend %layout-flex-2;
++    margin-top: 16px;
++  }
++
++  & .input-area {
++    @extend %layout-flex-10;
++
++    & .title-input {
++      width: 400px;
 +      &.sp {
 +        width: 100%;
 +      }
 +    }
 +
-+    .title-area {
-+      @extend .app-font-subhead;
-+      @extend .flex-2;
-+      @extend .app-mt-4;
-+    }
-+
-+    .input-area {
-+      @extend .flex-10;
-+
-+      .title-input {
-+        width: 400px;
-+        &.sp {
-+          width: 100%;
-+        }
-+      }
-+
-+      .price-input, .inventory-input {
-+        width: 100px;
-+        text-align: right;
-+      }
++    & .price-input,
++    & .inventory-input {
++      width: 100px;
++      text-align: right;
 +    }
 +  }
++}
  </style>
  
- 
-@@ -60,12 +94,58 @@
+ <template>
+@@ -51,19 +84,66 @@
+           <div class="layout vertical center-justified">
+             <div class="title">{{ product.title }}</div>
+             <div class="detail">
+-              <span>Price</span> &mdash; {{ product.price | currency }},&nbsp;
+-              <span>Stock</span> &mdash; {{ product.inventory }}
++              <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
++              <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
+             </div>
+           </div>
+           <div class="flex"></div>
+         </div>
        </iron-selector>
      </div>
- 
-+    <div class="app-mt-5">
++
++    <div class="comm-mt-20">
 +      <div class="layout horizontal center">
-+        <div class="title-text">Detail</div>
++        <div class="title-text">{{ $t('detail') }}</div>
 +      </div>
-+      <hr style="width: 100%;">
++      <hr style="width: 100%;" />
 +      <div class="layout vertical product-detail">
-+        <div class="layout horizontal center row" :class="{ 'sp': sp }">
-+          <div class="title-area">Title</div>
++        <div class="layout horizontal center row" :class="{ sp: f_sp }">
++          <div class="title-area">{{ $t('title') }}</div>
 +          <div class="input-area">
 +            <paper-input
-+              class="title-input" :class="{ 'sp': sp }"
-+              :value="selectedProduct.title"
-+              @input="selectedProduct.title = $event.target.value"
++              class="title-input"
++              :class="{ sp: f_sp }"
++              :value="m_selectedProduct.title"
++              @input="m_selectedProduct.title = $event.target.value;"
 +            ></paper-input>
 +          </div>
 +        </div>
-+        <div class="layout horizontal center row" :class="{ 'sp': sp }">
-+          <div class="title-area">Price</div>
++        <div class="layout horizontal center row" :class="{ sp: f_sp }">
++          <div class="title-area">{{ $t('price') }}</div>
 +          <div class="input-area">
 +            <paper-input
 +              class="price-input"
 +              type="number"
-+              :value="selectedProduct.price"
-+              @input="selectedProduct.price = $event.target.value"
-+              @change="selectedProduct.price = $event.target.value"
++              :value="m_selectedProduct.price"
++              @input="m_selectedProduct.price = $event.target.value;"
++              @change="m_selectedProduct.price = $event.target.value;"
 +            >
 +              <div slot="prefix">$</div>
 +            </paper-input>
 +          </div>
 +        </div>
-+        <div class="layout horizontal center row" :class="{ 'sp': sp }">
-+          <div class="title-area">Stock</div>
++        <div class="layout horizontal center row" :class="{ sp: f_sp }">
++          <div class="title-area">{{ $t('stock') }}</div>
 +          <div class="input-area">
 +            <paper-input
 +              class="inventory-input"
 +              type="number"
-+              :value="selectedProduct.inventory"
-+              @input="selectedProduct.inventory = $event.target.value"
-+              @change="selectedProduct.inventory = $event.target.value"
++              :value="m_selectedProduct.inventory"
++              @input="m_selectedProduct.inventory = $event.target.value;"
++              @change="m_selectedProduct.inventory = $event.target.value;"
 +            ></paper-input>
 +          </div>
 +        </div>
 +      </div>
 +    </div>
-+
    </div>
  </template>
  
- 
  <script lang="ts">
-   import '@polymer/iron-selector/iron-selector';
-+  import '@polymer/paper-input/paper-input';
-   import { Component } from 'vue-property-decorator';
-   import { ElementComponent } from '../../components';
-   import { Product } from '../../stores/types';
-@@ -80,6 +160,8 @@
-     //
-     //----------------------------------------------------------------------
+ import '@polymer/iron-selector/iron-selector';
++import '@polymer/paper-input/paper-input';
  
-+    private selectedProduct: Product | object = {};
+ import { Component } from 'vue-property-decorator';
+ import { BaseComponent } from '../../base/component';
+@@ -78,6 +158,8 @@
+   //
+   //----------------------------------------------------------------------
+ 
++  m_selectedProduct: Product | object = {};
 +
-     private get products(): Product[] {
-       return this.$stores.product.allProducts;
-     }
-@@ -113,10 +195,10 @@
-       let selectedProduct: Product | undefined;
-       if (this.productSelector.selected) {
-         const productId = parseInt(this.productSelector.selected, 10);
--        selectedProduct = this.products.find((item) => item.id === productId);
-+        const product = this.products.find((item) => item.id === productId);
-+        selectedProduct = this.$utils.cloneDeep(product);
-       }
--      // tslint:disable-next-line
--      console.log('selectedProduct:', selectedProduct);
-+      this.selectedProduct = selectedProduct || {};
-     }
- 
+   get m_products(): Product[] {
+     return this.$stores.product.allProducts;
    }
+@@ -110,10 +192,12 @@
+     let selectedProduct: Product | undefined;
+     if (this.m_productSelector.selected) {
+       const productId = this.m_productSelector.selected;
+-      selectedProduct = this.m_products.find((item) => item.id === productId);
++      const foundProduct = this.m_products.find((item) => item.id === productId);
++      selectedProduct = this.$utils.cloneDeep(foundProduct);
+     }
+     // tslint:disable-next-line
+     console.log('selectedProduct:', selectedProduct);
++    this.m_selectedProduct = selectedProduct || {};
+   }
+ }
+ </script>
+@@ -121,10 +205,14 @@
+ <i18n>
+ en:
+   products: "Products"
++  detail: "Detail"
++  title: "Title"
+   price: "Price"
+   stock: "Stock"
+ ja:
+   products: "商品一覧"
++  detail: "詳細"
++  title: "タイトル"
+   price: "価格"
+   stock: "在庫"
+ </i18n>

@@ -1,53 +1,50 @@
-Index: src/app/apis/shop-api/index.ts
+Index: src/apis/shop-api/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/apis/shop-api/index.ts	(date 1528511404000)
-+++ src/app/apis/shop-api/index.ts	(date 1528512015000)
-@@ -19,6 +19,13 @@
+--- src/apis/shop-api/index.ts	(date 1541863981000)
++++ src/apis/shop-api/index.ts	(date 1541864345000)
+@@ -17,6 +17,10 @@
        }, 100);
      });
    }
 +
 +  async updateProduct(product: Product): Promise<void> {
-+    await this.put(
-+      `products/${product.id}`,
-+      product,
-+    );
++    await this.put(`products/${product.id}`, product);
 +  }
  }
  
  const shopAPI: ShopAPI = new ShopAPIImpl();
-Index: src/app/apis/types.ts
+Index: src/apis/types.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/apis/types.ts	(date 1528511404000)
-+++ src/app/apis/types.ts	(date 1528512015000)
+--- src/apis/types.ts	(date 1541863981000)
++++ src/apis/types.ts	(date 1541864345000)
 @@ -12,6 +12,8 @@
    getProducts(): Promise<Product[]>;
  
-   buyProducts(products: Array<{ id: number, quantity: number }>): Promise<void>;
+   buyProducts(products: Array<{ id: string; quantity: number }>): Promise<void>;
 +
 +  updateProduct(product: Product): Promise<void>;
  }
  
  //----------------------------------------------------------------------
-Index: src/app/stores/product-store/index.ts
+Index: src/stores/product-store/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/stores/product-store/index.ts	(date 1528511404000)
-+++ src/app/stores/product-store/index.ts	(date 1528512015000)
-@@ -57,6 +57,14 @@
-     this.state.all = products;
+--- src/stores/product-store/index.ts	(date 1541863981000)
++++ src/stores/product-store/index.ts	(date 1541864345000)
+@@ -66,6 +66,14 @@
+     this.f_state.all = products;
    }
  
 +  async updateProduct(product: Product): Promise<void> {
-+    const stateProduct = this.getStateProductById(product.id);
++    const stateProduct = this.m_getStateProductById(product.id);
 +    if (stateProduct) {
 +      await this.$apis.shop.updateProduct(product);
 +      this.$utils.assignIn(stateProduct, product);
@@ -57,15 +54,15 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    //----------------------------------------------------------------------
    //
    //  Internal methods
-Index: src/app/stores/types.ts
+Index: src/stores/types.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/stores/types.ts	(date 1528511404000)
-+++ src/app/stores/types.ts	(date 1528512015000)
+--- src/stores/types.ts	(date 1541863981000)
++++ src/stores/types.ts	(date 1541864345000)
 @@ -20,6 +20,8 @@
-   decrementProductInventory(productId: number): void;
+   decrementProductInventory(productId: string): void;
  
    getAllProducts(): Promise<void>;
 +
@@ -73,24 +70,24 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  }
  
  export interface CartStore {
-Index: src/app/views/product-admin-view/index.vue
+Index: src/views/product-admin-view/index.vue
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/views/product-admin-view/index.vue	(date 1528511404000)
-+++ src/app/views/product-admin-view/index.vue	(date 1528512015000)
-@@ -61,6 +61,10 @@
-       }
+--- src/views/product-admin-view/index.vue	(date 1541863981000)
++++ src/views/product-admin-view/index.vue	(date 1541864345000)
+@@ -59,6 +59,10 @@
      }
    }
+ }
 +
-+  .update-button {
-+    color: var(--app-link-color);
-+  }
++.update-button {
++  color: var(--app-link-color);
++}
  </style>
  
- 
+ <template>
 @@ -136,6 +140,15 @@
              ></paper-input>
            </div>
@@ -98,29 +95,42 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +      </div>
 +      <div class="layout horizontal center end-justified">
 +        <paper-button
-+          v-show="!!selectedProduct.id"
++          v-show="!!m_selectedProduct.id"
 +          class="update-button"
-+          @click="updateProduct"
++          @click="m_updateProduct"
 +        >
-+          Update
++          {{ $t('update') }}
 +        </paper-button>
        </div>
      </div>
+   </div>
+@@ -182,6 +195,16 @@
  
-@@ -185,6 +198,16 @@
-     created() {
-     }
+   created() {}
  
-+    //----------------------------------------------------------------------
-+    //
-+    //  Internal methods
-+    //
-+    //----------------------------------------------------------------------
++  //----------------------------------------------------------------------
++  //
++  //  Internal methods
++  //
++  //----------------------------------------------------------------------
 +
-+    async updateProduct(): Promise<void> {
-+      await this.$stores.product.updateProduct(this.selectedProduct as Product);
-+    }
++  async m_updateProduct(): Promise<void> {
++    await this.$stores.product.updateProduct(this.m_selectedProduct as Product);
++  }
 +
-     //----------------------------------------------------------------------
-     //
-     //  Event handlers
+   //----------------------------------------------------------------------
+   //
+   //  Event handlers
+@@ -209,10 +232,12 @@
+   title: "Title"
+   price: "Price"
+   stock: "Stock"
++  update: "Update"
+ ja:
+   products: "商品一覧"
+   detail: "詳細"
+   title: "タイトル"
+   price: "価格"
+   stock: "在庫"
++  update: "更新"
+ </i18n>

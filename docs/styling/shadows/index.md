@@ -1,54 +1,60 @@
 # Shadows
 
-## CSSクラス
+## CSS クラス
 
-`src/assets/styles/_shadow.styl`には次のCSSクラスが定義されています。
+`src/styles/_shadow.pcss`には次の CSS クラスが定義されています。
 
-##### .app-shadow-elevation-2dp
-<div class="shadow-tag app-shadow-elevation-2dp"></div>
+##### .comm-shadow-elevation-2dp
 
-##### .app-shadow-elevation-3dp
-<div class="shadow-tag app-shadow-elevation-3dp"></div>
+<div class="shadow-tag comm-shadow-elevation-2dp"></div>
 
-##### .app-shadow-elevation-4dp
-<div class="shadow-tag app-shadow-elevation-4dp"></div>
+##### .comm-shadow-elevation-3dp
 
-##### .app-shadow-elevation-6dp
-<div class="shadow-tag app-shadow-elevation-6dp"></div>
+<div class="shadow-tag comm-shadow-elevation-3dp"></div>
 
-##### .app-shadow-elevation-8dp
-<div class="shadow-tag app-shadow-elevation-8dp"></div>
+##### .comm-shadow-elevation-4dp
 
-##### .app-shadow-elevation-12dp
-<div class="shadow-tag app-shadow-elevation-12dp"></div>
+<div class="shadow-tag comm-shadow-elevation-4dp"></div>
 
-##### .app-shadow-elevation-16dp
-<div class="shadow-tag app-shadow-elevation-16dp"></div>
+##### .comm-shadow-elevation-6dp
 
-##### .app-shadow-elevation-24dp
-<div class="shadow-tag app-shadow-elevation-24dp"></div>
+<div class="shadow-tag comm-shadow-elevation-6dp"></div>
+
+##### .comm-shadow-elevation-8dp
+
+<div class="shadow-tag comm-shadow-elevation-8dp"></div>
+
+##### .comm-shadow-elevation-12dp
+
+<div class="shadow-tag comm-shadow-elevation-12dp"></div>
+
+##### .comm-shadow-elevation-16dp
+
+<div class="shadow-tag comm-shadow-elevation-16dp"></div>
+
+##### .comm-shadow-elevation-24dp
+
+<div class="shadow-tag comm-shadow-elevation-24dp"></div>
 
 <br>
 
-## CSSクラス利用例
+## CSS クラス利用例
 
-次は.vueファイルで定義したCSSクラスにシャドウのCSSクラスを継承させて利用する例です。
+次は .vue ファイルで定義した CSS クラスにシャドウのプレースホルダーを継承して利用する例です。
 
 ```html
-<style lang="stylus" scoped>
-  @import '../assets/styles/_shadow.styl'
+<style lang="postcss" scoped>
+  @import '../styles/shadows.pcss';
   .container {
-    @extend .app-shadow-elevation-3dp;
+    @extend %comm-shadow-elevation-3dp;
   }
 </style>
 
 <template>
-  <div class="container">
-    …
-  </div>
+  <div class="container">…</div>
 </template>
 ```
 
-ここではStylusの機能を利用してシャドウクラスを継承させています。
+ここでは PostCSS の機能を利用してプレースホルダーを継承しています。
 
-まず`@import`で`_shadow.styl`ファイルをインポートし、シャドウのCSSクラスを読み込みます。これにより`<style>`タグの中でシャドウCSSクラスが利用できるようになるので、`@extend`で継承して定義されたシャドウを利用しています。
+まず`@import`で`shadow.pcss`ファイルをインポートし、シャドウのプレースホルダーを読み込みます。これにより`<style>`タグの中でシャドウのプレースホルダーが利用できるようになるので、`@extend`で継承して定義されたシャドウを利用しています。

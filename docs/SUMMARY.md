@@ -5,7 +5,7 @@
   * [アプリケーションのデータ管理](app-data-management/index.md)
   * [TypeScript チートシート](typescript-cheat-sheet/index.md)
   * スタイリング
-    * [CSS変数](styling/css-variables/index.md)
+    * [CSS 変数](styling/css-variables/index.md)
     * [Colors](styling/colors/index.md)
     * [Spacing](styling/spacing/index.md)
     * [Typography](styling/typography/index.md)

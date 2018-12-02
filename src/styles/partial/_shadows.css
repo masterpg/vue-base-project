@@ -1,0 +1,43 @@
+@import '../shadows.css';
+
+.comm-shadow-transition {
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comm-shadow-none {
+  box-shadow: none;
+}
+
+/* from http://codepen.io/shyndman/pen/c5394ddf2e8b2a5c9185904b57421cdb */
+
+.comm-shadow-elevation-2dp {
+  @extend %comm-shadow-elevation-2dp;
+}
+
+.comm-shadow-elevation-3dp {
+  @extend %comm-shadow-elevation-3dp;
+}
+
+.comm-shadow-elevation-4dp {
+  @extend %comm-shadow-elevation-4dp;
+}
+
+.comm-shadow-elevation-6dp {
+  @extend %comm-shadow-elevation-6dp;
+}
+
+.comm-shadow-elevation-8dp {
+  @extend %comm-shadow-elevation-8dp;
+}
+
+.comm-shadow-elevation-12dp {
+  @extend %comm-shadow-elevation-8dp;
+}
+
+.comm-shadow-elevation-16dp {
+  @extend %comm-shadow-elevation-16dp;
+}
+
+.comm-shadow-elevation-24dp {
+  @extend %comm-shadow-elevation-24dp;
+}

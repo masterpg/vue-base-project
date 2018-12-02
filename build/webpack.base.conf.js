@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 //--------------------------------------------------
 //  config
@@ -18,13 +19,12 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
  * @param outputPath ビルド結果の出力パスを指定。
  */
 exports.config = (targetEnv, basePath, outputPath) => {
-
   const settings = (() => {
     let mode;
     if (targetEnv === 'development') {
-      mode = 'development'
+      mode = 'development';
     } else {
-      mode = 'production'
+      mode = 'production';
     }
     return { mode };
   })();
@@ -33,8 +33,7 @@ exports.config = (targetEnv, basePath, outputPath) => {
     mode: settings.mode,
 
     entry: {
-      // `babel-polyfill`はIE11対応
-      'index': ['babel-polyfill', path.resolve(__dirname, '../src/app/index.ts')],
+      index: path.resolve(__dirname, '../src/index.ts'),
     },
 
     output: {
@@ -51,50 +50,53 @@ exports.config = (targetEnv, basePath, outputPath) => {
       extensions: ['.ts', '.js', '.vue', '.json'],
 
       alias: {
-        'vue$': 'vue/dist/vue.esm.js',
-      }
+        vue$: 'vue/dist/vue.esm.js',
+      },
     },
 
     module: {
       rules: [
         {
-          enforce: 'pre',
-          test: /\.ts?$/,
-          loader: 'tslint-loader',
-        },
-        {
           test: /\.ts$/,
           exclude: /node_modules|vue\/src/,
-          loader: 'ts-loader',
-          options: {
-            // 「.vue」のファイルに接尾辞「.ts」がファイル名に追加されるよう設定
-            // 参照: https://github.com/TypeStrong/ts-loader#user-content-appendtssuffixto-regexp-default
-            appendTsSuffixTo: [/\.vue$/]
-          },
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                // 「.vue」のファイルに接尾辞「.ts」がファイル名に追加されるよう設定
+                // 参照: https://github.com/TypeStrong/ts-loader#user-content-appendtssuffixto-regexp-default
+                appendTsSuffixTo: [/\.vue$/],
+              },
+            },
+            {
+              loader: 'tslint-loader',
+            },
+          ],
         },
         // 「.vue」ファイルをvue-loaderがハンドルするよう設定
         // 参照: https://github.com/vuejs-templates/webpack-simple/blob/master/template/webpack.config.js
         {
           test: /\.vue$/,
-          loader: 'vue-loader',
-          options: {
-            esModule: true,
-            scss: 'vue-style-loader!css-loader!sass-loader',
-            loaders: {
-              ts: 'ts-loader!tslint-loader'
-            },
-            postcss: {
-              config: {
-                path: path.resolve(__dirname, 'postcss.config.js'),
+          use: [
+            {
+              loader: 'vue-loader',
+              options: {
+                esModule: true,
+                scss: 'vue-style-loader!css-loader!sass-loader',
+                postcss: {
+                  config: {
+                    path: path.resolve(__dirname, 'postcss.config.js'),
+                  },
+                },
               },
             },
-          },
+          ],
         },
         {
           test: /\.css$/,
           use: [
             'vue-style-loader',
-            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'css-loader',
             {
               loader: 'postcss-loader',
               options: {
@@ -103,20 +105,27 @@ exports.config = (targetEnv, basePath, outputPath) => {
                 },
               },
             },
-          ]
+          ],
         },
         {
           test: /\.styl$/,
           loader: ['vue-style-loader', 'css-loader', 'stylus-loader'],
         },
+        {
+          resourceQuery: /blockType=i18n/,
+          type: 'javascript/auto',
+          loader: ['@kazupon/vue-i18n-loader', 'yaml-loader'],
+        },
       ],
     },
 
     plugins: [
+      new VueLoaderPlugin(),
+
       new webpack.DefinePlugin({
         'process.env': {
-          'TARGET_ENV': JSON.stringify(targetEnv)
-        }
+          TARGET_ENV: JSON.stringify(targetEnv),
+        },
       }),
 
       new HtmlWebpackPlugin({
@@ -127,29 +136,25 @@ exports.config = (targetEnv, basePath, outputPath) => {
         bundledScript: 'index.bundle.js',
       }),
 
-      new CleanWebpackPlugin(
-        [outputPath],
-        {
-          root: path.resolve(__dirname, '..'),
-          verbose: true
-        },
-      ),
+      new CleanWebpackPlugin([outputPath], {
+        root: path.resolve(__dirname, '..'),
+        verbose: true,
+      }),
 
       // `to: xxx`の`xxx`は`output.path`が基準になる
       new CopyWebpackPlugin([
         { from: path.resolve(__dirname, '../src/manifest.json') },
         {
           from: path.resolve(__dirname, '../src/assets/images'),
-          to: 'assets/images'
+          to: 'assets/images',
         },
         {
           from: path.resolve(__dirname, '../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
-          to: 'node_modules/@webcomponents/webcomponentsjs'
+          to: 'node_modules/@webcomponents/webcomponentsjs',
         },
       ]),
     ],
   };
-
 };
 
 //--------------------------------------------------
@@ -169,8 +174,8 @@ exports.devServer = (outputPath) => {
     proxy: {
       '/api': {
         target: 'http://0.0.0.0:5010',
-        secure: false
-      }
+        secure: false,
+      },
     },
     // statsの設定は以下URLを参照:
     // https://webpack.js.org/configuration/stats/
@@ -210,11 +215,16 @@ exports.devServer = (outputPath) => {
 exports.newSWPrecacheWebpackPlugin = (basePath, outputPath) => {
   return new SWPrecacheWebpackPlugin({
     staticFileGlobs: [
-      path.join(outputPath, basePath, 'node_modules/**/*'),
       path.join(outputPath, basePath, 'assets/**/*'),
       path.join(outputPath, basePath, '*.bundle.js'),
       path.join(outputPath, basePath, 'index.html'),
       path.join(outputPath, basePath, 'manifest.json'),
+    ],
+    runtimeCaching: [
+      {
+        urlPattern: /\/node_modules\//,
+        handler: 'cacheFirst',
+      },
     ],
     navigateFallback: 'index.html',
     navigateFallbackWhitelist: [/^(?!\/api\/).*$/],
@@ -224,6 +234,6 @@ exports.newSWPrecacheWebpackPlugin = (basePath, outputPath) => {
 
 exports.newImageminPlugin = () => {
   return new ImageminPlugin({
-    test: /assets\/images\/[^\.]+\.(jpe?g|png|gif|svg)$/i,
-  })
+    test: /src\/assets\/images\/[^\.]+\.(jpe?g|png|gif|svg)$/i,
+  });
 };

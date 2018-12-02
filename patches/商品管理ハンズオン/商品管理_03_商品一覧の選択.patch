@@ -1,39 +1,52 @@
-Index: src/app/views/product-admin-view/index.vue
+Index: src/index.pcss
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/app/views/product-admin-view/index.vue	(date 1528511273000)
-+++ src/app/views/product-admin-view/index.vue	(date 1528511312000)
-@@ -8,6 +8,15 @@
+--- src/index.pcss	(date 1541862443000)
++++ src/index.pcss	(date 1541862768000)
+@@ -18,6 +18,8 @@
+   --app-link-color: var(--comm-indigo-500);
+   --app-link-visited-color: var(--comm-indigo-300);
+   --app-default-border-color: var(--comm-grey-300);
++  --app-grid-selected-hover-item: var(--comm-grey-100);
++  --app-grid-selected-activ-item: var(--comm-grey-300);
  
-   .product-item {
-     @extend .app-pa-3;
-+    cursor: pointer;
-+
-+    &:hover {
-+      background-color: var(--app-grid-selected-hover-item);
-+    }
-+
-+    &.iron-selected {
-+      background-color: var(--app-grid-selected-activ-item);
-+    }
+   /*------------------------------
+     Grid
+Index: src/views/product-admin-view/index.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/views/product-admin-view/index.vue	(date 1541862443000)
++++ src/views/product-admin-view/index.vue	(date 1541862768000)
+@@ -7,6 +7,15 @@
  
-     .title {
-       @extend .app-font-subhead;
-@@ -29,19 +38,26 @@
-         <div class="title-text">Products</div>
+ .product-item {
+   padding: 12px;
++  cursor: pointer;
++
++  &:hover {
++    background-color: var(--app-grid-selected-hover-item);
++  }
++
++  &.iron-selected {
++    background-color: var(--app-grid-selected-activ-item);
++  }
+ 
+   & .title {
+     @extend %comm-font-subhead;
+@@ -29,21 +38,33 @@
+         <div class="title-text">{{ $t('products') }}</div>
        </div>
-       <hr style="width: 100%;">
--      <div
--        v-for="(product, index) in products"
--        class="layout horizontal center product-item"
--      >
+       <hr style="width: 100%;" />
+-      <div v-for="(product, index) in m_products" class="layout horizontal center product-item">
 -        <div class="layout vertical center-justified">
 -          <div class="title">{{ product.title }}</div>
 -          <div class="detail">
--            <span>Price</span> &mdash; {{ product.price | currency }},&nbsp;
--            <span>Stock</span> &mdash; {{ product.inventory }}
+-            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
+-            <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
 -          </div>
 -        </div>
 -        <div class="flex"></div>
@@ -41,10 +54,10 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +      <iron-selector
 +        ref="productSelector"
 +        attr-for-selected="product-id"
-+        @selected-changed="productSelectorOnSelectedItemChanged"
++        @selected-changed="m_productSelectorOnSelectedItemChanged"
 +      >
 +        <div
-+          v-for="(product, index) in products"
++          v-for="(product, index) in m_products"
 +          class="layout horizontal center product-item"
 +          :product-id="product.id"
 +        >
@@ -59,68 +72,52 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +        </div>
 +      </iron-selector>
      </div>
- 
    </div>
-@@ -49,6 +65,7 @@
- 
+ </template>
  
  <script lang="ts">
-+  import '@polymer/iron-selector/iron-selector';
-   import { Component } from 'vue-property-decorator';
-   import { ElementComponent } from '../../components';
-   import { Product } from '../../stores/types';
-@@ -67,6 +84,16 @@
-       return this.$stores.product.allProducts;
-     }
- 
-+    //--------------------------------------------------
-+    //  Elements
-+    //--------------------------------------------------
++import '@polymer/iron-selector/iron-selector';
 +
-+    private get productSelector(): {
-+      selected: string,
-+    } {
-+      return this.$refs.productSelector as any;
-+    }
-+
-     //----------------------------------------------------------------------
-     //
-     //  Lifecycle hooks
-@@ -76,5 +103,21 @@
-     created() {
-     }
- 
-+    //----------------------------------------------------------------------
-+    //
-+    //  Event handlers
-+    //
-+    //----------------------------------------------------------------------
-+
-+    private productSelectorOnSelectedItemChanged(event) {
-+      let selectedProduct: Product | undefined;
-+      if (this.productSelector.selected) {
-+        const productId = parseInt(this.productSelector.selected, 10);
-+        selectedProduct = this.products.find((item) => item.id === productId);
-+      }
-+      // tslint:disable-next-line
-+      console.log('selectedProduct:', selectedProduct);
-+    }
-+
+ import { Component } from 'vue-property-decorator';
+ import { BaseComponent } from '../../base/component';
+ import { Product } from '../../stores';
+@@ -61,6 +82,16 @@
+     return this.$stores.product.allProducts;
    }
- </script>
-Index: src/assets/styles/main.styl
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
---- src/assets/styles/main.styl	(date 1528511273000)
-+++ src/assets/styles/main.styl	(date 1528511312000)
-@@ -22,6 +22,8 @@
-   --app-link-color: var(--app-blue-800);
-   --app-link-visited-color: var(--app-indigo-300);
-   --app-default-border-color: var(--app-grey-300);
-+  --app-grid-selected-hover-item: var(--app-grey-100);
-+  --app-grid-selected-activ-item: var(--app-grey-300);
  
-   /**
-    * Grid
++  //--------------------------------------------------
++  //  Elements
++  //--------------------------------------------------
++
++  get m_productSelector(): {
++    selected: string;
++  } {
++    return this.$refs.productSelector as any;
++  }
++
+   //----------------------------------------------------------------------
+   //
+   //  Lifecycle hooks
+@@ -68,6 +99,22 @@
+   //----------------------------------------------------------------------
+ 
+   created() {}
++
++  //----------------------------------------------------------------------
++  //
++  //  Event handlers
++  //
++  //----------------------------------------------------------------------
++
++  m_productSelectorOnSelectedItemChanged(event) {
++    let selectedProduct: Product | undefined;
++    if (this.m_productSelector.selected) {
++      const productId = this.m_productSelector.selected;
++      selectedProduct = this.m_products.find((item) => item.id === productId);
++    }
++    // tslint:disable-next-line
++    console.log('selectedProduct:', selectedProduct);
++  }
+ }
+ </script>
+ 
