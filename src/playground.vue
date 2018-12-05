@@ -7,14 +7,9 @@
 </style>
 
 <template>
-  <paper-card
-    class="layout vertical comm-pa-20"
-    :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }"
-  >
+  <paper-card class="layout vertical comm-pa-20" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
     <div class="hello-world-color">{{ $t('hello', { today: $d(new Date(), 'short') }) }}</div>
-    <div class="layout horizontal end-justified comm-mt-10">
-      <paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button>
-    </div>
+    <div class="layout horizontal end-justified comm-mt-10"><paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button></div>
   </paper-card>
 </template>
 

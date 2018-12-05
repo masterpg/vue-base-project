@@ -49,7 +49,7 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //
   //----------------------------------------------------------------------
 
-  getProductById(productId: string): Product | undefined {
+  getProductById(productId: string): Product | undefined | null {
     const stateProduct = this.m_getStateProductById(productId);
     return this.$utils.cloneDeep(stateProduct);
   }
@@ -72,7 +72,7 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //
   //----------------------------------------------------------------------
 
-  m_getStateProductById(productId: string): Product | undefined {
+  m_getStateProductById(productId: string): Product | undefined | null {
     return this.f_state.all.find((item) => item.id === productId);
   }
 }

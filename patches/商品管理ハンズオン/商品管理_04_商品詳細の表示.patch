@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1541862768000)
-+++ src/views/product-admin-view/index.vue	(date 1541863981000)
+--- src/views/product-admin-view/index.vue	(date 1544028866000)
++++ src/views/product-admin-view/index.vue	(date 1544029081000)
 @@ -1,4 +1,5 @@
- <style lang="postcss" scoped>
-+@import '../../styles/flex-layout.pcss';
- @import '../../styles/typography.pcss';
+ <style scoped>
++@import '../../styles/flex-layout.css';
+ @import '../../styles/typography.css';
  
  .title-text {
 @@ -26,6 +27,38 @@
@@ -50,17 +50,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  </style>
  
  <template>
-@@ -51,19 +84,66 @@
-           <div class="layout vertical center-justified">
-             <div class="title">{{ product.title }}</div>
-             <div class="detail">
--              <span>Price</span> &mdash; {{ product.price | currency }},&nbsp;
--              <span>Stock</span> &mdash; {{ product.inventory }}
-+              <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
-+              <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
-             </div>
-           </div>
-           <div class="flex"></div>
+@@ -47,11 +80,58 @@
          </div>
        </iron-selector>
      </div>
@@ -119,7 +109,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
  import { Component } from 'vue-property-decorator';
  import { BaseComponent } from '../../base/component';
-@@ -78,6 +158,8 @@
+@@ -66,6 +146,8 @@
    //
    //----------------------------------------------------------------------
  
@@ -128,7 +118,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    get m_products(): Product[] {
      return this.$stores.product.allProducts;
    }
-@@ -110,10 +192,12 @@
+@@ -98,10 +180,12 @@
      let selectedProduct: Product | undefined;
      if (this.m_productSelector.selected) {
        const productId = this.m_productSelector.selected;
@@ -142,7 +132,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    }
  }
  </script>
-@@ -121,10 +205,14 @@
+@@ -109,10 +193,14 @@
  <i18n>
  en:
    products: "Products"

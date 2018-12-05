@@ -2,11 +2,7 @@ import * as td from 'testdouble';
 import { Product as APIProduct } from '../../../src/apis';
 import { Product } from '../../../src/stores';
 import { TestStore } from '../../types';
-import {
-  newProductStore,
-  ProductState,
-  ProductStoreImpl,
-} from '../../../src/stores/product-store';
+import { newProductStore, ProductState, ProductStoreImpl } from '../../../src/stores/product-store';
 
 const assert = chai.assert;
 
@@ -58,10 +54,7 @@ suite('store/product-store', () => {
   });
 
   test('getAllProducts()', async () => {
-    const NEW_API_PRODUCTS = [
-      { id: '1', title: 'product1', price: 101, inventory: 1 },
-      { id: '2', title: 'product2', price: 102, inventory: 2 },
-    ];
+    const NEW_API_PRODUCTS = [{ id: '1', title: 'product1', price: 101, inventory: 1 }, { id: '2', title: 'product2', price: 102, inventory: 2 }];
     td.replace(shopAPI, 'getProducts');
     td.when(shopAPI.getProducts()).thenResolve(NEW_API_PRODUCTS);
 

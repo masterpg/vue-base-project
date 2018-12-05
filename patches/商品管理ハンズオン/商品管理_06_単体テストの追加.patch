@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- test/stores/product-store/index.ts	(date 1541864345000)
-+++ test/stores/product-store/index.ts	(date 1541864746000)
+--- test/stores/product-store/index.ts	(date 1544029333000)
++++ test/stores/product-store/index.ts	(date 1544029402000)
 @@ -2,11 +2,7 @@
  import { Product as APIProduct } from '../../../src/apis';
  import { Product } from '../../../src/stores';
@@ -18,7 +18,18 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
  const assert = chai.assert;
  
-@@ -68,4 +64,39 @@
+@@ -58,14 +54,46 @@
+   });
+ 
+   test('getAllProducts()', async () => {
+-    const NEW_API_PRODUCTS = [
+-      { id: '1', title: 'product1', price: 101, inventory: 1 },
+-      { id: '2', title: 'product2', price: 102, inventory: 2 },
+-    ];
++    const NEW_API_PRODUCTS = [{ id: '1', title: 'product1', price: 101, inventory: 1 }, { id: '2', title: 'product2', price: 102, inventory: 2 }];
+     td.replace(shopAPI, 'getProducts');
+     td.when(shopAPI.getProducts()).thenResolve(NEW_API_PRODUCTS);
+ 
      await productStore.getAllProducts();
      assert.deepEqual(productStore.allProducts, NEW_API_PRODUCTS);
    });

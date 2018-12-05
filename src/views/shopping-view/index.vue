@@ -6,7 +6,8 @@
   @extend %comm-font-title;
 }
 
-.product-item {
+.product-item,
+.cart-item {
   padding: 12px;
 
   & .title {
@@ -30,10 +31,7 @@
 </style>
 
 <template>
-  <div
-    class="layout vertical"
-    :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }"
-  >
+  <div class="layout vertical" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
     <div>
       <div class="layout horizontal center">
         <div class="title-text">{{ $t('products') }}</div>
@@ -43,15 +41,12 @@
         <div class="layout vertical center-justified">
           <div class="title">{{ product.title }}</div>
           <div class="detail">
-            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
-            <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
+            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp; <span>{{ $t('stock') }}</span> &mdash;
+            {{ product.inventory }}
           </div>
         </div>
         <div class="flex"></div>
-        <paper-icon-button
-          icon="icons:add-box"
-          @click="m_addProductToCart(product);"
-        ></paper-icon-button>
+        <paper-icon-button icon="icons:add-box" @click="m_addProductToCart(product);"></paper-icon-button>
       </div>
     </div>
 
@@ -61,20 +56,17 @@
         <div class="flex"></div>
       </div>
       <hr style="width: 100%;" />
-      <div v-for="(product, index) in m_cartProducts" class="layout horizontal center product-item">
+      <div v-for="(cartItem, index) in m_cartItems" class="layout horizontal center cart-item">
         <div class="layout vertical center-justified">
-          <div class="title">{{ product.title }}</div>
+          <div class="title">{{ cartItem.title }}</div>
           <div class="detail">
-            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }} x
-            {{ product.quantity }}
+            <span>{{ $t('price') }}</span> &mdash; {{ cartItem.price | currency }} x {{ cartItem.quantity }}
           </div>
         </div>
       </div>
       <div class="layout horizontal center">
         <div class="flex error-text">{{ m_checkoutStatus.message }}</div>
-        <paper-button v-show="!m_cartIsEmpty" class="checkout-button" @click="m_checkout">
-          {{ $t('checkout') }}
-        </paper-button>
+        <paper-button v-show="!m_cartIsEmpty" class="checkout-button" @click="m_checkout">{{ $t('checkout') }}</paper-button>
       </div>
     </div>
   </div>
@@ -86,7 +78,7 @@ import '@polymer/paper-card/paper-card';
 import '@polymer/paper-icon-button/paper-icon-button';
 
 import { BaseComponent } from '../../base/component';
-import { CartProduct, CheckoutStatus, Product } from '../../stores';
+import { CartItem, CheckoutStatus, Product } from '../../stores';
 import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 
@@ -99,15 +91,15 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   get m_cartIsEmpty(): boolean {
-    return this.m_cartProducts.length === 0;
+    return this.m_cartItems.length === 0;
   }
 
   get m_products(): Product[] {
     return this.$stores.product.allProducts;
   }
 
-  get m_cartProducts(): CartProduct[] {
-    return this.$stores.cart.cartProducts;
+  get m_cartItems(): CartItem[] {
+    return this.$stores.cart.cartItems;
   }
 
   get m_cartTotalPrice(): number {
@@ -115,9 +107,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
   }
 
   get m_checkoutStatus(): { result: boolean; message: string } {
-    const result =
-      this.$stores.cart.checkoutStatus === CheckoutStatus.None ||
-      this.$stores.cart.checkoutStatus === CheckoutStatus.Successful;
+    const result = this.$stores.cart.checkoutStatus === CheckoutStatus.None || this.$stores.cart.checkoutStatus === CheckoutStatus.Successful;
     return {
       result,
       message: result ? '' : 'Checkout failed.',

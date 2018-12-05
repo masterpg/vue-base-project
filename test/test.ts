@@ -11,11 +11,7 @@
   apis.init();
   stores.init();
 
-  await Promise.all([
-    import('./api/shop-api'),
-    import('./stores/cart-store'),
-    import('./stores/product-store'),
-  ]);
+  await Promise.all([import('./api/shop-api'), import('./stores/cart-store'), import('./stores/product-store')]);
 
   mocha.run();
 })();

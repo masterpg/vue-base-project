@@ -22,11 +22,7 @@ export class Utils {
 
   assign<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
 
-  assign<TObject, TSource1, TSource2>(
-    object: TObject,
-    source1: TSource1,
-    source2: TSource2,
-  ): TObject & TSource1 & TSource2;
+  assign<TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & TSource1 & TSource2;
 
   assign<TObject, TSource1, TSource2, TSource3>(
     object: TObject,
@@ -67,11 +63,7 @@ export class Utils {
 
   assignIn<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
 
-  assignIn<TObject, TSource1, TSource2>(
-    object: TObject,
-    source1: TSource1,
-    source2: TSource2,
-  ): TObject & TSource1 & TSource2;
+  assignIn<TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & TSource1 & TSource2;
 
   assignIn<TObject, TSource1, TSource2, TSource3>(
     object: TObject,

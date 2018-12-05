@@ -24,16 +24,9 @@
 
 <template>
   <div class="layout vertical">
-    <paper-card
-      class="comm-pa-12"
-      :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }"
-    >
+    <paper-card class="comm-pa-12" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
       <div class="comm-my-16">{{ $t('hello', { today: $d(new Date(), 'short') }) }}</div>
-      <paper-input
-        label="Input Message"
-        :value="m_message"
-        @input="m_message = $event.target.value;"
-      ></paper-input>
+      <paper-input label="Input Message" :value="m_message" @input="m_message = $event.target.value;"></paper-input>
       <div class="comm-my-16">
         <span class="title">propA: </span><span class="value">{{ propA }}</span>
       </div>
@@ -47,12 +40,10 @@
         <span class="title">custom propA: </span><span class="value">{{ m_customPropA }}</span>
       </div>
       <div class="comm-my-16">
-        <span class="title">reversed message: </span>
-        <span class="value">{{ m_reversedMessage }}</span>
+        <span class="title">reversed message: </span> <span class="value">{{ m_reversedMessage }}</span>
       </div>
       <div class="comm-my-16">
-        <span class="title">double reversed message: </span>
-        <span class="value">{{ m_doubleReversedMessage }}</span>
+        <span class="title">double reversed message: </span> <span class="value">{{ m_doubleReversedMessage }}</span>
       </div>
       <div class="layout horizontal center comm-my-16">
         <greet-message
@@ -78,9 +69,7 @@
           <span class="title">checked: </span><span class="value">{{ m_customChecked }}</span>
         </span>
       </div>
-      <div class="layout horizontal end-justified">
-        <paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button>
-      </div>
+      <div class="layout horizontal end-justified"><paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button></div>
     </paper-card>
   </div>
 </template>

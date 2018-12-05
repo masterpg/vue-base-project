@@ -1,10 +1,10 @@
-Index: src/index.pcss
+Index: src/index.css
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/index.pcss	(date 1541862443000)
-+++ src/index.pcss	(date 1541862768000)
+--- src/index.css	(date 1544028509000)
++++ src/index.css	(date 1544028866000)
 @@ -18,6 +18,8 @@
    --app-link-color: var(--comm-indigo-500);
    --app-link-visited-color: var(--comm-indigo-300);
@@ -19,8 +19,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1541862443000)
-+++ src/views/product-admin-view/index.vue	(date 1541862768000)
+--- src/views/product-admin-view/index.vue	(date 1544028509000)
++++ src/views/product-admin-view/index.vue	(date 1544028866000)
 @@ -7,6 +7,15 @@
  
  .product-item {
@@ -37,7 +37,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
    & .title {
      @extend %comm-font-subhead;
-@@ -29,21 +38,33 @@
+@@ -26,21 +35,24 @@
          <div class="title-text">{{ $t('products') }}</div>
        </div>
        <hr style="width: 100%;" />
@@ -45,27 +45,18 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -        <div class="layout vertical center-justified">
 -          <div class="title">{{ product.title }}</div>
 -          <div class="detail">
--            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
--            <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
+-            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp; <span>{{ $t('stock') }}</span> &mdash;
+-            {{ product.inventory }}
 -          </div>
 -        </div>
 -        <div class="flex"></div>
 -      </div>
-+      <iron-selector
-+        ref="productSelector"
-+        attr-for-selected="product-id"
-+        @selected-changed="m_productSelectorOnSelectedItemChanged"
-+      >
-+        <div
-+          v-for="(product, index) in m_products"
-+          class="layout horizontal center product-item"
-+          :product-id="product.id"
-+        >
++      <iron-selector ref="productSelector" attr-for-selected="product-id" @selected-changed="m_productSelectorOnSelectedItemChanged">
++        <div v-for="(product, index) in m_products" class="layout horizontal center product-item" :product-id="product.id">
 +          <div class="layout vertical center-justified">
 +            <div class="title">{{ product.title }}</div>
 +            <div class="detail">
-+              <span>Price</span> &mdash; {{ product.price | currency }},&nbsp;
-+              <span>Stock</span> &mdash; {{ product.inventory }}
++              <span>Price</span> &mdash; {{ product.price | currency }},&nbsp; <span>Stock</span> &mdash; {{ product.inventory }}
 +            </div>
 +          </div>
 +          <div class="flex"></div>
@@ -81,7 +72,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  import { Component } from 'vue-property-decorator';
  import { BaseComponent } from '../../base/component';
  import { Product } from '../../stores';
-@@ -61,6 +82,16 @@
+@@ -58,6 +70,16 @@
      return this.$stores.product.allProducts;
    }
  
@@ -98,7 +89,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    //----------------------------------------------------------------------
    //
    //  Lifecycle hooks
-@@ -68,6 +99,22 @@
+@@ -65,6 +87,22 @@
    //----------------------------------------------------------------------
  
    created() {}

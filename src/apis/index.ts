@@ -19,9 +19,11 @@ class APIsImpl extends Vue implements APIs {
   }
 }
 
+export const apis = new APIsImpl();
+
 export function init(): void {
   Object.defineProperty(Vue.prototype, '$apis', {
-    value: new APIsImpl(),
+    value: apis,
     writable: false,
   });
 }

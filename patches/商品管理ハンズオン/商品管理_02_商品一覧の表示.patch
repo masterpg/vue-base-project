@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1541860055000)
-+++ src/views/product-admin-view/index.vue	(date 1541862443000)
-@@ -1,14 +1,83 @@
+--- src/views/product-admin-view/index.vue	(date 1544028366000)
++++ src/views/product-admin-view/index.vue	(date 1544028509000)
+@@ -1,14 +1,80 @@
 -<style lang="postcss" scoped></style>
-+<style lang="postcss" scoped>
-+@import '../../styles/typography.pcss';
++<style scoped>
++@import '../../styles/typography.css';
 +
 +.title-text {
 +  @extend %comm-font-title;
@@ -30,10 +30,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
  <template>
 -  <div>product-admin-view</div>
-+  <div
-+    class="layout vertical"
-+    :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }"
-+  >
++  <div class="layout vertical" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
 +    <div>
 +      <div class="layout horizontal center">
 +        <div class="title-text">{{ $t('products') }}</div>
@@ -43,8 +40,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +        <div class="layout vertical center-justified">
 +          <div class="title">{{ product.title }}</div>
 +          <div class="detail">
-+            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp;
-+            <span>{{ $t('stock') }}</span> &mdash; {{ product.inventory }}
++            <span>{{ $t('price') }}</span> &mdash; {{ product.price | currency }},&nbsp; <span>{{ $t('stock') }}</span> &mdash;
++            {{ product.inventory }}
 +          </div>
 +        </div>
 +        <div class="flex"></div>

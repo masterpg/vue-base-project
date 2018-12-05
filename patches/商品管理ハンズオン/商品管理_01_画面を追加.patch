@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(revision 63b6e3dbea2b7b823161318b4544ee3c0ac57016)
-+++ src/views/product-admin-view/index.vue	(revision 63b6e3dbea2b7b823161318b4544ee3c0ac57016)
+--- src/views/product-admin-view/index.vue	(revision 03d309b7820d5160ac5983c326829a457770ac31)
++++ src/views/product-admin-view/index.vue	(revision 03d309b7820d5160ac5983c326829a457770ac31)
 @@ -0,0 +1,14 @@
 +<style lang="postcss" scoped></style>
 +
@@ -25,16 +25,15 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/router/index.ts	(date 1541858947000)
-+++ src/router/index.ts	(date 1541860055000)
-@@ -15,5 +15,10 @@
-       component: () =>
-         import(/* webpackChunkName: "shopping-view" */ '../views/shopping-view/index.vue'),
+--- src/router/index.ts	(date 1544028305000)
++++ src/router/index.ts	(date 1544028366000)
+@@ -14,5 +14,9 @@
+       path: '/shopping',
+       component: () => import(/* webpackChunkName: "shopping-view" */ '../views/shopping-view/index.vue'),
      },
 +    {
 +      path: '/product-admin',
-+      component: () =>
-+        import(/* webpackChunkName: "product-admin-view" */ '../views/product-admin-view/index.vue'),
++      component: () => import(/* webpackChunkName: "product-admin-view" */ '../views/product-admin-view/index.vue'),
 +    },
    ],
  });
@@ -43,9 +42,9 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/index.vue	(date 1541858947000)
-+++ src/views/index.vue	(date 1541860055000)
-@@ -106,6 +106,10 @@
+--- src/views/index.vue	(date 1544028305000)
++++ src/views/index.vue	(date 1544028366000)
+@@ -104,6 +104,10 @@
        title: 'Shopping',
        path: '/shopping',
      },
