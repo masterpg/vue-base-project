@@ -46,11 +46,7 @@
         <span class="title">double reversed message: </span> <span class="value">{{ m_doubleReversedMessage }}</span>
       </div>
       <div class="layout horizontal center comm-my-16">
-        <greet-message
-          ref="greetMessage"
-          :message="m_message"
-          class="abc-view-greet-message"
-        ></greet-message>
+        <greet-message ref="greetMessage" :message="m_message" class="abc-view-greet-message"></greet-message>
         <button class="comm-ml-12" @click="m_greetButtonOnClick">Greet</button>
       </div>
       <div class="comm-my-16">
