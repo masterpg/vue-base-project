@@ -1,7 +1,7 @@
-import { BaseStore } from '../base';
+import { BaseStore } from '@/stores/base';
 import { Component } from 'vue-property-decorator';
-import { NoCache } from '../../base/component';
-import { Product, ProductStore } from '../types';
+import { NoCache } from '@/base/component';
+import { Product, ProductStore } from '@/stores/types';
 
 export interface ProductState {
   all: Product[];

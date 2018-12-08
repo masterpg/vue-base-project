@@ -75,10 +75,10 @@ import '@polymer/paper-button/paper-button';
 import '@polymer/paper-card/paper-card';
 import '@polymer/paper-input/paper-input';
 
-import CustomCheckbox from './custom-checkbox.vue';
-import CustomInput from './custom-input.vue';
-import GreetMessage from './greet-message.vue';
-import { BaseComponent } from '../../base/component';
+import CustomCheckbox from '@/views/abc-view/custom-checkbox.vue';
+import CustomInput from '@/views/abc-view/custom-input.vue';
+import GreetMessage from '@/views/abc-view/greet-message.vue';
+import { BaseComponent } from '@/base/component';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 

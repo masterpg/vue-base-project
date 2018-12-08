@@ -16,7 +16,7 @@
 <script lang="ts">
 import '@polymer/paper-button/paper-button';
 import '@polymer/paper-card/paper-card';
-import { BaseComponent } from './base/component';
+import { BaseComponent } from '@/base/component';
 import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 

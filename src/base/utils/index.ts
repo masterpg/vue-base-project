@@ -103,9 +103,12 @@ export class Utils {
   }
 }
 
-export function init(): void {
+export let utils: Utils;
+
+export function initUtils(): void {
+  utils = new Utils();
   Object.defineProperty(Vue.prototype, '$utils', {
-    value: new Utils(),
+    value: utils,
     writable: false,
   });
 }

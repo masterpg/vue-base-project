@@ -41,7 +41,7 @@ export function addStateChangeListener(listener: StateChangeLister): void {
 /**
  * ServiceWorkerの初期化を行います。
  */
-export function init(): void {
+export function initServiceWorker(): void {
   if (!('serviceWorker' in navigator)) return;
 
   const prod = process.env.NODE_ENV === 'production';

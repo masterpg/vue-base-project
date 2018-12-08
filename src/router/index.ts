@@ -8,11 +8,11 @@ export default new VueRouter({
   routes: [
     {
       path: '/abc',
-      component: () => import(/* webpackChunkName: "abc-view" */ '../views/abc-view/index.vue'),
+      component: () => import(/* webpackChunkName: "abc-view" */ '@/views/abc-view/index.vue'),
     },
     {
       path: '/shopping',
-      component: () => import(/* webpackChunkName: "shopping-view" */ '../views/shopping-view/index.vue'),
+      component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
     },
   ],
 });

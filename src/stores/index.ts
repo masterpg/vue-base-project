@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import { newCartStore } from './cart-store';
-import { newProductStore } from './product-store';
-import { Stores, CartStore, ProductStore } from './types';
+import { newCartStore } from '@/stores/cart-store';
+import { newProductStore } from '@/stores/product-store';
+import { Stores, CartStore, ProductStore } from '@/stores/types';
 import { Component } from 'vue-property-decorator';
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -27,11 +27,14 @@ class StoresImpl extends Vue implements Stores {
   }
 }
 
-export function init(): void {
+export let stores: Stores;
+
+export function initStores(): void {
+  stores = new StoresImpl();
   Object.defineProperty(Vue.prototype, '$stores', {
-    value: new StoresImpl(),
+    value: stores,
     writable: false,
   });
 }
 
-export * from './types';
+export * from '@/stores/types';

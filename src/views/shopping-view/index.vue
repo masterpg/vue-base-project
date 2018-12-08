@@ -77,8 +77,8 @@ import '@polymer/paper-button/paper-button';
 import '@polymer/paper-card/paper-card';
 import '@polymer/paper-icon-button/paper-icon-button';
 
-import { BaseComponent } from '../../base/component';
-import { CartItem, CheckoutStatus, Product } from '../../stores';
+import { BaseComponent } from '@/base/component';
+import { CartItem, CheckoutStatus, Product } from '@/stores';
 import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 

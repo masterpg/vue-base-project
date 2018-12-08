@@ -1,5 +1,5 @@
-import { APIs } from '../../src/apis';
-import { Stores } from '../../src/stores';
+import { APIs } from '@/apis';
+import { Stores } from '@/stores';
 
 declare interface TestStore<S> {
   $apis: APIs;

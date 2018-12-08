@@ -33,9 +33,12 @@ class ProdConfig extends Config {
   };
 }
 
-export function init(): void {
+export let config: Config;
+
+export function initConfig(): void {
+  config = newConfig();
   Object.defineProperty(Vue.prototype, '$config', {
-    value: newConfig(),
+    value: config,
     writable: false,
   });
 }

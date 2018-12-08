@@ -1,7 +1,7 @@
-import { BaseStore } from '../base';
-import { CartStore, CartItem, CheckoutStatus, Product } from '../types';
+import { BaseStore } from '@/stores/base';
+import { CartStore, CartItem, CheckoutStatus, Product } from '@/stores/types';
 import { Component } from 'vue-property-decorator';
-import { NoCache } from '../../base/component';
+import { NoCache } from '@/base/component';
 
 export interface CartState {
   items: Array<{ id: string; quantity: number }>;

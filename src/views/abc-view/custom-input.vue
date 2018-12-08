@@ -8,7 +8,7 @@
 import '@polymer/paper-input/paper-input';
 
 import { Component, Prop } from 'vue-property-decorator';
-import { BaseComponent } from '../../base/component';
+import { BaseComponent } from '@/base/component';
 import { mixins } from 'vue-class-component';
 
 @Component

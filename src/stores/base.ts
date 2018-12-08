@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { APIs } from '../apis';
+import { APIs } from '@/apis';
 
 export abstract class BaseStore<S> extends Vue {
   //----------------------------------------------------------------------

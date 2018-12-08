@@ -1,7 +1,7 @@
 import * as td from 'testdouble';
-import { CartState, CartStoreImpl, newCartStore } from '../../../src/stores/cart-store';
-import { CheckoutStatus } from '../../../src/stores';
-import { Product as APIProduct } from '../../../src/apis';
+import { CartState, CartStoreImpl, newCartStore } from '@/stores/cart-store';
+import { CheckoutStatus } from '@/stores';
+import { Product as APIProduct } from '@/apis';
 import { TestStore } from '../../types';
 
 const assert = chai.assert;

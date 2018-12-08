@@ -50,6 +50,7 @@ exports.config = (targetEnv, basePath, outputPath) => {
       extensions: ['.ts', '.js', '.vue', '.json'],
 
       alias: {
+        '@': path.resolve('src'),
         vue$: 'vue/dist/vue.esm.js',
       },
     },

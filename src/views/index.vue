@@ -80,8 +80,8 @@ import '@polymer/paper-button/paper-button';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-toast/paper-toast';
 
-import * as sw from '../base/service-worker';
-import { BaseComponent } from '../base/component';
+import * as sw from '@/base/service-worker';
+import { BaseComponent } from '@/base/component';
 import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 
