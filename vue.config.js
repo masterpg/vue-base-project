@@ -69,6 +69,15 @@ module.exports = {
       .use('yaml')
         .loader('yaml-loader')
         .end();
+    // Babelの設定
+    // ※ @vue/cli-plugin-babel を試したが、IE11でPolymerがうまく
+    // 動かなかったため、プレンーな @babel/preset-env を使用して対応。
+    config.module
+      .rule('js')
+      .test(/\.js$/)
+      .use('babel-loader')
+        .loader('babel-loader')
+        .end();
   },
 
   configureWebpack: (config) => {
