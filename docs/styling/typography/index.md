@@ -4,7 +4,7 @@
 
 ## CSS クラス
 
-`src/styles/_typography.pcss`には次の CSS クラスが定義されています。
+`src/styles/_typography.css`には次の CSS クラスが定義されています。
 
 | Scale Category                                                                    | Class               | Size  | Weight |
 | :------------------------------------------------------------------------------   | :-----------------  | :---- | :----- |
@@ -40,8 +40,8 @@
 次は .vue ファイルで定義した CSS クラスにフォントのプレースホルダーを継承して利用する例です。
 
 ```html
-<style lang="postcss" scoped>
-  @import '../styles/typography.pcss';
+<style scoped>
+  @import '../styles/typography.css';
   .title {
     @extend %comm-font-title;
     color: var(--comm-grey-600);
@@ -57,4 +57,4 @@
 
 ここでは PostCSS の機能を利用してフォントのプレースホルダーを継承しています。
 
-まず`@import`で`typography.pcss`ファイルをインポートし、フォントのプレースホルダーを読み込みます。これにより`<style>`タグの中でフォントのプレースホルダーが利用できるようになるので、`@extend`で継承して定義されたフォントを利用しています。
+まず`@import`で`typography.css`ファイルをインポートし、フォントのプレースホルダーを読み込みます。これにより`<style>`タグの中でフォントのプレースホルダーが利用できるようになるので、`@extend`で継承して定義されたフォントを利用しています。

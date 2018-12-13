@@ -2,16 +2,16 @@ import '@babel/polyfill';
 import '@/styles/polymer-styles.js';
 import '@/index.css';
 
+import AppView from '@/index.vue';
+import Vue from 'vue';
+import { currency } from '@/currency';
+import { i18n, initI18n } from '@/base/i18n';
 import { initAPI } from '@/apis';
 import { initConfig } from '@/base/config';
-import { i18n, initI18n } from '@/base/i18n';
-import { initStores } from '@/stores';
 import { initServiceWorker } from '@/base/service-worker';
+import { initStores } from '@/stores';
 import { initUtils } from '@/base/utils';
-import AppView from '@/views/index.vue';
-import Vue from 'vue';
-import router from '@/router';
-import { currency } from '@/currency';
+import { router } from '@/base/router';
 
 (async () => {
   initUtils();

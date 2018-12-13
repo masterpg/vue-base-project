@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { i18n } from '@/base/i18n';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+export const router = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -15,4 +16,8 @@ export default new VueRouter({
       component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  i18n.load().then(() => next());
 });

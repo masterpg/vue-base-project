@@ -1,6 +1,6 @@
 <style scoped>
-@import '../styles/variables.css';
-@import '../styles/typography.css';
+@import './styles/variables.css';
+@import './styles/typography.css';
 
 app-drawer-layout {
   &:not([narrow]) [drawer-toggle] {
@@ -41,7 +41,7 @@ app-drawer-layout {
       <!-- Drawer content -->
       <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
-          <iron-icon src="assets/images/manifest/icon-48x48.png"></iron-icon>
+          <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
           <div main-title class="comm-ml-8">Vue WWW Base</div>
         </app-toolbar>
         <div class="drawer-list">
@@ -61,7 +61,7 @@ app-drawer-layout {
     </app-drawer-layout>
 
     <paper-toast ref="swToast" :duration="m_swUpdateIsRequired ? 0 : 5000" :text="m_swMessage">
-      <paper-button v-show="m_swUpdateIsRequired" class="link-button" @click="m_reload">再読み込み</paper-button>
+      <paper-button v-show="m_swUpdateIsRequired" class="link-button" @click="m_reload">{{ $t('reload') }}</paper-button>
     </paper-toast>
   </div>
 </template>
@@ -145,12 +145,30 @@ export default class AppView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   m_swOnStateChange(info: sw.StateChangeInfo) {
-    this.m_swMessage = info.message;
-    this.m_swUpdateIsRequired = info.state === sw.ChangeState.updateIsRequired;
-    this.$nextTick(() => this.m_swToast.open());
+    this.m_swUpdateIsRequired = false;
 
-    // tslint:disable-next-line
-    console.log(info);
+    if (info.state === sw.ChangeState.updated) {
+      this.m_swUpdateIsRequired = true;
+      this.m_swMessage = info.message;
+      this.$nextTick(() => this.m_swToast.open());
+    } else if (info.state === sw.ChangeState.cached) {
+      this.m_swMessage = info.message;
+      this.$nextTick(() => this.m_swToast.open());
+    }
+
+    if (info.state === sw.ChangeState.error) {
+      console.error(info.message);
+    } else {
+      // tslint:disable-next-line
+      console.log('Service Worker:\n', info);
+    }
   }
 }
 </script>
+
+<i18n>
+en:
+  reload: "Reload"
+ja:
+  reload: "再読み込み"
+</i18n>

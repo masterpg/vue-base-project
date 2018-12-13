@@ -1,5 +1,6 @@
-import VueI18n from 'vue-i18n';
 import Vue from 'vue';
+import VueI18n from 'vue-i18n';
+import axios from 'axios';
 import { dateTimeFormats } from '@/base/i18n/date-time-formats';
 
 Vue.use(VueI18n);
@@ -21,22 +22,12 @@ export class AppI18n extends VueI18n {
   //----------------------------------------------------------------------
 
   constructor() {
-    // ブラウザから言語+国を取得("en"や"en-US"などを取得)
-    const locale =
-      (window.navigator.languages && window.navigator.languages[0]) ||
-      window.navigator.language ||
-      (window.navigator as any).userLanguage ||
-      (window.navigator as any).browserLanguage;
-    // 取得した言語+国からロケールデータを作成
-    const localeData = LocaleUtil.createLocaleData(locale);
-
     // スーパークラスのコンスタント呼び出し
     super({
-      locale: localeData.language, // "en"や"ja"など
       dateTimeFormats,
     });
 
-    this.m_localeData = localeData;
+    this.m_loadedLanguages = [];
   }
 
   //----------------------------------------------------------------------
@@ -46,6 +37,8 @@ export class AppI18n extends VueI18n {
   //----------------------------------------------------------------------
 
   m_localeData: LocaleData;
+
+  m_loadedLanguages: string[];
 
   //----------------------------------------------------------------------
   //
@@ -70,6 +63,58 @@ export class AppI18n extends VueI18n {
       locale = this.m_localeData.locale;
     }
     return super.d(arg1, arg2, locale);
+  }
+
+  /**
+   * 言語リソースを読み込みます。
+   */
+  async load(): Promise<void> {
+    const localeData = this.m_getLocaleData();
+    const currentLanguage = this.m_localeData ? this.m_localeData.language : '';
+    const newLanguage = localeData.language;
+    if (currentLanguage !== newLanguage) {
+      if (this.m_loadedLanguages.indexOf(newLanguage) === -1) {
+        const msgs = await import(/* webpackChunkName: "lang-[request]" */ `@/lang/${newLanguage}`);
+        this.setLocaleMessage(newLanguage, msgs.default);
+      }
+    }
+    this.m_setLanguage(localeData);
+  }
+
+  //----------------------------------------------------------------------
+  //
+  //  Internal methods
+  //
+  //----------------------------------------------------------------------
+
+  /**
+   * ロケールデータを取得します。
+   */
+  m_getLocaleData(): LocaleData {
+    // ブラウザから言語+国を取得("en"や"en-US"などを取得)
+    const locale =
+      (window.navigator.languages && window.navigator.languages[0]) ||
+      window.navigator.language ||
+      (window.navigator as any).userLanguage ||
+      (window.navigator as any).browserLanguage;
+    // 取得した言語+国からロケールデータを作成
+    return LocaleUtil.createLocaleData(locale);
+  }
+
+  /**
+   * ロケールデータの設定を行います。
+   * @param localeData
+   */
+  m_setLanguage(localeData: LocaleData): void {
+    this.locale = localeData.language;
+    axios.defaults.headers.common['Accept-Language'] = localeData.language;
+    document.querySelector('html')!.setAttribute('lang', localeData.language);
+
+    this.m_localeData = localeData;
+    this.m_loadedLanguages = this.m_loadedLanguages || [];
+    if (this.m_loadedLanguages.indexOf(localeData.language) === -1) {
+      this.m_loadedLanguages = [localeData.language];
+    }
   }
 }
 
@@ -128,8 +173,9 @@ class LocaleUtil {
   }
 }
 
-export let i18n: VueI18n;
+export let i18n: AppI18n;
 
 export async function initI18n(): Promise<void> {
   i18n = new AppI18n();
+  await i18n.load();
 }

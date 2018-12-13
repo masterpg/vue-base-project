@@ -9,7 +9,7 @@ export abstract class Config {
 }
 
 function newConfig(): Config {
-  switch (process.env.TARGET_ENV) {
+  switch (process.env.VUE_APP_ENV) {
     case 'development':
       return new DevConfig();
     case 'staging':
@@ -17,7 +17,7 @@ function newConfig(): Config {
     case 'production':
       return new ProdConfig();
     default:
-      throw new Error('The value set for process.env.TARGET_ENV is illegal.');
+      throw new Error('The value set for process.env.VUE_APP_ENV is illegal.');
   }
 }
 

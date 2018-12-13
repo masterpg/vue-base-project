@@ -19,8 +19,7 @@ export class BaseComponent extends mixins(BreakpointMixin) {
     return this.f_breakpoint.xs;
   }
 
-  mounted() {
-  }
+  mounted() {}
 }
 
 /**

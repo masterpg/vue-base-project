@@ -13,7 +13,7 @@ CSS 変数をコンポーネントに適用する例を見てみましょう。
 `src/views/abc-view/greet-message.vue`
 
 ```html
-<style lang="postcss" scoped>
+<style scoped>
   div {
     color: var(--greet-message-color, #f44336);
   }
@@ -35,7 +35,7 @@ CSS 変数を適用するには`var()`関数を使用します。
 以下のケースでは CSS 変数に設定する値を状況によって切り替えています。通常の文字色は青色を、エラーが発生した場合は赤色を設定しています。
 
 ```html
-<style lang="postcss" scoped>
+<style scoped>
   .normal {
     --greet-message-color: blue;
   }

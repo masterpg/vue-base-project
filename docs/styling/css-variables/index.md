@@ -4,7 +4,7 @@
 
 ## CSS 変数の定義と使用方法
 
-`src/styles/_colors.pcss`にはさまざまな色が CSS 変数として定義されています。
+`src/styles/_colors.css`にはさまざまな色が CSS 変数として定義されています。
 
 ```css
 :root {
@@ -23,7 +23,7 @@ CSS 変数は`.vue`、`.css`、`.pcss`、`.styl`、`.scss`などさまざまフ�
 以下は CSS 変数を利用する例です。
 
 ```html
-<style lang="postcss" scoped>
+<style scoped>
   div {
     color: var(--comm-red-50);
   }
