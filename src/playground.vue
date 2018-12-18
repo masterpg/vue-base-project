@@ -1,5 +1,5 @@
 <style scoped>
-@import './styles/variables.css';
+@import './styles/variables.pcss';
 
 .hello-world-color {
   color: var(--comm-indigo-a200);
