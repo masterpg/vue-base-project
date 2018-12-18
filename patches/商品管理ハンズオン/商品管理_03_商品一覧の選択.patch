@@ -1,16 +1,16 @@
-Index: src/index.css
+Index: src/index.pcss
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/index.css	(date 1544028509000)
-+++ src/index.css	(date 1544028866000)
+--- src/index.pcss	(date 1545147701000)
++++ src/index.pcss	(date 1545147748000)
 @@ -18,6 +18,8 @@
    --app-link-color: var(--comm-indigo-500);
    --app-link-visited-color: var(--comm-indigo-300);
    --app-default-border-color: var(--comm-grey-300);
-+  --app-grid-selected-hover-item: var(--comm-grey-100);
-+  --app-grid-selected-activ-item: var(--comm-grey-300);
++   --app-grid-selected-hover-item: var(--comm-grey-100);
++   --app-grid-selected-activ-item: var(--comm-grey-300);
  
    /*------------------------------
      Grid
@@ -19,8 +19,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1544028509000)
-+++ src/views/product-admin-view/index.vue	(date 1544028866000)
+--- src/views/product-admin-view/index.vue	(date 1545147701000)
++++ src/views/product-admin-view/index.vue	(date 1545147748000)
 @@ -7,6 +7,15 @@
  
  .product-item {
@@ -37,7 +37,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
    & .title {
      @extend %comm-font-subhead;
-@@ -26,21 +35,24 @@
+@@ -26,21 +35,23 @@
          <div class="title-text">{{ $t('products') }}</div>
        </div>
        <hr style="width: 100%;" />
@@ -68,11 +68,10 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  
  <script lang="ts">
 +import '@polymer/iron-selector/iron-selector';
-+
+ import { BaseComponent } from '@/base/component';
  import { Component } from 'vue-property-decorator';
- import { BaseComponent } from '../../base/component';
- import { Product } from '../../stores';
-@@ -58,6 +70,16 @@
+ import { Product } from '@/stores';
+@@ -58,6 +69,16 @@
      return this.$stores.product.allProducts;
    }
  
@@ -89,7 +88,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    //----------------------------------------------------------------------
    //
    //  Lifecycle hooks
-@@ -65,6 +87,22 @@
+@@ -65,6 +86,22 @@
    //----------------------------------------------------------------------
  
    created() {}

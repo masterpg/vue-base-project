@@ -1,6 +1,6 @@
 <style scoped>
-@import './styles/variables.css';
-@import './styles/typography.css';
+@import './styles/variables.pcss';
+@import './styles/typography.pcss';
 
 app-drawer-layout {
   &:not([narrow]) [drawer-toggle] {
@@ -39,7 +39,7 @@ app-drawer-layout {
   <div>
     <app-drawer-layout responsive-width="960px">
       <!-- Drawer content -->
-      <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
+      <app-drawer ref="drawer" slot="drawer" class="app-view-app-drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
           <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
           <div main-title class="comm-ml-8">Vue WWW Base</div>
@@ -89,6 +89,31 @@ import { mixins } from 'vue-class-component';
 export default class AppView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
   //
+  //  Polymer style
+  //
+  //----------------------------------------------------------------------
+
+  f_polymerStyle = `
+    <style>
+      .app-view-app-drawer {
+        --app-drawer-content-container: {
+          background-color: var(--comm-grey-100);
+        }
+      }
+
+      @media (min-width: 600px) {
+        .app-view-app-drawer {
+          --app-drawer-content-container: {
+            background-color: var(--comm-grey-100);
+            border-right: 1px solid var(--comm-grey-300);
+          }
+        }
+      }
+    </style>
+  `;
+
+  //----------------------------------------------------------------------
+  //
   //  Variables
   //
   //----------------------------------------------------------------------
@@ -98,11 +123,11 @@ export default class AppView extends mixins(BaseComponent) {
   m_items: Array<{ title: string; path: string }> = [
     {
       title: 'ABC',
-      path: '/abc',
+      path: '/pages/abc',
     },
     {
       title: 'Shopping',
-      path: '/shopping',
+      path: '/pages/shopping',
     },
   ];
 

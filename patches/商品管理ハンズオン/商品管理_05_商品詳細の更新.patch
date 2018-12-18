@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/shop-api/index.ts	(date 1544029081000)
-+++ src/apis/shop-api/index.ts	(date 1544029333000)
+--- src/apis/shop-api/index.ts	(date 1545148061000)
++++ src/apis/shop-api/index.ts	(date 1545148132000)
 @@ -17,6 +17,10 @@
        }, 100);
      });
@@ -21,8 +21,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/types.ts	(date 1544029081000)
-+++ src/apis/types.ts	(date 1544029333000)
+--- src/apis/types.ts	(date 1545148061000)
++++ src/apis/types.ts	(date 1545148132000)
 @@ -12,6 +12,8 @@
    getProducts(): Promise<Product[]>;
  
@@ -37,8 +37,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/product-store/index.ts	(date 1544029081000)
-+++ src/stores/product-store/index.ts	(date 1544029333000)
+--- src/stores/product-store/index.ts	(date 1545148061000)
++++ src/stores/product-store/index.ts	(date 1545148132000)
 @@ -66,6 +66,14 @@
      this.f_state.all = products;
    }
@@ -59,8 +59,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/types.ts	(date 1544029081000)
-+++ src/stores/types.ts	(date 1544029333000)
+--- src/stores/types.ts	(date 1545148061000)
++++ src/stores/types.ts	(date 1545148132000)
 @@ -20,6 +20,8 @@
    decrementProductInventory(productId: string): void;
  
@@ -75,17 +75,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1544029081000)
-+++ src/views/product-admin-view/index.vue	(date 1544029333000)
-@@ -37,7 +37,7 @@
-   }
- 
-   & .title-area {
--    @extend %app-font-subhead;
-+    @extend %comm-font-subhead;
-     @extend %layout-flex-2;
-     margin-top: 16px;
-   }
+--- src/views/product-admin-view/index.vue	(date 1545148061000)
++++ src/views/product-admin-view/index.vue	(date 1545148132000)
 @@ -59,6 +59,10 @@
      }
    }
@@ -107,7 +98,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
        </div>
      </div>
    </div>
-@@ -170,6 +177,16 @@
+@@ -169,6 +176,16 @@
  
    created() {}
  
@@ -124,7 +115,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    //----------------------------------------------------------------------
    //
    //  Event handlers
-@@ -197,10 +214,12 @@
+@@ -196,10 +213,12 @@
    title: "Title"
    price: "Price"
    stock: "Stock"

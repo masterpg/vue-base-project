@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1544030832000)
-+++ src/views/product-admin-view/index.vue	(date 1544030832000)
-@@ -0,0 +1,225 @@
-+<style scoped>
-+@import '../../styles/flex-layout.css';
-+@import '../../styles/typography.css';
+--- src/views/product-admin-view/index.vue	(date 1545148073000)
++++ src/views/product-admin-view/index.vue	(date 1545148073000)
+@@ -0,0 +1,224 @@
++<style scoped lang="postcss">
++@import '../../styles/flex-layout.pcss';
++@import '../../styles/typography.pcss';
 +
 +.title-text {
 +  @extend %comm-font-title;
@@ -147,10 +147,9 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +<script lang="ts">
 +import '@polymer/iron-selector/iron-selector';
 +import '@polymer/paper-input/paper-input';
-+
++import { BaseComponent } from '@/base/component';
 +import { Component } from 'vue-property-decorator';
-+import { BaseComponent } from '../../base/component';
-+import { Product } from '../../stores';
++import { Product } from '@/stores';
 +import { mixins } from 'vue-class-component';
 +
 +@Component
@@ -236,8 +235,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/types.ts	(date 1544030764000)
-+++ src/stores/types.ts	(date 1544030832000)
+--- src/stores/types.ts	(date 1545145313000)
++++ src/stores/types.ts	(date 1545148073000)
 @@ -20,6 +20,8 @@
    decrementProductInventory(productId: string): void;
  
@@ -252,8 +251,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/product-store/index.ts	(date 1544030764000)
-+++ src/stores/product-store/index.ts	(date 1544030832000)
+--- src/stores/product-store/index.ts	(date 1545145313000)
++++ src/stores/product-store/index.ts	(date 1545148073000)
 @@ -66,6 +66,14 @@
      this.f_state.all = products;
    }
@@ -269,13 +268,29 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    //----------------------------------------------------------------------
    //
    //  Internal methods
+Index: src/index.pcss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/index.pcss	(date 1545145313000)
++++ src/index.pcss	(date 1545147712000)
+@@ -18,6 +18,8 @@
+   --app-link-color: var(--comm-indigo-500);
+   --app-link-visited-color: var(--comm-indigo-300);
+   --app-default-border-color: var(--comm-grey-300);
++   --app-grid-selected-hover-item: var(--comm-grey-100);
++   --app-grid-selected-activ-item: var(--comm-grey-300);
+ 
+   /*------------------------------
+     Grid
 Index: src/apis/types.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/types.ts	(date 1544030764000)
-+++ src/apis/types.ts	(date 1544030832000)
+--- src/apis/types.ts	(date 1545145313000)
++++ src/apis/types.ts	(date 1545148073000)
 @@ -12,6 +12,8 @@
    getProducts(): Promise<Product[]>;
  
@@ -285,30 +300,31 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  }
  
  //----------------------------------------------------------------------
-Index: src/router/index.ts
+Index: src/index.vue
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/router/index.ts	(date 1544030764000)
-+++ src/router/index.ts	(date 1544030801000)
-@@ -14,5 +14,9 @@
-       path: '/shopping',
-       component: () => import(/* webpackChunkName: "shopping-view" */ '../views/shopping-view/index.vue'),
+--- src/index.vue	(date 1545145313000)
++++ src/index.vue	(date 1545147598000)
+@@ -129,6 +129,10 @@
+       title: 'Shopping',
+       path: '/pages/shopping',
      },
 +    {
-+      path: '/product-admin',
-+      component: () => import(/* webpackChunkName: "product-admin-view" */ '../views/product-admin-view/index.vue'),
++      title: 'Product Admin',
++      path: '/pages/product-admin',
 +    },
-   ],
- });
+   ];
+ 
+   m_swMessage: string = '';
 Index: src/apis/shop-api/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/shop-api/index.ts	(date 1544030764000)
-+++ src/apis/shop-api/index.ts	(date 1544030832000)
+--- src/apis/shop-api/index.ts	(date 1545145313000)
++++ src/apis/shop-api/index.ts	(date 1545148073000)
 @@ -17,6 +17,10 @@
        }, 100);
      });
@@ -320,13 +336,31 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  }
  
  const shopAPI: ShopAPI = new ShopAPIImpl();
+Index: src/base/router/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/base/router/index.ts	(date 1545145313000)
++++ src/base/router/index.ts	(date 1545147598000)
+@@ -15,6 +15,10 @@
+       path: '/pages/shopping',
+       component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
+     },
++    {
++      path: '/pages/product-admin',
++      component: () => import(/* webpackChunkName: "product-admin-view" */ '@/views/product-admin-view/index.vue'),
++    },
+   ],
+ });
+ 
 Index: test/stores/product-store/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- test/stores/product-store/index.ts	(date 1544030764000)
-+++ test/stores/product-store/index.ts	(date 1544030844000)
+--- test/stores/product-store/index.ts	(date 1545145313000)
++++ test/stores/product-store/index.ts	(date 1545148142000)
 @@ -61,4 +61,39 @@
      await productStore.getAllProducts();
      assert.deepEqual(productStore.allProducts, NEW_API_PRODUCTS);
@@ -367,37 +401,3 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +    assert(true);
 +  });
  });
-Index: src/index.css
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
---- src/index.css	(date 1544030764000)
-+++ src/index.css	(date 1544030816000)
-@@ -18,6 +18,8 @@
-   --app-link-color: var(--comm-indigo-500);
-   --app-link-visited-color: var(--comm-indigo-300);
-   --app-default-border-color: var(--comm-grey-300);
-+  --app-grid-selected-hover-item: var(--comm-grey-100);
-+  --app-grid-selected-activ-item: var(--comm-grey-300);
- 
-   /*------------------------------
-     Grid
-Index: src/views/index.vue
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
---- src/views/index.vue	(date 1544030764000)
-+++ src/views/index.vue	(date 1544030801000)
-@@ -104,6 +104,10 @@
-       title: 'Shopping',
-       path: '/shopping',
-     },
-+    {
-+      title: 'Product Admin',
-+      path: '/product-admin',
-+    },
-   ];
- 
-   m_swMessage: string = '';

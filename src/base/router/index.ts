@@ -8,11 +8,11 @@ export const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/abc',
+      path: '/pages/abc',
       component: () => import(/* webpackChunkName: "abc-view" */ '@/views/abc-view/index.vue'),
     },
     {
-      path: '/shopping',
+      path: '/pages/shopping',
       component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
     },
   ],

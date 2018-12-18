@@ -3,33 +3,9 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- test/stores/product-store/index.ts	(date 1544029333000)
-+++ test/stores/product-store/index.ts	(date 1544029402000)
-@@ -2,11 +2,7 @@
- import { Product as APIProduct } from '../../../src/apis';
- import { Product } from '../../../src/stores';
- import { TestStore } from '../../types';
--import {
--  newProductStore,
--  ProductState,
--  ProductStoreImpl,
--} from '../../../src/stores/product-store';
-+import { newProductStore, ProductState, ProductStoreImpl } from '../../../src/stores/product-store';
- 
- const assert = chai.assert;
- 
-@@ -58,14 +54,46 @@
-   });
- 
-   test('getAllProducts()', async () => {
--    const NEW_API_PRODUCTS = [
--      { id: '1', title: 'product1', price: 101, inventory: 1 },
--      { id: '2', title: 'product2', price: 102, inventory: 2 },
--    ];
-+    const NEW_API_PRODUCTS = [{ id: '1', title: 'product1', price: 101, inventory: 1 }, { id: '2', title: 'product2', price: 102, inventory: 2 }];
-     td.replace(shopAPI, 'getProducts');
-     td.when(shopAPI.getProducts()).thenResolve(NEW_API_PRODUCTS);
- 
+--- test/stores/product-store/index.ts	(date 1545148132000)
++++ test/stores/product-store/index.ts	(date 1545148159000)
+@@ -61,4 +61,39 @@
      await productStore.getAllProducts();
      assert.deepEqual(productStore.allProducts, NEW_API_PRODUCTS);
    });

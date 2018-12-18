@@ -778,12 +778,12 @@ placeholder:
 
 次のような汎用的なルールも提供されます:
 
-| クラス    | 内容                                   |
+| クラス     | 内容                                   |
 | :-------- | :------------------------------------- |
 | block     | display: block                         |
 | invisible | visibility: hidden                     |
 | relative  | position: relative                     |
-| fit       | コンテナに子エレメントをフィットさせる |
+| fit       | コンテナに子エレメントをフィットさせる    |
 
 > Note: `fit`を使用する場合は、祖先でエレメントのサイズが決められてかつ`position: relative`の必要があります。
 

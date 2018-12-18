@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1544028866000)
-+++ src/views/product-admin-view/index.vue	(date 1544029081000)
+--- src/views/product-admin-view/index.vue	(date 1545147748000)
++++ src/views/product-admin-view/index.vue	(date 1545148061000)
 @@ -1,4 +1,5 @@
- <style scoped>
-+@import '../../styles/flex-layout.css';
- @import '../../styles/typography.css';
+ <style scoped lang="postcss">
++@import '../../styles/flex-layout.pcss';
+ @import '../../styles/typography.pcss';
  
  .title-text {
 @@ -26,6 +27,38 @@
@@ -25,7 +25,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +  }
 +
 +  & .title-area {
-+    @extend %app-font-subhead;
++    @extend %comm-font-subhead;
 +    @extend %layout-flex-2;
 +    margin-top: 16px;
 +  }
@@ -106,10 +106,10 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  <script lang="ts">
  import '@polymer/iron-selector/iron-selector';
 +import '@polymer/paper-input/paper-input';
- 
+ import { BaseComponent } from '@/base/component';
  import { Component } from 'vue-property-decorator';
- import { BaseComponent } from '../../base/component';
-@@ -66,6 +146,8 @@
+ import { Product } from '@/stores';
+@@ -65,6 +145,8 @@
    //
    //----------------------------------------------------------------------
  
@@ -118,7 +118,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    get m_products(): Product[] {
      return this.$stores.product.allProducts;
    }
-@@ -98,10 +180,12 @@
+@@ -97,10 +179,12 @@
      let selectedProduct: Product | undefined;
      if (this.m_productSelector.selected) {
        const productId = this.m_productSelector.selected;
@@ -132,7 +132,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    }
  }
  </script>
-@@ -109,10 +193,14 @@
+@@ -108,10 +192,14 @@
  <i18n>
  en:
    products: "Products"

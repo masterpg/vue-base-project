@@ -2,13 +2,13 @@
   "name": "vue-www-base",
   "scripts": {
     "dev": "node json-server.js & vue-cli-service serve --mode development",
-    "stg": "vue-cli-service build --mode staging || (node json-server.js & browser-sync start --port 5000 --proxy '0.0.0.0:5010' --serveStatic 'dist' --no-open)",
-    "prod": "vue-cli-service build --mode production || (node json-server.js & browser-sync start --port 5000 --proxy '0.0.0.0:5010' --serveStatic 'dist' --no-open)",
+    "stg": "vue-cli-service build --mode staging || npm run serve",
+    "prod": "vue-cli-service build --mode production || npm run serve",
     "build": "vue-cli-service build --mode production",
     "build:dev": "vue-cli-service build --mode development",
     "build:stg": "vue-cli-service build --mode staging",
-    "build:styles": "postcss --config build/postcss.config.js src/index.pcss -o .dist/index.css",
-    "buld:serve": "node json-server.js & browser-sync start --port 5000 --proxy '0.0.0.0:5010' --serveStatic 'dist' --no-open",
+    "build:styles": "postcss --config build/postcss.config.js src/index.pcss -o dist/index.css",
+    "serve": "node json-server.js & browser-sync start --port 5000 --proxy '0.0.0.0:5010' --serveStatic 'dist' --no-open",
     "docs": "postcss --config build/postcss.config.js docs/book.pcss -o docs/book.css && cd docs && ../node_modules/.bin/gitbook install && ../node_modules/.bin/gitbook serve"
   },
   "dependencies": {

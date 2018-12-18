@@ -43,16 +43,38 @@ module.exports = {
 
   pwa: {
     name: 'vue-www-base',
-    workboxOptions: {
-      skipWaiting: true,
-      // exclude: [/index\.html$/],
-    },
     iconPaths: {
       favicon32: 'img/icons/manifest/favicon-32x32.png',
       favicon16: 'img/icons/manifest/favicon-16x16.png',
       appleTouchIcon: 'img/icons/manifest/apple-touch-icon-152x152.png',
       maskIcon: 'img/icons/manifest/safari-pinned-tab.svg',
       msTileImage: 'img/icons/manifest/msapplication-icon-144x144.png',
+    },
+    workboxOptions: {
+      // skipWaitingについては以下を参照
+      // https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=ja#updates
+      skipWaiting: true,
+
+      // ServiceWorkerインストール時にキャッシュされるファイルを設定
+      include: [/\.html$/, /\.js$/, /\.css$/, /^favicon\.ico$/],
+      exclude: [/\.map$/],
+
+      // `/`以下のパスで存在しないファイルまたはディレクトリが
+      // 指定された場合にindex.htmlへフォールバックするよう設定
+      navigateFallback: '/index.html',
+      navigateFallbackWhitelist: [/^\//],
+
+      // フェッチ時にキャッシュされるパスを設定
+      runtimeCaching: [
+        {
+          urlPattern: /\/api\//,
+          handler: 'networkFirst',
+        },
+        {
+          urlPattern: /\/icons\//,
+          handler: 'networkFirst',
+        },
+      ],
     },
   },
 
@@ -69,6 +91,7 @@ module.exports = {
       .use('yaml')
         .loader('yaml-loader')
         .end();
+
     // Babelの設定
     // ※ @vue/cli-plugin-babel を試したが、IE11でPolymerがうまく
     // 動かなかったため、プレンーな @babel/preset-env を使用して対応。
@@ -78,28 +101,21 @@ module.exports = {
       .use('babel-loader')
         .loader('babel-loader')
         .end();
-  },
 
-  configureWebpack: (config) => {
-    const plugins = [
-      new CopyWebpackPlugin([
-        {
-          from: path.resolve(__dirname, 'node_modules/@webcomponents/webcomponentsjs/**/*.js'),
-        },
-      ]),
-    ];
+    // 必要なリソースファイルのコピー
+    let copyFiles = [{ from: 'node_modules/@webcomponents/webcomponentsjs/**/*.js' }];
     if (process.env.VUE_APP_ENV !== 'production') {
-      plugins.push(
-        new CopyWebpackPlugin([
-          { from: 'node_modules/mocha/mocha.css', to: 'node_modules/mocha' },
-          { from: 'node_modules/mocha/mocha.js', to: 'node_modules/mocha' },
-          { from: 'node_modules/chai/chai.js', to: 'node_modules/chai' },
-        ]),
-      );
+      copyFiles = [
+        ...copyFiles,
+        { from: 'node_modules/mocha/mocha.css', to: 'node_modules/mocha' },
+        { from: 'node_modules/mocha/mocha.js', to: 'node_modules/mocha' },
+        { from: 'node_modules/chai/chai.js', to: 'node_modules/chai' },
+      ];
     }
-    return {
-      plugins,
-    };
+    config
+      .plugin('copy')
+      .after('copy-prod')
+      .use(CopyWebpackPlugin, [copyFiles]);
   },
 
   devServer: {

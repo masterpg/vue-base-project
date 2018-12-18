@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(revision 03d309b7820d5160ac5983c326829a457770ac31)
-+++ src/views/product-admin-view/index.vue	(revision 03d309b7820d5160ac5983c326829a457770ac31)
+--- src/views/product-admin-view/index.vue	(revision 04308b78df74489f2e39c451aa19ee287eb13ed1)
++++ src/views/product-admin-view/index.vue	(revision 04308b78df74489f2e39c451aa19ee287eb13ed1)
 @@ -0,0 +1,14 @@
 +<style lang="postcss" scoped></style>
 +
@@ -14,43 +14,44 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +
 +<script lang="ts">
 +import { Component } from 'vue-property-decorator';
-+import { BaseComponent } from '../../base/component';
++import { BaseComponent } from '@/base/component';
 +import { mixins } from 'vue-class-component';
 +
 +@Component
 +export default class ProductAdminView extends mixins(BaseComponent) {}
 +</script>
-Index: src/router/index.ts
+Index: src/base/router/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/router/index.ts	(date 1544028305000)
-+++ src/router/index.ts	(date 1544028366000)
-@@ -14,5 +14,9 @@
-       path: '/shopping',
-       component: () => import(/* webpackChunkName: "shopping-view" */ '../views/shopping-view/index.vue'),
+--- src/base/router/index.ts	(date 1545145313000)
++++ src/base/router/index.ts	(date 1545147656000)
+@@ -15,6 +15,10 @@
+       path: '/pages/shopping',
+       component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
      },
 +    {
-+      path: '/product-admin',
-+      component: () => import(/* webpackChunkName: "product-admin-view" */ '../views/product-admin-view/index.vue'),
++      path: '/pages/product-admin',
++      component: () => import(/* webpackChunkName: "product-admin-view" */ '@/views/product-admin-view/index.vue'),
 +    },
    ],
  });
-Index: src/views/index.vue
+ 
+Index: src/index.vue
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/index.vue	(date 1544028305000)
-+++ src/views/index.vue	(date 1544028366000)
-@@ -104,6 +104,10 @@
+--- src/index.vue	(date 1545145313000)
++++ src/index.vue	(date 1545147656000)
+@@ -129,6 +129,10 @@
        title: 'Shopping',
-       path: '/shopping',
+       path: '/pages/shopping',
      },
 +    {
 +      title: 'Product Admin',
-+      path: '/product-admin',
++      path: '/pages/product-admin',
 +    },
    ];
  

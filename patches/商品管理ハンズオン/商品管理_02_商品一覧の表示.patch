@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1544028366000)
-+++ src/views/product-admin-view/index.vue	(date 1544028509000)
+--- src/views/product-admin-view/index.vue	(date 1545147656000)
++++ src/views/product-admin-view/index.vue	(date 1545147701000)
 @@ -1,14 +1,80 @@
 -<style lang="postcss" scoped></style>
-+<style scoped>
-+@import '../../styles/typography.css';
++<style scoped lang="postcss">
++@import '../../styles/typography.pcss';
 +
 +.title-text {
 +  @extend %comm-font-title;
@@ -51,9 +51,10 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  </template>
  
  <script lang="ts">
- import { Component } from 'vue-property-decorator';
- import { BaseComponent } from '../../base/component';
-+import { Product } from '../../stores';
+-import { Component } from 'vue-property-decorator';
+ import { BaseComponent } from '@/base/component';
++import { Component } from 'vue-property-decorator';
++import { Product } from '@/stores';
  import { mixins } from 'vue-class-component';
  
  @Component
