@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import '@/styles/polymer-styles.js';
-import '@/index.pcss';
+import '@/index.css';
 
 import { i18n, initI18n } from '@/base/i18n';
 import Vue from 'vue';

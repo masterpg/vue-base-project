@@ -1,6 +1,6 @@
 <style scoped>
-@import './styles/variables.pcss';
-@import './styles/typography.pcss';
+@import './styles/variables.css';
+@import './styles/typography.css';
 
 app-drawer-layout {
   &:not([narrow]) [drawer-toggle] {
@@ -97,15 +97,15 @@ export default class AppView extends mixins(BaseComponent) {
     <style>
       .app-view-app-drawer {
         --app-drawer-content-container: {
-          background-color: #f5f5f5;
+          background-color: var(--comm-grey-100);
         }
       }
 
       @media (min-width: 600px) {
         .app-view-app-drawer {
           --app-drawer-content-container: {
-            background-color: #f5f5f5;
-            border-right: 1px solid #e0e0e0;
+            background-color: var(--comm-grey-100);
+            border-right: 1px solid var(--comm-grey-300);
           }
         }
       }

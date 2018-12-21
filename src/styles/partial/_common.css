@@ -1,4 +1,4 @@
-@import '../common.pcss';
+@import '../common.css';
 
 .comm-pseudo-link {
   @extend %comm-pseudo-link;

@@ -1,4 +1,4 @@
-@import '../typography.pcss';
+@import '../typography.css';
 
 .comm-font-display4 {
   @extend %comm-font-display4;

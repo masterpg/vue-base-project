@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import '@/styles/polymer-styles.js';
-import '@/index.pcss';
+import '@/index.css';
 
 import AppView from '@/index.vue';
 import Vue from 'vue';

@@ -2,7 +2,7 @@
 
 ## CSS クラス
 
-`src/styles/_shadow.pcss`には次の CSS クラスが定義されています。
+`src/styles/_shadow.css`には次の CSS クラスが定義されています。
 
 ##### .comm-shadow-elevation-2dp
 
@@ -44,7 +44,7 @@
 
 ```html
 <style scoped>
-  @import '../styles/shadows.pcss';
+  @import '../styles/shadows.css';
   .container {
     @extend %comm-shadow-elevation-3dp;
   }
@@ -57,4 +57,4 @@
 
 ここでは PostCSS の機能を利用してプレースホルダーを継承しています。
 
-まず`@import`で`shadow.pcss`ファイルをインポートし、シャドウのプレースホルダーを読み込みます。これにより`<style>`タグの中でシャドウのプレースホルダーが利用できるようになるので、`@extend`で継承して定義されたシャドウを利用しています。
+まず`@import`で`shadow.css`ファイルをインポートし、シャドウのプレースホルダーを読み込みます。これにより`<style>`タグの中でシャドウのプレースホルダーが利用できるようになるので、`@extend`で継承して定義されたシャドウを利用しています。

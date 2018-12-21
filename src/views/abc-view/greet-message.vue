@@ -1,6 +1,6 @@
 <style scoped>
-@import '../../styles/variables.pcss';
-@import '../../styles/typography.pcss';
+@import '../../styles/variables.css';
+@import '../../styles/typography.css';
 
 .var-message-color {
   color: var(--comm-red-500);

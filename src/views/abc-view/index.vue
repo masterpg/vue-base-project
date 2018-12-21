@@ -9,8 +9,8 @@
 </style>
 
 <style scoped>
-@import '../../styles/variables.pcss';
-@import '../../styles/typography.pcss';
+@import '../../styles/variables.css';
+@import '../../styles/typography.css';
 
 .title {
   @extend %comm-font-subhead;
