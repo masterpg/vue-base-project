@@ -1,5 +1,5 @@
 <style>
-@import '../../styles/variables.pcss';
+@import '../../styles/variables.css';
 
 .abc-view-greet-message {
   &.var-message-color {
