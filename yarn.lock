@@ -1165,6 +1165,10 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
+animate.css@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.0.tgz#5de25d1ee5fba11ba6a1e2c4fa568f512eb7d4da"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -9050,8 +9054,8 @@ vue-loader@^15.4.2:
     vue-style-loader "^4.1.0"
 
 "vue-polymer-style-loader@https://masterpg@bitbucket.org/masterpg/vue-polymer-style-loader.git":
-  version "0.0.1"
-  resolved "https://masterpg@bitbucket.org/masterpg/vue-polymer-style-loader.git#b7abbd53858caa7d5a6e35c89d20c54c78ed1b9b"
+  version "0.0.2"
+  resolved "https://masterpg@bitbucket.org/masterpg/vue-polymer-style-loader.git#e7d7e5be513fae88e607940b0a624f2a436bce1c"
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"

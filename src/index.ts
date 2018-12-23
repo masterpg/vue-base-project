@@ -1,4 +1,6 @@
 import '@babel/polyfill';
+
+import 'animate.css/animate.css';
 import '@/styles/polymer-styles.js';
 import '@/index.css';
 

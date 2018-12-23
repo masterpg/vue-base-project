@@ -47,6 +47,65 @@ app-drawer-layout {
     color: var(--app-accent-text-color);
   }
 }
+
+/* -----> */
+/**
+ * Animate.cssにある既存のアニメーションをコピーして変更している。
+ * コピー元: node_modules/animate.css/animate.css
+ */
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  70% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  50%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tada {
+  animation-name: tada;
+}
+/* <----- */
+
+/* -----> */
+/**
+ * tada と bounceOutRight のアニメーションスピードを調整
+ */
+.animated.tada.faster {
+  animation-duration: 700ms;
+}
+
+.animated.bounceOutRight.faster {
+  animation-duration: 700ms;
+}
+/* <----- */
+
+/**
+ * フェードイン/アウトのサンプル。このアニメーションを有効にするには、下記のコメントを外し、
+ * transitionタグの enter-active-class と leave-active-class を削除るとこのアニメーションが有効になる。
+ */
+/*
+.view-enter-active,
+.view-leave-active {
+  transition: opacity 0.2s ease;
+}
+.view-enter,
+.view-leave-to {
+  opacity: 0;
+}
+*/
 </style>
 
 <template>
@@ -71,7 +130,9 @@ app-drawer-layout {
         <div main-title>View name</div>
       </app-toolbar>
 
-      <router-view />
+      <transition name="view" mode="out-in" enter-active-class="animated tada faster" leave-active-class="animated bounceOutRight faster">
+        <router-view />
+      </transition>
     </app-drawer-layout>
 
     <paper-toast ref="swToast" :duration="m_swUpdateIsRequired ? 0 : 5000" :text="m_swMessage">
