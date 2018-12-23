@@ -20,34 +20,6 @@ class BaseComponent extends mixins(BreakpointMixin) {
     return this.f_breakpoint.xs;
   }
 
-  m_polymerStyleTemplate: HTMLTemplateElement | undefined | null;
-
-  m_polymerStyle: string | undefined | null;
-
-  get f_polymerStyle(): string | undefined | null {
-    return this.m_polymerStyle;
-  }
-
-  set f_polymerStyle(style: string | undefined | null) {
-    this.m_polymerStyle = style;
-
-    if (this.m_polymerStyleTemplate) {
-      document.head.removeChild(this.m_polymerStyleTemplate);
-    }
-    this.m_polymerStyleTemplate = undefined;
-
-    if (this.m_polymerStyle) {
-      this.m_polymerStyleTemplate = document.createElement('template');
-      this.m_polymerStyleTemplate.setAttribute('style', 'display: none;');
-      this.m_polymerStyleTemplate.innerHTML = `
-        <custom-style>
-          ${this.m_polymerStyle}
-        </custom-style>
-      `;
-      document.head.appendChild(this.m_polymerStyleTemplate.content);
-    }
-  }
-
   mounted() {}
 }
 

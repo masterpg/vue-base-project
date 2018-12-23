@@ -1,8 +1,28 @@
+<style scoped lang="polymer">
+/* PolymerのCSS Mixinの設定はこの領域に記述すること */
+
+app-drawer {
+  --app-drawer-content-container: {
+    background-color: var(--comm-grey-100);
+  }
+}
+
+@media (min-width: 600px) {
+  app-drawer {
+    --app-drawer-content-container: {
+      background-color: var(--comm-grey-100);
+      border-right: 1px solid var(--comm-grey-300);
+    }
+  }
+}
+</style>
+
 <style scoped>
 @import './styles/variables.css';
 @import './styles/typography.css';
 
 app-drawer-layout {
+  --app-drawer-width: 300px;
   &:not([narrow]) [drawer-toggle] {
     display: none;
   }
@@ -29,17 +49,13 @@ app-drawer-layout {
     color: var(--app-accent-text-color);
   }
 }
-
-.link-button {
-  color: var(--comm-light-blue-a400);
-}
 </style>
 
 <template>
   <div>
     <app-drawer-layout responsive-width="960px">
       <!-- Drawer content -->
-      <app-drawer ref="drawer" slot="drawer" class="app-view-app-drawer" :swipe-open="m_narrow">
+      <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
           <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
           <div main-title class="comm-ml-8">Vue WWW Base</div>
