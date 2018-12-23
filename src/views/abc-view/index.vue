@@ -1,6 +1,4 @@
 <style>
-@import '../../styles/variables.css';
-
 .abc-view-greet-message {
   &.var-message-color {
     color: var(--comm-indigo-a200);
@@ -9,7 +7,6 @@
 </style>
 
 <style scoped>
-@import '../../styles/variables.css';
 @import '../../styles/typography.css';
 
 .title {

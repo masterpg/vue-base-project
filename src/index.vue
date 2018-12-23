@@ -1,5 +1,5 @@
 <style scoped lang="polymer">
-/* PolymerのCSS Mixinの設定はこの領域に記述すること */
+/* PolymerのCSS Mixin、Custom Propertiesの設定はこの領域に記述すること */
 
 app-drawer {
   --app-drawer-content-container: {
@@ -18,11 +18,9 @@ app-drawer {
 </style>
 
 <style scoped>
-@import './styles/variables.css';
 @import './styles/typography.css';
 
 app-drawer-layout {
-  --app-drawer-width: 300px;
   &:not([narrow]) [drawer-toggle] {
     display: none;
   }
@@ -58,7 +56,7 @@ app-drawer-layout {
       <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
           <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
-          <div main-title class="comm-ml-8">Vue WWW Base</div>
+          <div main-title class="comm-ml-8">Vue WWW Base AAA</div>
         </app-toolbar>
         <div class="drawer-list">
           <template v-for="item in m_items">
@@ -103,31 +101,6 @@ import { mixins } from 'vue-class-component';
 
 @Component
 export default class AppView extends mixins(BaseComponent) {
-  //----------------------------------------------------------------------
-  //
-  //  Polymer style
-  //
-  //----------------------------------------------------------------------
-
-  f_polymerStyle = `
-    <style>
-      .app-view-app-drawer {
-        --app-drawer-content-container: {
-          background-color: #f5f5f5;
-        }
-      }
-
-      @media (min-width: 600px) {
-        .app-view-app-drawer {
-          --app-drawer-content-container: {
-            background-color: #f5f5f5;
-            border-right: 1px solid #e0e0e0;
-          }
-        }
-      }
-    </style>
-  `;
-
   //----------------------------------------------------------------------
   //
   //  Variables

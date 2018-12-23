@@ -6,6 +6,9 @@ $_documentContainer.setAttribute('style', 'display: none;');
 $_documentContainer.innerHTML = `
 <custom-style>
   <style is="custom-style">
+    :root {
+      --app-drawer-width: 300px;
+    }
   </style>
 </custom-style>
 `;

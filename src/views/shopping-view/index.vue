@@ -1,5 +1,4 @@
 <style scoped>
-@import '../../styles/variables.css';
 @import '../../styles/typography.css';
 
 .title-text {

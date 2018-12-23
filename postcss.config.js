@@ -6,6 +6,12 @@ module.exports = {
     'postcss-mixins': {},
     'postcss-each': {},
     'postcss-for': {},
-    'postcss-css-variables': {},
+    'postcss-custom-properties': {
+      preserve: false,
+      importFrom: [
+        './src/styles/partial/_colors.css',
+        './src/styles/variables.css',
+      ],
+    },
   },
 };
