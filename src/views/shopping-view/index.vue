@@ -1,5 +1,5 @@
 <style scoped>
-@import '../../styles/typography.css';
+@import '../../styles/placeholder/typography.css';
 
 .title-text {
   @extend %comm-font-title;
@@ -10,7 +10,7 @@
   padding: 12px;
 
   & .title {
-    @extend %comm-font-subhead;
+    @extend %comm-font-subhead1;
   }
 
   & .detail {

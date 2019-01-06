@@ -1,16 +1,16 @@
-Index: src/index.pcss
+Index: src/index.css
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/index.pcss	(date 1545147701000)
-+++ src/index.pcss	(date 1545147748000)
-@@ -18,6 +18,8 @@
+--- src/index.css	(date 1546739077000)
++++ src/index.css	(date 1546739287000)
+@@ -24,6 +24,8 @@
    --app-link-color: var(--comm-indigo-500);
    --app-link-visited-color: var(--comm-indigo-300);
    --app-default-border-color: var(--comm-grey-300);
-+   --app-grid-selected-hover-item: var(--comm-grey-100);
-+   --app-grid-selected-activ-item: var(--comm-grey-300);
++  --app-grid-selected-hover-item: var(--comm-grey-100);
++  --app-grid-selected-activ-item: var(--comm-grey-300);
  
    /*------------------------------
      Grid
@@ -19,8 +19,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1545147701000)
-+++ src/views/product-admin-view/index.vue	(date 1545147748000)
+--- src/views/product-admin-view/index.vue	(date 1546739077000)
++++ src/views/product-admin-view/index.vue	(date 1546739287000)
 @@ -7,6 +7,15 @@
  
  .product-item {
@@ -36,7 +36,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +  }
  
    & .title {
-     @extend %comm-font-subhead;
+     @extend %comm-font-subhead1;
 @@ -26,21 +35,23 @@
          <div class="title-text">{{ $t('products') }}</div>
        </div>

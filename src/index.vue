@@ -18,7 +18,7 @@ app-drawer {
 </style>
 
 <style scoped>
-@import './styles/typography.css';
+@import './styles/placeholder/typography.css';
 
 app-drawer-layout {
   &:not([narrow]) [drawer-toggle] {

@@ -20,7 +20,7 @@
 
   font-size: 112px;
   font-weight: 300;
-  letter-spacing: -.044em;
+  letter-spacing: -0.044em;
   line-height: 120px;
 }
 
@@ -30,7 +30,7 @@
 
   font-size: 56px;
   font-weight: 400;
-  letter-spacing: -.026em;
+  letter-spacing: -0.026em;
   line-height: 60px;
 }
 
@@ -39,7 +39,7 @@
 
   font-size: 45px;
   font-weight: 400;
-  letter-spacing: -.018em;
+  letter-spacing: -0.018em;
   line-height: 48px;
 }
 
@@ -48,7 +48,7 @@
 
   font-size: 34px;
   font-weight: 400;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 40px;
 }
 
@@ -57,7 +57,7 @@
 
   font-size: 24px;
   font-weight: 400;
-  letter-spacing: -.012em;
+  letter-spacing: -0.012em;
   line-height: 32px;
 }
 
@@ -70,7 +70,15 @@
   line-height: 28px;
 }
 
-%comm-font-subhead {
+%comm-font-subhead2 {
+  @extend %comm-font-common-base;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+%comm-font-subhead1 {
   @extend %comm-font-common-base;
 
   font-size: 16px;

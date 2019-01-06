@@ -3,12 +3,12 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1545147748000)
-+++ src/views/product-admin-view/index.vue	(date 1545148061000)
+--- src/views/product-admin-view/index.vue	(date 1546739287000)
++++ src/views/product-admin-view/index.vue	(date 1546739473000)
 @@ -1,4 +1,5 @@
- <style scoped lang="postcss">
-+@import '../../styles/flex-layout.pcss';
- @import '../../styles/typography.pcss';
+ <style scoped>
++@import '../../styles/placeholder/flex-layout.css';
+ @import '../../styles/placeholder/typography.css';
  
  .title-text {
 @@ -26,6 +27,38 @@
@@ -25,7 +25,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +  }
 +
 +  & .title-area {
-+    @extend %comm-font-subhead;
++    @extend %comm-font-subhead1;
 +    @extend %layout-flex-2;
 +    margin-top: 16px;
 +  }

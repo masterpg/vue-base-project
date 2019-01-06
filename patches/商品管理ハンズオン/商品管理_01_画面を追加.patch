@@ -1,32 +1,10 @@
-Index: src/views/product-admin-view/index.vue
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
---- src/views/product-admin-view/index.vue	(revision 04308b78df74489f2e39c451aa19ee287eb13ed1)
-+++ src/views/product-admin-view/index.vue	(revision 04308b78df74489f2e39c451aa19ee287eb13ed1)
-@@ -0,0 +1,14 @@
-+<style lang="postcss" scoped></style>
-+
-+<template>
-+  <div>product-admin-view</div>
-+</template>
-+
-+<script lang="ts">
-+import { Component } from 'vue-property-decorator';
-+import { BaseComponent } from '@/base/component';
-+import { mixins } from 'vue-class-component';
-+
-+@Component
-+export default class ProductAdminView extends mixins(BaseComponent) {}
-+</script>
 Index: src/base/router/index.ts
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/base/router/index.ts	(date 1545145313000)
-+++ src/base/router/index.ts	(date 1545147656000)
+--- src/base/router/index.ts	(revision 2d3f801268a6aa8985021cfb81ca4fafd51778b7)
++++ src/base/router/index.ts	(revision 21dc218b863cfee8a6116d4f6226e96adf56599e)
 @@ -15,6 +15,10 @@
        path: '/pages/shopping',
        component: () => import(/* webpackChunkName: "shopping-view" */ '@/views/shopping-view/index.vue'),
@@ -43,9 +21,9 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/index.vue	(date 1545145313000)
-+++ src/index.vue	(date 1545147656000)
-@@ -129,6 +129,10 @@
+--- src/index.vue	(revision 2d3f801268a6aa8985021cfb81ca4fafd51778b7)
++++ src/index.vue	(revision 21dc218b863cfee8a6116d4f6226e96adf56599e)
+@@ -180,6 +180,10 @@
        title: 'Shopping',
        path: '/pages/shopping',
      },
@@ -56,3 +34,25 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
    ];
  
    m_swMessage: string = '';
+Index: src/views/product-admin-view/index.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/views/product-admin-view/index.vue	(revision 21dc218b863cfee8a6116d4f6226e96adf56599e)
++++ src/views/product-admin-view/index.vue	(revision 21dc218b863cfee8a6116d4f6226e96adf56599e)
+@@ -0,0 +1,14 @@
++<style scoped></style>
++
++<template>
++  <div>product-admin-view</div>
++</template>
++
++<script lang="ts">
++import { Component } from 'vue-property-decorator';
++import { BaseComponent } from '@/base/component';
++import { mixins } from 'vue-class-component';
++
++@Component
++export default class ProductAdminView extends mixins(BaseComponent) {}
++</script>

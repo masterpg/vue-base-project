@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // ベースURLの設定
-const baseUrl = process.env.VUE_APP_ENV === 'production' ? '/vue-www-base/' : '/';
+const baseUrl = process.env.VUE_APP_BASE_URL;
 
 // 各エントリーポイントの設定
 const pages = {
@@ -17,7 +17,7 @@ const pages = {
     title: 'Vue WWW Base',
   },
 };
-if (process.env.VUE_APP_ENV !== 'production') {
+if (process.env.VUE_APP_IS_DEVELOPMENT === 'true') {
   Object.assign(pages, {
     test: {
       entry: 'test/test.ts',
@@ -136,7 +136,7 @@ module.exports = {
 
     // 必要なリソースファイルのコピー
     let copyFiles = [{ from: 'node_modules/@webcomponents/webcomponentsjs/**/*.js' }];
-    if (process.env.VUE_APP_ENV !== 'production') {
+    if (process.env.VUE_APP_IS_DEVELOPMENT === 'true') {
       copyFiles = [
         ...copyFiles,
         { from: 'node_modules/mocha/mocha.css', to: 'node_modules/mocha' },

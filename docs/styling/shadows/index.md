@@ -2,7 +2,7 @@
 
 ## CSS クラス
 
-`src/styles/_shadow.css`には次の CSS クラスが定義されています。
+`src/styles/classes/shadow.css`には次の CSS クラスが定義されています。
 
 ##### .comm-shadow-elevation-2dp
 
@@ -44,7 +44,7 @@
 
 ```html
 <style scoped>
-  @import '../styles/shadows.css';
+  @import '../styles/placeholder/shadows.css';
   .container {
     @extend %comm-shadow-elevation-3dp;
   }

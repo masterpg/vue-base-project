@@ -1,4 +1,10 @@
-@import './styles/base-styles.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
+@import './styles/variables/colors.css';
+@import './styles/classes/common.css';
+@import './styles/classes/flex-layout.css';
+@import './styles/classes/shadows.css';
+@import './styles/classes/spacing.css';
+@import './styles/classes/typography.css';
 
 /*-------------------------------------------------
   Variables

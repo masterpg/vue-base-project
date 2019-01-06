@@ -52,30 +52,30 @@ export function addStateChangeListener(listener: StateChangeLister): void {
 export function initServiceWorker(): void {
   if (!('serviceWorker' in navigator)) return;
 
-  const execute = process.env.VUE_APP_ENV === 'production' || process.env.VUE_APP_ENV === 'staging';
+  const execute = process.env.NODE_ENV === 'production';
   if (!execute) return;
 
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready() {
-      dispatchToListeners(ChangeState.ready, i18n.t('sw.ready') as string);
+      dispatchToListeners(ChangeState.ready, String(i18n.t('sw.ready')));
     },
     registered() {
-      dispatchToListeners(ChangeState.registered, i18n.t('sw.registered') as string);
+      dispatchToListeners(ChangeState.registered, String(i18n.t('sw.registered')));
     },
     cached() {
-      dispatchToListeners(ChangeState.cached, i18n.t('sw.cached') as string);
+      dispatchToListeners(ChangeState.cached, String(i18n.t('sw.cached')));
     },
     updatefound() {
-      dispatchToListeners(ChangeState.updatefound, i18n.t('sw.updatefound') as string);
+      dispatchToListeners(ChangeState.updatefound, String(i18n.t('sw.updatefound')));
     },
     updated() {
-      dispatchToListeners(ChangeState.updated, i18n.t('sw.updated') as string);
+      dispatchToListeners(ChangeState.updated, String(i18n.t('sw.updated')));
     },
     offline() {
-      dispatchToListeners(ChangeState.offline, i18n.t('sw.offline') as string);
+      dispatchToListeners(ChangeState.offline, String(i18n.t('sw.offline')));
     },
     error(error) {
-      dispatchToListeners(ChangeState.error, i18n.t('sw.offline', { error }) as string);
+      dispatchToListeners(ChangeState.error, String(i18n.t('sw.offline', { error })));
     },
   });
 }

@@ -4,7 +4,7 @@
 
 ## CSS 変数の定義と使用方法
 
-`src/styles/_colors.css`にはさまざまな色が CSS 変数として定義されています。
+`src/styles/variables/colors.css`にはさまざまな色が CSS 変数として定義されています。
 
 ```css
 :root {

@@ -1,0 +1,608 @@
+Index: src/store/product-module/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store/product-module/index.ts	(date 1546740496000)
++++ src/store/product-module/index.ts	(date 1546740496000)
+@@ -0,0 +1,44 @@
++import { GetterTree, MutationTree, ActionTree } from 'vuex';
++import { ProductModule, ProductState, RootState, Product, ProductTypes } from '../types';
++import { apis } from '@/apis';
++
++export const productModule = new class implements ProductModule {
++  namespaced = true;
++
++  state: ProductState = {
++    all: [],
++  };
++
++  getters: GetterTree<ProductState, RootState> = {
++    [ProductTypes.ALL_PRODUCTS](state): Product[] {
++      return state.all;
++    },
++
++    [ProductTypes.GET_PRODUCT_BY_ID](state) {
++      return (productId: string) => {
++        const product = state.all.find((item) => item.id === productId);
++        return product;
++      };
++    },
++  };
++
++  mutations: MutationTree<ProductState> = {
++    [ProductTypes.SET_PRODUCTS](state, products: Product[]): void {
++      state.all = products;
++    },
++
++    [ProductTypes.DECREMENT_PRODUCT_INVENTORY](state, productId: string): void {
++      const product = state.all.find((item) => item.id === productId);
++      if (product) {
++        product.inventory--;
++      }
++    },
++  };
++
++  actions: ActionTree<ProductState, RootState> = {
++    async [ProductTypes.GET_ALL_PRODUCTS](context): Promise<void> {
++      const products = await apis.shop.getProducts();
++      context.commit(ProductTypes.SET_PRODUCTS, products);
++    },
++  };
++}();
+Index: src/store/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store/index.ts	(date 1546740496000)
++++ src/store/index.ts	(date 1546740496000)
+@@ -0,0 +1,18 @@
++import Vue from 'vue';
++import Vuex, { StoreOptions } from 'vuex';
++import { CartTypes, CounterTypes, ProductTypes, RootState } from './types';
++import { cartModule } from './cart-module';
++import { counterModule } from './counter-module';
++import { productModule } from './product-module';
++
++Vue.use(Vuex);
++
++export default new Vuex.Store<RootState>({
++  modules: {
++    [ProductTypes.PATH]: productModule,
++    [CartTypes.PATH]: cartModule,
++    [CounterTypes.PATH]: counterModule,
++  },
++} as StoreOptions<RootState>);
++
++export * from './types';
+Index: src/store/types.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store/types.ts	(date 1546740476000)
++++ src/store/types.ts	(date 1546740476000)
+@@ -0,0 +1,140 @@
++import { Module } from 'vuex';
++import { Product as APIProduct } from '../apis';
++
++//----------------------------------------------------------------------
++//
++//  States
++//
++//----------------------------------------------------------------------
++
++export interface RootState {
++  counter: CounterModule;
++  product: ProductModule;
++  cart: CartModule;
++}
++
++export interface ProductState {
++  all: Product[];
++}
++
++export interface CartState {
++  items: Array<{ id: string; quantity: number }>;
++  checkoutStatus: CheckoutStatus;
++}
++
++export interface CounterState {
++  counter: number;
++}
++
++//----------------------------------------------------------------------
++//
++//  Modules
++//
++//----------------------------------------------------------------------
++
++export interface ProductModule extends Module<ProductState, RootState> {}
++
++export interface CartModule extends Module<CartState, RootState> {}
++
++export interface CounterModule extends Module<CounterState, RootState> {}
++
++//----------------------------------------------------------------------
++//
++//  Types
++//
++//----------------------------------------------------------------------
++
++export namespace CounterTypes {
++  export const PATH = 'counter';
++
++  export type current = number;
++
++  export type increment = () => void;
++}
++
++export namespace ProductTypes {
++  export const PATH = 'product';
++
++  export const ALL_PRODUCTS = 'allProducts';
++
++  export type allProducts = Product[];
++
++  export const GET_PRODUCT_BY_ID = 'getProductById';
++
++  export type getProductById = (productId: string) => Product | undefined | null;
++
++  export const GET_ALL_PRODUCTS = 'getAllProducts';
++
++  export type getAllProducts = () => Promise<void>;
++
++  export const SET_PRODUCTS = 'setProducts';
++
++  export type setProducts = () => void;
++
++  export const DECREMENT_PRODUCT_INVENTORY = 'decrementProductInventory';
++
++  export type decrementProductInventory = (productId: string) => void;
++}
++
++export namespace CartTypes {
++  export const PATH = 'cart';
++
++  export const CHECKOUT_STATUS = 'checkoutStatus';
++
++  export type checkoutStatus = CheckoutStatus;
++
++  export const CART_ITEMS = 'cartItems';
++
++  export type cartItems = CartItem[];
++
++  export const CART_TOTAL_PRICE = 'cartTotalPrice';
++
++  export type cartTotalPrice = number;
++
++  export const GET_CART_ITEM_BY_ID = 'getCartItemById';
++
++  export type getCartItemById = (productId: string) => CartItem | undefined | null;
++
++  export const CHECKOUT = 'checkout';
++
++  export type checkout = () => Promise<void>;
++
++  export const ADD_PRODUCT_TO_CART = 'addProductToCart';
++
++  export type addProductToCart = (productId: string) => void;
++
++  export const m_SET_CART_ITEMS = 'm_setCartItems';
++
++  export const m_SET_CHECKOUT_STATUS = 'm_setCheckoutStatus';
++
++  export const m_PUSH_PRODUCT_TO_CART = 'm_pushProductToCart';
++
++  export const m_INCREMENT_ITEM_QUANTITY = 'm_incrementItemQuantity';
++}
++
++//----------------------------------------------------------------------
++//
++//  Entities
++//
++//----------------------------------------------------------------------
++
++export type Product = APIProduct;
++
++export interface CartItem {
++  id: string;
++  title: string;
++  price: number;
++  quantity: number;
++}
++
++//----------------------------------------------------------------------
++//
++//  Enumerations
++//
++//----------------------------------------------------------------------
++
++export enum CheckoutStatus {
++  None = 'none',
++  Failed = 'failed',
++  Successful = 'successful',
++}
+Index: src/store/cart-module/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store/cart-module/index.ts	(date 1546740496000)
++++ src/store/cart-module/index.ts	(date 1546740496000)
+@@ -0,0 +1,118 @@
++import { CartModule, CartState, RootState, CartItem, CartTypes, CheckoutStatus, Product, ProductState, ProductTypes } from '../types';
++import { GetterTree, MutationTree, ActionTree } from 'vuex';
++import { apis } from '@/apis';
++
++export const cartModule = new class implements CartModule {
++  namespaced = true;
++
++  state: CartState = {
++    items: [],
++    checkoutStatus: CheckoutStatus.None,
++  };
++
++  getters: GetterTree<CartState, RootState> = {
++    [CartTypes.CHECKOUT_STATUS](state): CheckoutStatus {
++      return state.checkoutStatus;
++    },
++
++    [CartTypes.CART_ITEMS](state, getters, rootState): CartItem[] {
++      const allProducts = (rootState.product as ProductState).all;
++      return state.items.map(({ id, quantity }) => {
++        const product = allProducts.find((item) => item.id === id)!;
++        return {
++          id: product.id,
++          title: product.title,
++          price: product.price,
++          quantity,
++        };
++      });
++    },
++
++    [CartTypes.CART_TOTAL_PRICE](state, getters): number {
++      const cartItems = getters[CartTypes.CART_ITEMS] as CartItem[];
++      return cartItems.reduce((total, product) => {
++        return total + product.price * product.quantity;
++      }, 0);
++    },
++
++    [CartTypes.GET_CART_ITEM_BY_ID](state, getters, rootState, rootGetters): (productId: string) => CartItem | undefined | null {
++      return (productId: string) => {
++        const product = getProductById(rootGetters, productId);
++        const cartItem = state.items.find((item) => {
++          return item.id === productId;
++        });
++        if (!cartItem) return undefined;
++        return {
++          id: cartItem.id,
++          title: product.title,
++          price: product.price,
++          quantity: cartItem.quantity,
++        } as CartItem;
++      };
++    },
++  };
++
++  mutations: MutationTree<CartState> = {
++    [CartTypes.m_SET_CART_ITEMS](state, items: Array<{ id: string; quantity: number }>) {
++      state.items = items;
++    },
++
++    [CartTypes.m_SET_CHECKOUT_STATUS](state, status: CheckoutStatus) {
++      state.checkoutStatus = status;
++    },
++
++    [CartTypes.m_PUSH_PRODUCT_TO_CART](state, productId: string) {
++      state.items.push({
++        id: productId,
++        quantity: 1,
++      });
++    },
++
++    [CartTypes.m_INCREMENT_ITEM_QUANTITY](state, productId: string) {
++      const cartItem = state.items.find((item) => item.id === productId);
++      if (cartItem) {
++        cartItem.quantity++;
++      }
++    },
++  };
++
++  actions: ActionTree<CartState, RootState> = {
++    async [CartTypes.ADD_PRODUCT_TO_CART](context, productId: string): Promise<void> {
++      context.commit(CartTypes.m_SET_CHECKOUT_STATUS, CheckoutStatus.None);
++      const product = getProductById(context.rootGetters, productId);
++      if (product.inventory > 0) {
++        const cartItem = context.state.items.find((item) => item.id === product.id);
++        if (!cartItem) {
++          context.commit(CartTypes.m_PUSH_PRODUCT_TO_CART, product.id);
++        } else {
++          context.commit(CartTypes.m_INCREMENT_ITEM_QUANTITY, product.id);
++        }
++        // 在庫を1つ減らす
++        context.commit(`${ProductTypes.PATH}/${ProductTypes.DECREMENT_PRODUCT_INVENTORY}`, productId, { root: true });
++      }
++    },
++
++    async [CartTypes.CHECKOUT](context): Promise<void> {
++      const cartProducts = [...context.state.items];
++      context.commit(CartTypes.m_SET_CHECKOUT_STATUS, CheckoutStatus.None);
++      try {
++        await apis.shop.buyProducts(cartProducts);
++        context.commit(CartTypes.m_SET_CART_ITEMS, []); // カートを空にする
++        context.commit(CartTypes.m_SET_CHECKOUT_STATUS, CheckoutStatus.Successful);
++      } catch (err) {
++        // カートの内容をAPIリクエス前の状態にロールバックする
++        context.commit(CartTypes.m_SET_CART_ITEMS, cartProducts);
++        context.commit(CartTypes.m_SET_CHECKOUT_STATUS, CheckoutStatus.Failed);
++      }
++    },
++  };
++}();
++
++function getProductById(rootGetters: any, productId: string): Product {
++  const path = `${ProductTypes.PATH}/${ProductTypes.GET_PRODUCT_BY_ID}`;
++  const result = rootGetters[path](productId) as Product | undefined | null;
++  if (!result) {
++    throw new Error(`A Product that matches the specified productId "${productId}" was not found.`);
++  }
++  return result;
++}
+Index: src/store/counter-module/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store/counter-module/index.ts	(date 1546740496000)
++++ src/store/counter-module/index.ts	(date 1546740496000)
+@@ -0,0 +1,24 @@
++import { GetterTree, MutationTree, ActionTree } from 'vuex';
++import { CounterModule, CounterState, RootState } from '../types';
++
++export const counterModule = new class implements CounterModule {
++  namespaced = true;
++
++  state: CounterState = {
++    counter: 1,
++  };
++
++  getters: GetterTree<CounterState, RootState> = {
++    current(state: CounterState): number {
++      return state.counter;
++    },
++  };
++
++  mutations: MutationTree<CounterState> = {
++    increment(state: CounterState): void {
++      state.counter++;
++    },
++  };
++
++  actions: ActionTree<CounterState, RootState> = {};
++}();
+Index: src/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/index.ts	(date 1546740365000)
++++ src/index.ts	(date 1546740859000)
+@@ -12,6 +12,11 @@
+ import { initStores } from '@/stores';
+ import { initUtils } from '@/base/utils';
+ import { router } from '@/base/router';
++import store from '@/store';
++
++// TODO IntelliJ開発用
++import '@/views/abc-view/index.vue';
++import '@/views/shopping-view/index.vue';
+ 
+ (async () => {
+   initUtils();
+@@ -28,5 +33,6 @@
+     router,
+     render: (h) => h(AppView),
+     i18n,
++    store,
+   });
+ })();
+Index: src/views/abc-view/index.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/views/abc-view/index.vue	(date 1546740365000)
++++ src/views/abc-view/index.vue	(date 1546741259000)
+@@ -58,7 +58,10 @@
+           <span class="title">checked: </span><span class="value">{{ m_customChecked }}</span>
+         </span>
+       </div>
+-      <div class="layout horizontal end-justified"><paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button></div>
++      <div class="layout horizontal end-justified">
++        <paper-button raised @click="m_incrementButtonOnClick">Increment</paper-button>
++        <paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button>
++      </div>
+     </paper-card>
+   </div>
+ </template>
+@@ -75,11 +78,16 @@
+ import { Component, Prop, Watch } from 'vue-property-decorator';
+ import { mixins } from 'vue-class-component';
+ 
++import { namespace } from 'vuex-class';
++import { CounterTypes } from '@/store';
++
+ interface Post {
+   message: string;
+   times: number;
+ }
+ 
++const counterModule = namespace(CounterTypes.PATH);
++
+ @Component({
+   components: {
+     'greet-message': GreetMessage,
+@@ -88,6 +96,13 @@
+   },
+ })
+ export default class AbcView extends mixins(BaseComponent) {
++  //--------------------------------------------------
++  //  store
++  //--------------------------------------------------
++
++  @counterModule.Getter('current') current!: CounterTypes.current;
++  @counterModule.Mutation('increment') increment!: CounterTypes.increment;
++
+   //--------------------------------------------------
+   //  props
+   //--------------------------------------------------
+@@ -203,6 +218,11 @@
+     alert(await this.m_sleep(2000));
+   }
+ 
++  async m_incrementButtonOnClick() {
++    this.increment();
++    console.log(this.current);
++  }
++
+   //--------------------------------------------------
+   //  elements
+   //--------------------------------------------------
+Index: src/views/shopping-view/index.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/views/shopping-view/index.vue	(date 1546740365000)
++++ src/views/shopping-view/index.vue	(date 1546741350000)
+@@ -36,7 +36,7 @@
+         <div class="title-text">{{ $t('products') }}</div>
+       </div>
+       <hr style="width: 100%;" />
+-      <div v-for="(product, index) in m_products" class="layout horizontal center product-item">
++      <div v-for="(product, index) in m_allProducts" class="layout horizontal center product-item">
+         <div class="layout vertical center-justified">
+           <div class="title">{{ product.title }}</div>
+           <div class="detail">
+@@ -45,7 +45,7 @@
+           </div>
+         </div>
+         <div class="flex"></div>
+-        <paper-icon-button icon="icons:add-box" @click="m_addProductToCart(product);"></paper-icon-button>
++        <paper-icon-button icon="icons:add-box" @click="m_addProductToCartProcess(product);"></paper-icon-button>
+       </div>
+     </div>
+ 
+@@ -64,7 +64,7 @@
+         </div>
+       </div>
+       <div class="layout horizontal center">
+-        <div class="flex error-text">{{ m_checkoutStatus.message }}</div>
++        <div class="flex error-text">{{ m_status.message }}</div>
+         <paper-button v-show="!m_cartIsEmpty" class="checkout-button" @click="m_checkout">{{ $t('checkout') }}</paper-button>
+       </div>
+     </div>
+@@ -77,12 +77,31 @@
+ import '@polymer/paper-icon-button/paper-icon-button';
+ 
+ import { BaseComponent } from '@/base/component';
+-import { CartItem, CheckoutStatus, Product } from '@/stores';
+ import { Component } from 'vue-property-decorator';
+ import { mixins } from 'vue-class-component';
+ 
++import { namespace } from 'vuex-class';
++import { CartTypes, CheckoutStatus, Product, ProductTypes } from '@/store';
++
++const productModule = namespace(ProductTypes.PATH);
++const cartModule = namespace(CartTypes.PATH);
++
+ @Component
+ export default class ShoppingView extends mixins(BaseComponent) {
++  //----------------------------------------------------------------------
++  //
++  //  Store
++  //
++  //----------------------------------------------------------------------
++
++  @cartModule.Action(CartTypes.ADD_PRODUCT_TO_CART) m_addProductToCart!: CartTypes.addProductToCart;
++  @cartModule.Action(CartTypes.CHECKOUT) m_checkout!: CartTypes.checkout;
++  @cartModule.Getter(CartTypes.CART_ITEMS) m_cartItems!: CartTypes.cartItems;
++  @cartModule.Getter(CartTypes.CART_TOTAL_PRICE) m_cartTotalPrice!: CartTypes.cartTotalPrice;
++  @cartModule.Getter(CartTypes.CHECKOUT_STATUS) m_checkoutStatus!: CartTypes.checkoutStatus;
++  @productModule.Action(ProductTypes.GET_ALL_PRODUCTS) m_getAllProducts!: ProductTypes.getAllProducts;
++  @productModule.Getter(ProductTypes.ALL_PRODUCTS) m_allProducts!: ProductTypes.allProducts;
++
+   //----------------------------------------------------------------------
+   //
+   //  Variables
+@@ -93,20 +112,8 @@
+     return this.m_cartItems.length === 0;
+   }
+ 
+-  get m_products(): Product[] {
+-    return this.$stores.product.allProducts;
+-  }
+-
+-  get m_cartItems(): CartItem[] {
+-    return this.$stores.cart.cartItems;
+-  }
+-
+-  get m_cartTotalPrice(): number {
+-    return this.$stores.cart.cartTotalPrice;
+-  }
+-
+-  get m_checkoutStatus(): { result: boolean; message: string } {
+-    const result = this.$stores.cart.checkoutStatus === CheckoutStatus.None || this.$stores.cart.checkoutStatus === CheckoutStatus.Successful;
++  get m_status(): { result: boolean; message: string } {
++    const result = this.m_checkoutStatus === CheckoutStatus.None || this.m_checkoutStatus === CheckoutStatus.Successful;
+     return {
+       result,
+       message: result ? '' : 'Checkout failed.',
+@@ -119,7 +126,9 @@
+   //
+   //----------------------------------------------------------------------
+ 
+-  created() {}
++  created() {
++    this.m_getAllProducts();
++  }
+ 
+   //----------------------------------------------------------------------
+   //
+@@ -127,12 +136,12 @@
+   //
+   //----------------------------------------------------------------------
+ 
+-  m_addProductToCart(product: Product): void {
+-    this.$stores.cart.addProductToCart(product.id);
++  m_addProductToCartProcess(product: Product): void {
++    this.m_addProductToCart(product.id);
+   }
+ 
+-  async m_checkout(): Promise<void> {
+-    await this.$stores.cart.checkout();
++  async m_checkoutProcess(): Promise<void> {
++    await this.m_checkout();
+   }
+ }
+ </script>
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package.json	(date 1546740365000)
++++ package.json	(date 1546740641000)
+@@ -35,7 +35,9 @@
+     "vue-class-component": "^6.3.2",
+     "vue-i18n": "^8.4.0",
+     "vue-property-decorator": "^7.2.0",
+-    "vue-router": "^3.0.2"
++    "vue-router": "^3.0.2",
++    "vuex": "^3.0.1",
++    "vuex-class": "^0.3.1"
+   },
+   "devDependencies": {
+     "@kazupon/vue-i18n-loader": "^0.3.0",

@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/shop-api/index.ts	(date 1545148061000)
-+++ src/apis/shop-api/index.ts	(date 1545148132000)
+--- src/apis/shop-api/index.ts	(date 1546739473000)
++++ src/apis/shop-api/index.ts	(date 1546739683000)
 @@ -17,6 +17,10 @@
        }, 100);
      });
@@ -21,8 +21,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/apis/types.ts	(date 1545148061000)
-+++ src/apis/types.ts	(date 1545148132000)
+--- src/apis/types.ts	(date 1546739473000)
++++ src/apis/types.ts	(date 1546739683000)
 @@ -12,6 +12,8 @@
    getProducts(): Promise<Product[]>;
  
@@ -37,8 +37,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/product-store/index.ts	(date 1545148061000)
-+++ src/stores/product-store/index.ts	(date 1545148132000)
+--- src/stores/product-store/index.ts	(date 1546739473000)
++++ src/stores/product-store/index.ts	(date 1546739683000)
 @@ -66,6 +66,14 @@
      this.f_state.all = products;
    }
@@ -59,8 +59,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/stores/types.ts	(date 1545148061000)
-+++ src/stores/types.ts	(date 1545148132000)
+--- src/stores/types.ts	(date 1546739473000)
++++ src/stores/types.ts	(date 1546739683000)
 @@ -20,6 +20,8 @@
    decrementProductInventory(productId: string): void;
  
@@ -75,8 +75,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- src/views/product-admin-view/index.vue	(date 1545148061000)
-+++ src/views/product-admin-view/index.vue	(date 1545148132000)
+--- src/views/product-admin-view/index.vue	(date 1546739473000)
++++ src/views/product-admin-view/index.vue	(date 1546739683000)
 @@ -59,6 +59,10 @@
      }
    }

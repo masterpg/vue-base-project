@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import '@/styles/polymer-styles.js';
+import '@/styles/polymer/polymer-styles.js';
 import '@/index.css';
 
 import { i18n, initI18n } from '@/base/i18n';

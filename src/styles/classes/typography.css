@@ -1,4 +1,4 @@
-@import '../typography.css';
+@import '../placeholder/typography.css';
 
 .comm-font-display4 {
   @extend %comm-font-display4;
@@ -24,8 +24,12 @@
   @extend %comm-font-title;
 }
 
-.comm-font-subhead {
-  @extend %comm-font-subhead;
+.comm-font-subhead2 {
+  @extend %comm-font-subhead2;
+}
+
+.comm-font-subhead1 {
+  @extend %comm-font-subhead1;
 }
 
 .comm-font-body2 {

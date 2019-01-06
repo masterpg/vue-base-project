@@ -4,24 +4,25 @@
 
 ## CSS クラス
 
-`src/styles/_typography.css`には次の CSS クラスが定義されています。
+`src/styles/classes/typography.css`には次の CSS クラスが定義されています。
 
-| Scale Category                                                                    | Class               | Size  | Weight |
-| :------------------------------------------------------------------------------   | :-----------------  | :---- | :----- |
-| <div class="comm-font-display4" style="color: var(--comm-grey-600);">H1</div>     | .comm-font-display4 | 112px | 300    |
-| <div class="comm-font-display3" style="color: var(--comm-grey-600);">H2</div>     | .comm-font-display3 | 56px  | 400    |
-| <div class="comm-font-display2" style="color: var(--comm-grey-600);">H3</div>     | .comm-font-display2 | 45px  | 400    |
-| <div class="comm-font-display1" style="color: var(--comm-grey-600);">H4</div>     | .comm-font-display1 | 34px  | 400    |
-| <div class="comm-font-headline" style="color: var(--comm-grey-600);">H5</div>     | .comm-font-headline | 24px  | 400    |
-| <div class="comm-font-title" style="color: var(--comm-grey-600);">H6</div>        | .comm-font-title    | 20px  | 500    |
-| <div class="comm-font-subhead" style="color: var(--comm-grey-600);">Subhead</div> | .comm-font-subhead  | 16px  | 400    |
-| <div class="comm-font-code2" style="color: var(--comm-grey-600);">Code 2</div>    | .comm-font-code2    | 14px  | 700    |
-| <div class="comm-font-code1" style="color: var(--comm-grey-600);">Code 1</div>    | .comm-font-code1    | 14px  | 500    |
-| <div class="comm-font-button" style="color: var(--comm-grey-600);">Button</div>   | .comm-font-button   | 14px  | 500    |
-| <div class="comm-font-body2" style="color: var(--comm-grey-600);">Body 2</div>    | .comm-font-body2    | 14px  | 500    |
-| <div class="comm-font-body1" style="color: var(--comm-grey-600);">Body 1</div>    | .comm-font-body1    | 14px  | 400    |
-| <div class="comm-font-menu" style="color: var(--comm-grey-600);">Menu</div>       | .comm-font-menu     | 13px  | 500    |
-| <div class="comm-font-caption" style="color: var(--comm-grey-600);">Caption</div> | .comm-font-caption  | 12px  | 400    |
+| Scale Category                                                                       | Class               | Size  | Weight |
+| :----------------------------------------------------------------------------------- | :------------------ | :---- | :----- |
+| <div class="comm-font-display4" style="color: var(--comm-grey-600);">H1</div>        | .comm-font-display4 | 112px | 300    |
+| <div class="comm-font-display3" style="color: var(--comm-grey-600);">H2</div>        | .comm-font-display3 | 56px  | 400    |
+| <div class="comm-font-display2" style="color: var(--comm-grey-600);">H3</div>        | .comm-font-display2 | 45px  | 400    |
+| <div class="comm-font-display1" style="color: var(--comm-grey-600);">H4</div>        | .comm-font-display1 | 34px  | 400    |
+| <div class="comm-font-headline" style="color: var(--comm-grey-600);">H5</div>        | .comm-font-headline | 24px  | 400    |
+| <div class="comm-font-title" style="color: var(--comm-grey-600);">H6</div>           | .comm-font-title    | 20px  | 500    |
+| <div class="comm-font-subhead2" style="color: var(--comm-grey-600);">Subhead 2</div> | .comm-font-subhead  | 16px  | 500    |
+| <div class="comm-font-subhead1" style="color: var(--comm-grey-600);">Subhead 1</div> | .comm-font-subhead  | 16px  | 400    |
+| <div class="comm-font-code2" style="color: var(--comm-grey-600);">Code 2</div>       | .comm-font-code2    | 14px  | 700    |
+| <div class="comm-font-code1" style="color: var(--comm-grey-600);">Code 1</div>       | .comm-font-code1    | 14px  | 500    |
+| <div class="comm-font-button" style="color: var(--comm-grey-600);">Button</div>      | .comm-font-button   | 14px  | 500    |
+| <div class="comm-font-body2" style="color: var(--comm-grey-600);">Body 2</div>       | .comm-font-body2    | 14px  | 500    |
+| <div class="comm-font-body1" style="color: var(--comm-grey-600);">Body 1</div>       | .comm-font-body1    | 14px  | 400    |
+| <div class="comm-font-menu" style="color: var(--comm-grey-600);">Menu</div>          | .comm-font-menu     | 13px  | 500    |
+| <div class="comm-font-caption" style="color: var(--comm-grey-600);">Caption</div>    | .comm-font-caption  | 12px  | 400    |
 
 ## CSS クラス利用例
 
@@ -41,7 +42,7 @@
 
 ```html
 <style scoped>
-  @import '../styles/typography.css';
+  @import '../styles/placeholder/typography.css';
   .title {
     @extend %comm-font-title;
     color: var(--comm-grey-600);
