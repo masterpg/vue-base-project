@@ -10,8 +10,8 @@ module.exports = {
     'postcss-custom-properties': {
       preserve: false,
       importFrom: [
-        './src/styles/partial/_colors.css',
-        './src/styles/variables.css',
+        './src/styles/variables/app.css',
+        './src/styles/variables/colors.css',
       ],
     },
   },

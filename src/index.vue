@@ -115,7 +115,7 @@ app-drawer-layout {
       <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
           <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
-          <div main-title class="comm-ml-8">Vue WWW Base AAA</div>
+          <div main-title class="comm-ml-8">Vue WWW Base</div>
         </app-toolbar>
         <div class="drawer-list">
           <template v-for="item in m_items">

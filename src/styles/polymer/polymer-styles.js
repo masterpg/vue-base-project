@@ -4,6 +4,9 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 const template = html`
 <custom-style>
   <style is="custom-style">
+    :root {
+      --app-drawer-width: 300px;
+    }
   </style>
 </custom-style>
 `;
