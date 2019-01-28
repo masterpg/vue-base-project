@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+import '@babel/polyfill'
 
 (async () => {
   mocha.setup({ ui: 'tdd' })
