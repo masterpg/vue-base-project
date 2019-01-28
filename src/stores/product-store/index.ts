@@ -1,10 +1,10 @@
-import { BaseStore } from '@/stores/base';
-import { Component } from 'vue-property-decorator';
-import { NoCache } from '@/base/component';
-import { Product, ProductStore } from '@/stores/types';
+import { BaseStore } from '@/stores/base'
+import { Component } from 'vue-property-decorator'
+import { NoCache } from '@/base/component'
+import { Product, ProductStore } from '@/stores/types'
 
 export interface ProductState {
-  all: Product[];
+  all: Product[]
 }
 
 @Component
@@ -16,10 +16,10 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //----------------------------------------------------------------------
 
   constructor() {
-    super();
+    super()
     this.f_initState({
       all: [],
-    });
+    })
   }
 
   //----------------------------------------------------------------------
@@ -30,7 +30,7 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
 
   @NoCache
   get allProducts(): Product[] {
-    return this.$utils.cloneDeep(this.f_state.all);
+    return this.$utils.cloneDeep(this.f_state.all)
   }
 
   //----------------------------------------------------------------------
@@ -40,7 +40,7 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //----------------------------------------------------------------------
 
   created() {
-    this.getAllProducts();
+    this.getAllProducts()
   }
 
   //----------------------------------------------------------------------
@@ -50,20 +50,20 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //----------------------------------------------------------------------
 
   getProductById(productId: string): Product | undefined | null {
-    const stateProduct = this.m_getStateProductById(productId);
-    return this.$utils.cloneDeep(stateProduct);
+    const stateProduct = this.m_getStateProductById(productId)
+    return this.$utils.cloneDeep(stateProduct)
   }
 
   decrementProductInventory(productId: string): void {
-    const stateProduct = this.m_getStateProductById(productId);
+    const stateProduct = this.m_getStateProductById(productId)
     if (stateProduct) {
-      stateProduct.inventory--;
+      stateProduct.inventory--
     }
   }
 
   async getAllProducts(): Promise<void> {
-    const products = await this.$apis.shop.getProducts();
-    this.f_state.all = products;
+    const products = await this.$apis.shop.getProducts()
+    this.f_state.all = products
   }
 
   //----------------------------------------------------------------------
@@ -73,10 +73,10 @@ export class ProductStoreImpl extends BaseStore<ProductState> implements Product
   //----------------------------------------------------------------------
 
   m_getStateProductById(productId: string): Product | undefined | null {
-    return this.f_state.all.find((item) => item.id === productId);
+    return this.f_state.all.find((item) => item.id === productId)
   }
 }
 
 export function newProductStore(): ProductStore {
-  return new ProductStoreImpl();
+  return new ProductStoreImpl()
 }

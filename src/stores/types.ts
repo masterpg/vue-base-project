@@ -1,4 +1,4 @@
-import { Product as APIProduct } from '@/apis';
+import { Product as APIProduct } from '@/apis'
 
 //----------------------------------------------------------------------
 //
@@ -7,33 +7,33 @@ import { Product as APIProduct } from '@/apis';
 //----------------------------------------------------------------------
 
 export interface Stores {
-  readonly product: ProductStore;
+  readonly product: ProductStore
 
-  readonly cart: CartStore;
+  readonly cart: CartStore
 }
 
 export interface ProductStore {
-  readonly allProducts: Product[];
+  readonly allProducts: Product[]
 
-  getProductById(productId: string): Product | undefined | null;
+  getProductById(productId: string): Product | undefined | null
 
-  decrementProductInventory(productId: string): void;
+  decrementProductInventory(productId: string): void
 
-  getAllProducts(): Promise<void>;
+  getAllProducts(): Promise<void>
 }
 
 export interface CartStore {
-  readonly checkoutStatus: CheckoutStatus;
+  readonly checkoutStatus: CheckoutStatus
 
-  readonly cartItems: CartItem[];
+  readonly cartItems: CartItem[]
 
-  readonly cartTotalPrice: number;
+  readonly cartTotalPrice: number
 
-  getCartItemById(productId: string): CartItem | undefined | null;
+  getCartItemById(productId: string): CartItem | undefined | null
 
-  checkout(): Promise<void>;
+  checkout(): Promise<void>
 
-  addProductToCart(productId: string): void;
+  addProductToCart(productId: string): void
 }
 
 //----------------------------------------------------------------------
@@ -42,13 +42,13 @@ export interface CartStore {
 //
 //----------------------------------------------------------------------
 
-export type Product = APIProduct;
+export type Product = APIProduct
 
 export interface CartItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
+  id: string
+  title: string
+  price: number
+  quantity: number
 }
 
 //----------------------------------------------------------------------

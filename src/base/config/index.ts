@@ -1,11 +1,11 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 export interface Config {
   api: {
-    protocol: string;
-    host: string;
-    port: number;
-  };
+    protocol: string,
+    host: string,
+    port: number,
+  }
 }
 
 class ConfigImpl implements Config {
@@ -16,12 +16,12 @@ class ConfigImpl implements Config {
   };
 }
 
-export let config: Config;
+export let config: Config
 
 export function initConfig(): void {
-  config = new ConfigImpl();
+  config = new ConfigImpl()
   Object.defineProperty(Vue.prototype, '$config', {
     value: config,
     writable: false,
-  });
+  })
 }

@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import '@polymer/paper-button/paper-button';
-import '@polymer/paper-card/paper-card';
-import { BaseComponent } from '@/base/component';
-import { Component } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
+import '@polymer/paper-button/paper-button'
+import '@polymer/paper-card/paper-card'
+import { BaseComponent } from '@/base/component'
+import { Component } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
 
 @Component
 export default class PlaygroundView extends mixins(BaseComponent) {
@@ -27,11 +27,11 @@ export default class PlaygroundView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   async m_sleep(ms: number): Promise<string> {
-    return new Promise<string>((resolve) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(`I slept for ${ms} ms.`);
-      }, ms);
-    });
+        resolve(`I slept for ${ms} ms.`)
+      }, ms)
+    }) as Promise<string>
   }
 
   //----------------------------------------------------------------------
@@ -41,7 +41,7 @@ export default class PlaygroundView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   async m_sleepButtonOnClick() {
-    alert(await this.m_sleep(2000));
+    alert(await this.m_sleep(2000))
   }
 }
 </script>

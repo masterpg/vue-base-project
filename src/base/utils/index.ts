@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import { clone, cloneDeep, assign, assignIn } from 'lodash';
+import Vue from 'vue'
+import { clone, cloneDeep, assign, assignIn } from 'lodash'
 
 export class Utils {
   /**
@@ -8,7 +8,7 @@ export class Utils {
    * @returns
    */
   cloneDeep<T>(source: T): T {
-    return cloneDeep(source);
+    return cloneDeep(source)
   }
 
   /**
@@ -17,7 +17,7 @@ export class Utils {
    * @returns
    */
   cloneShallow<T>(source: T): T {
-    return clone(source);
+    return clone(source)
   }
 
   assign<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
@@ -58,7 +58,7 @@ export class Utils {
    * @return 引数のobjectを返す
    */
   assign<T = any>(object: any, ...sources: any[]): T {
-    return assign(object, ...sources);
+    return assign(object, ...sources)
   }
 
   assignIn<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
@@ -99,16 +99,16 @@ export class Utils {
    * @return 引数のobjectを返す
    */
   assignIn<T = any>(object: any, ...sources: any[]): T {
-    return assignIn(object, ...sources);
+    return assignIn(object, ...sources)
   }
 }
 
-export let utils: Utils;
+export let utils: Utils
 
 export function initUtils(): void {
-  utils = new Utils();
+  utils = new Utils()
   Object.defineProperty(Vue.prototype, '$utils', {
     value: utils,
     writable: false,
-  });
+  })
 }

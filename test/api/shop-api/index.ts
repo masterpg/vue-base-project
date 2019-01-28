@@ -1,9 +1,9 @@
-import _shopAPI from '@/apis/shop-api';
+import _shopAPI from '@/apis/shop-api'
 
-const assert = chai.assert;
+const assert = chai.assert
 
 suite('api/shop-api', () => {
   test('サンプルテスト', () => {
-    assert.equal(1, 1);
-  });
-});
+    assert.equal(1, 1)
+  })
+})

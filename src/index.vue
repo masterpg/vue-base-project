@@ -118,8 +118,8 @@ app-drawer-layout {
           <div main-title class="comm-ml-8">Vue WWW Base</div>
         </app-toolbar>
         <div class="drawer-list">
-          <template v-for="item in m_items">
-            <router-link :to="item.path" class="item">{{ item.title }}</router-link>
+          <template v-for="(item, index) in m_items">
+            <router-link :key="index" :to="item.path" class="item">{{ item.title }}</router-link>
           </template>
         </div>
       </app-drawer>
@@ -142,23 +142,23 @@ app-drawer-layout {
 </template>
 
 <script lang="ts">
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
-import '@polymer/app-layout/app-drawer/app-drawer';
-import '@polymer/app-layout/app-header-layout/app-header-layout';
-import '@polymer/app-layout/app-header/app-header';
-import '@polymer/app-layout/app-toolbar/app-toolbar';
-import '@polymer/iron-icon/iron-icon';
-import '@polymer/iron-icons/iron-icons';
-import '@polymer/iron-pages/iron-pages';
-import '@polymer/iron-selector/iron-selector';
-import '@polymer/paper-button/paper-button';
-import '@polymer/paper-icon-button/paper-icon-button';
-import '@polymer/paper-toast/paper-toast';
+import '@polymer/app-layout/app-drawer-layout/app-drawer-layout'
+import '@polymer/app-layout/app-drawer/app-drawer'
+import '@polymer/app-layout/app-header-layout/app-header-layout'
+import '@polymer/app-layout/app-header/app-header'
+import '@polymer/app-layout/app-toolbar/app-toolbar'
+import '@polymer/iron-icon/iron-icon'
+import '@polymer/iron-icons/iron-icons'
+import '@polymer/iron-pages/iron-pages'
+import '@polymer/iron-selector/iron-selector'
+import '@polymer/paper-button/paper-button'
+import '@polymer/paper-icon-button/paper-icon-button'
+import '@polymer/paper-toast/paper-toast'
 
-import * as sw from '@/base/service-worker';
-import { BaseComponent } from '@/base/component';
-import { Component } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
+import * as sw from '@/base/service-worker'
+import { BaseComponent } from '@/base/component'
+import { Component } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
 
 @Component
 export default class AppView extends mixins(BaseComponent) {
@@ -170,7 +170,7 @@ export default class AppView extends mixins(BaseComponent) {
 
   m_narrow: boolean = false;
 
-  m_items: Array<{ title: string; path: string }> = [
+  m_items: Array<{ title: string, path: string }> = [
     {
       title: 'ABC',
       path: '/pages/abc',
@@ -190,7 +190,7 @@ export default class AppView extends mixins(BaseComponent) {
   //--------------------------------------------------
 
   get m_swToast(): { open: () => void } {
-    return this.$refs.swToast as any;
+    return this.$refs.swToast as any
   }
 
   //----------------------------------------------------------------------
@@ -200,7 +200,7 @@ export default class AppView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   created() {
-    sw.addStateChangeListener(this.m_swOnStateChange);
+    sw.addStateChangeListener(this.m_swOnStateChange)
   }
 
   //----------------------------------------------------------------------
@@ -210,7 +210,7 @@ export default class AppView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   m_reload(): void {
-    window.location.reload();
+    window.location.reload()
   }
 
   //----------------------------------------------------------------------
@@ -220,22 +220,22 @@ export default class AppView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   m_swOnStateChange(info: sw.StateChangeInfo) {
-    this.m_swUpdateIsRequired = false;
+    this.m_swUpdateIsRequired = false
 
     if (info.state === sw.ChangeState.updated) {
-      this.m_swUpdateIsRequired = true;
-      this.m_swMessage = info.message;
-      this.$nextTick(() => this.m_swToast.open());
+      this.m_swUpdateIsRequired = true
+      this.m_swMessage = info.message
+      this.$nextTick(() => this.m_swToast.open())
     } else if (info.state === sw.ChangeState.cached) {
-      this.m_swMessage = info.message;
-      this.$nextTick(() => this.m_swToast.open());
+      this.m_swMessage = info.message
+      this.$nextTick(() => this.m_swToast.open())
     }
 
     if (info.state === sw.ChangeState.error) {
-      console.error(info.message);
+      console.error(info.message)
     } else {
       // tslint:disable-next-line
-      console.log('Service Worker:\n', info);
+      console.log('Service Worker:\n', info)
     }
   }
 }

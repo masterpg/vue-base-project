@@ -1,7 +1,7 @@
-import { APIs } from '@/apis';
-import { Stores } from '@/stores';
+import { APIs } from '@/apis'
+import { Stores } from '@/stores'
 
 declare interface TestStore<S> {
-  $apis: APIs;
-  $stores: Stores;
+  $apis: APIs
+  $stores: Stores
 }

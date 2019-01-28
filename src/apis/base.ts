@@ -1,35 +1,35 @@
-import Vue from 'vue';
-import axios from 'axios';
+import Vue from 'vue'
+import axios from 'axios'
 
 export interface APIRequestConfig {
-  headers?: any;
-  params?: any;
-  paramsSerializer?: (params: any) => string;
-  responseType?: string;
+  headers?: any
+  params?: any
+  paramsSerializer?: (params: any) => string
+  responseType?: string
 }
 
 export interface APIResponse<T = any> {
-  data: T;
-  status: number;
-  statusText: string;
-  headers: any;
-  config: APIRequestConfig;
-  request?: any;
+  data: T
+  status: number
+  statusText: string
+  headers: any
+  config: APIRequestConfig
+  request?: any
 }
 
 export interface APIError extends Error {
-  config: APIRequestConfig;
-  code?: string;
-  request?: any;
-  response?: APIResponse;
+  config: APIRequestConfig
+  code?: string
+  request?: any
+  response?: APIResponse
 }
 
 export interface APIPromise<T = any> extends Promise<APIResponse<T>> {}
 
 interface APIRequestInternalConfig extends APIRequestConfig {
-  url: string;
-  method: string;
-  data?: any;
+  url: string
+  method: string
+  data?: any
 }
 
 export abstract class BaseAPI extends Vue {
@@ -38,8 +38,8 @@ export abstract class BaseAPI extends Vue {
       Object.assign(config || {}, {
         url: path,
         method: 'get',
-      }),
-    );
+      })
+    )
   }
 
   delete(path: string, config?: APIRequestConfig): APIPromise {
@@ -47,8 +47,8 @@ export abstract class BaseAPI extends Vue {
       Object.assign(config || {}, {
         url: path,
         method: 'delete',
-      }),
-    );
+      })
+    )
   }
 
   post<T = any>(path: string, data?: any, config?: APIRequestConfig): APIPromise<T> {
@@ -57,8 +57,8 @@ export abstract class BaseAPI extends Vue {
         url: path,
         method: 'post',
         data,
-      }),
-    );
+      })
+    )
   }
 
   put<T = any>(path: string, data?: any, config?: APIRequestConfig): APIPromise<T> {
@@ -67,21 +67,21 @@ export abstract class BaseAPI extends Vue {
         url: path,
         method: 'put',
         data,
-      }),
-    );
+      })
+    )
   }
 
   request<T = any>(config: APIRequestInternalConfig): APIPromise<T> {
-    const apiConfig = this.$config.api;
-    let baseURL = '';
+    const apiConfig = this.$config.api
+    let baseURL = ''
     if (!apiConfig.protocol && !apiConfig.host && !apiConfig.port) {
-      baseURL = 'api';
+      baseURL = 'api'
     } else {
-      baseURL = `${apiConfig.protocol}://${apiConfig.host}:${apiConfig.port}/api/`;
+      baseURL = `${apiConfig.protocol}://${apiConfig.host}:${apiConfig.port}/api/`
     }
     const axiosConfig = Object.assign(config || {}, {
       baseURL,
-    });
-    return axios.request(axiosConfig);
+    })
+    return axios.request(axiosConfig)
   }
 }

@@ -30,4 +30,4 @@ export const dateTimeFormats = {
       hour12: true,
     },
   },
-};
+}

@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import { APIs } from '@/apis';
+import Vue from 'vue'
+import { APIs } from '@/apis'
 
 export abstract class BaseStore<S> extends Vue {
   //----------------------------------------------------------------------
@@ -13,7 +13,7 @@ export abstract class BaseStore<S> extends Vue {
   m_state: S;
 
   get f_state(): S {
-    return this.m_state;
+    return this.m_state
   }
 
   //----------------------------------------------------------------------
@@ -27,6 +27,6 @@ export abstract class BaseStore<S> extends Vue {
    * @param state
    */
   f_initState(state: S): void {
-    this.m_state = state;
+    this.m_state = state
   }
 }

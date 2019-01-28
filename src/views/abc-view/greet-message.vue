@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { BaseComponent } from '@/base/component';
-import { Component, Prop } from 'vue-property-decorator';
+import { BaseComponent } from '@/base/component'
+import { Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class GreetMessage extends BaseComponent {
@@ -33,8 +33,8 @@ export default class GreetMessage extends BaseComponent {
   m_greetTimes: number = 0;
 
   greet(): void {
-    alert('greeting: ' + this.message);
-    this.m_greetTimes++;
+    alert('greeting: ' + this.message)
+    this.m_greetTimes++
   }
 }
 </script>

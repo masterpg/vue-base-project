@@ -1,13 +1,13 @@
 <style scoped></style>
 
 <template>
-  <div><input type="checkbox" v-bind:checked="checked" v-on:change="m_checkboxOnChange" /></div>
+  <div><input type="checkbox" :checked="checked" @change="m_checkboxOnChange" /></div>
 </template>
 
 <script lang="ts">
-import { BaseComponent } from '@/base/component';
-import { Component, Model } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
+import { BaseComponent } from '@/base/component'
+import { Component, Model } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
 
 @Component
 export default class CustomCheckbox extends mixins(BaseComponent) {
@@ -25,8 +25,8 @@ export default class CustomCheckbox extends mixins(BaseComponent) {
     // ・本コンポーネントでは以下のようにプロパティ名とイベント名を設定した:
     //   ・プロパティ名: 'checked'
     //   ・イベント名: 'change'
-    const checkboxEl = event.target as HTMLInputElement;
-    this.$emit('change', checkboxEl.checked);
+    const checkboxEl = event.target as HTMLInputElement
+    this.$emit('change', checkboxEl.checked)
   }
 }
 </script>

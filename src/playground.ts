@@ -1,17 +1,17 @@
-import '@babel/polyfill';
-import '@/styles/polymer/polymer-styles.js';
-import '@/index.css';
+import '@babel/polyfill'
+import '@/styles/polymer/polymer-styles.js'
+import '@/index.css'
 
-import { i18n, initI18n } from '@/base/i18n';
-import Vue from 'vue';
-import PlaygroundView from '@/playground.vue';
+import { i18n, initI18n } from '@/base/i18n'
+import Vue from 'vue'
+import PlaygroundView from '@/playground.vue'
 
 (async () => {
-  await initI18n();
+  await initI18n()
 
   new Vue({
     el: '#app',
     render: (h) => h(PlaygroundView),
     i18n,
-  });
-})();
+  })
+})()
