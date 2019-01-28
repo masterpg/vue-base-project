@@ -100,7 +100,7 @@ module.exports = {
       .test(/\.js$/)
       .use('babel-loader')
         .loader('babel-loader')
-        .end();
+        .end()
 
     // PolymerのCustom Properties、CSS Mixinを.vueファイルで記述するための設定
     const polymerRule = config.module
