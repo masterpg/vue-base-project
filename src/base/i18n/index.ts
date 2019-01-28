@@ -36,9 +36,9 @@ export class AppI18n extends VueI18n {
   //
   //----------------------------------------------------------------------
 
-  m_localeData: LocaleData;
+  m_localeData: LocaleData
 
-  m_loadedLanguages: string[];
+  m_loadedLanguages: string[]
 
   //----------------------------------------------------------------------
   //
@@ -46,8 +46,8 @@ export class AppI18n extends VueI18n {
   //
   //----------------------------------------------------------------------
 
-  d(value: number | Date, key?: VueI18n.Path, locale?: VueI18n.Locale): VueI18n.DateTimeFormatResult;
-  d(value: number | Date, args?: { [key: string]: string }): VueI18n.DateTimeFormatResult;
+  d(value: number | Date, key?: VueI18n.Path, locale?: VueI18n.Locale): VueI18n.DateTimeFormatResult
+  d(value: number | Date, args?: { [key: string]: string }): VueI18n.DateTimeFormatResult
   d(arg1: number | Date, arg2?: any, arg3?: any): VueI18n.DateTimeFormatResult {
     let locale: VueI18n.Locale
     // 引数にロケールが指定された場合

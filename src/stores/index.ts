@@ -14,13 +14,13 @@ class StoresImpl extends Vue implements Stores {
     this.m_cart = newCartStore()
   }
 
-  m_product: ProductStore;
+  m_product: ProductStore
 
   get product(): ProductStore {
     return this.m_product
   }
 
-  m_cart: CartStore;
+  m_cart: CartStore
 
   get cart(): CartStore {
     return this.m_cart

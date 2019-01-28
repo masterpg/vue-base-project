@@ -168,7 +168,7 @@ export default class AppView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  m_narrow: boolean = false;
+  m_narrow: boolean = false
 
   m_items: Array<{ title: string, path: string }> = [
     {
@@ -179,11 +179,11 @@ export default class AppView extends mixins(BaseComponent) {
       title: 'Shopping',
       path: '/pages/shopping',
     },
-  ];
+  ]
 
-  m_swMessage: string = '';
+  m_swMessage: string = ''
 
-  m_swUpdateIsRequired: boolean = false;
+  m_swUpdateIsRequired: boolean = false
 
   //--------------------------------------------------
   //  Elements

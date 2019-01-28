@@ -21,7 +21,7 @@ export default class CustomInput extends mixins(BaseComponent) {
     //    https://jp.vuejs.org/v2/guide/components.html#コンポーネントで-v-model-を使う
     // ・`value`というプロパティ名はv-modelで使用される特別な名前である。
     // ・`input`というイベントはv-modelで使用される特別なイベントである。
-    // ・`value`プロパティの値は直接変更できない。例: this.value = 'hoge';
+    // ・`value`プロパティの値は直接変更できない。例: this.value = 'hoge'
     // ・`value`プロパティの値を変更するには`input`イベントに新しい値を設定してイベントを発火する必要がある。
     const value = (event.target as any).value
     this.$emit('input', value)

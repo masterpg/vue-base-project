@@ -13,7 +13,7 @@ class ConfigImpl implements Config {
     protocol: String(process.env.VUE_APP_API_PROTOCOL),
     host: String(process.env.VUE_APP_API_HOST),
     port: Number(process.env.VUE_APP_API_PORT),
-  };
+  }
 }
 
 export let config: Config

@@ -23,7 +23,7 @@
   <div class="layout vertical">
     <paper-card class="comm-pa-12" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
       <div class="comm-my-16">{{ $t('hello', { today: $d(new Date(), 'short') }) }}</div>
-      <paper-input label="Input Message" :value="m_message" @input="m_message = $event.target.value;"></paper-input>
+      <paper-input label="Input Message" :value="m_message" @input="m_message = $event.target.value"></paper-input>
       <div class="comm-my-16">
         <span class="title">propA: </span><span class="value">{{ propA }}</span>
       </div>
@@ -99,10 +99,10 @@ export default class AbcView extends mixins(BaseComponent) {
   // propの初期化は@Propのdefaultで行う
 
   @Prop({ default: 'prop value A' })
-  propA: string;
+  propA: string
 
   @Prop({ default: 'prop value B' })
-  propB: string;
+  propB: string
 
   //--------------------------------------------------
   //  data
@@ -110,19 +110,19 @@ export default class AbcView extends mixins(BaseComponent) {
 
   // dataは初期化が必要！
 
-  m_message: string = '';
+  m_message: string = ''
 
-  m_customInputValue: string = '';
+  m_customInputValue: string = ''
 
-  m_customChecked: boolean = false;
+  m_customChecked: boolean = false
 
   // propの値を初期化に利用できる
-  m_customPropA: string = 'custom ' + this.propA;
+  m_customPropA: string = 'custom ' + this.propA
 
   m_post: Post = {
     message: '',
     times: 0,
-  };
+  }
 
   //--------------------------------------------------
   //  computed

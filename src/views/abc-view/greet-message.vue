@@ -28,9 +28,9 @@ import { Component, Prop } from 'vue-property-decorator'
 @Component
 export default class GreetMessage extends BaseComponent {
   @Prop()
-  message: string;
+  message: string
 
-  m_greetTimes: number = 0;
+  m_greetTimes: number = 0
 
   greet(): void {
     alert('greeting: ' + this.message)

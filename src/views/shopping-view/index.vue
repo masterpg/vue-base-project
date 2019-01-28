@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="flex"></div>
-        <paper-icon-button icon="icons:add-box" @click="m_addProductToCart(product);"></paper-icon-button>
+        <paper-icon-button icon="icons:add-box" @click="m_addProductToCart(product)"></paper-icon-button>
       </div>
     </div>
 

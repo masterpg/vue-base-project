@@ -39,9 +39,9 @@ export default class BreakpointMixin extends Vue {
   //
   //----------------------------------------------------------------------
 
-  m_clientWidth: number = this.m_getClientDimensionsWidth();
-  m_clientHeight: number = this.m_getClientDimensionsHeight();
-  m_resizeTimeout: number = 0;
+  m_clientWidth: number = this.m_getClientDimensionsWidth()
+  m_clientHeight: number = this.m_getClientDimensionsHeight()
+  m_resizeTimeout: number = 0
 
   get f_breakpoint(): BreakpointInfo {
     const xs = this.m_clientWidth < 600

@@ -12,7 +12,7 @@ class APIsImpl extends Vue implements APIs {
     this.m_shop = shopAPI
   }
 
-  m_shop: ShopAPI;
+  m_shop: ShopAPI
 
   get shop(): ShopAPI {
     return this.m_shop

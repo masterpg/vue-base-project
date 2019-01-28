@@ -8,9 +8,9 @@ export abstract class BaseStore<S> extends Vue {
   //
   //----------------------------------------------------------------------
 
-  protected readonly $apis: APIs;
+  protected readonly $apis: APIs
 
-  m_state: S;
+  m_state: S
 
   get f_state(): S {
     return this.m_state
