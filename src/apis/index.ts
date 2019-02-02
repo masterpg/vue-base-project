@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import shopAPI from '@/apis/shop-api'
-import { APIs, ShopAPI } from '@/apis/types'
-import { Component } from 'vue-property-decorator'
+import {APIs, ShopAPI} from '@/apis/types'
+import {Component} from 'vue-property-decorator'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -23,10 +23,6 @@ export let apis: APIs
 
 export function initAPI(): void {
   apis = new APIsImpl()
-  Object.defineProperty(Vue.prototype, '$apis', {
-    value: apis,
-    writable: false,
-  })
 }
 
 export * from '@/apis/types'

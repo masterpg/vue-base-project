@@ -2,7 +2,7 @@ import '@babel/polyfill'
 import '@/styles/polymer/polymer-styles.js'
 import '@/index.css'
 
-import { i18n, initI18n } from '@/base/i18n'
+import {i18n, initI18n} from '@/base/i18n'
 import Vue from 'vue'
 import PlaygroundView from '@/playground.vue'
 
@@ -11,7 +11,7 @@ import PlaygroundView from '@/playground.vue'
 
   new Vue({
     el: '#app',
-    render: (h) => h(PlaygroundView),
+    render: h => h(PlaygroundView),
     i18n,
   })
 })()

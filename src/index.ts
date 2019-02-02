@@ -6,14 +6,14 @@ import '@/index.css'
 
 import AppView from '@/index.vue'
 import Vue from 'vue'
-import { currency } from '@/currency'
-import { i18n, initI18n } from '@/base/i18n'
-import { initAPI } from '@/apis'
-import { initConfig } from '@/base/config'
-import { initServiceWorker } from '@/base/service-worker'
-import { initStores } from '@/stores'
-import { initUtils } from '@/base/utils'
-import { router } from '@/base/router'
+import {currency} from '@/currency'
+import {i18n, initI18n} from '@/base/i18n'
+import {initAPI} from '@/apis'
+import {initConfig} from '@/base/config'
+import {initServiceWorker} from '@/base/service-worker'
+import {initStore} from '@/store'
+import {initUtils} from '@/base/utils'
+import {router} from '@/base/router'
 
 // TODO JetBrainsIDE使用時の開発補助コード
 // import '@/views/abc-view/index.vue'
@@ -24,7 +24,7 @@ import { router } from '@/base/router'
   initConfig()
   initServiceWorker()
   initAPI()
-  initStores()
+  initStore()
   await initI18n()
 
   Vue.filter('currency', currency)
@@ -32,7 +32,7 @@ import { router } from '@/base/router'
   new Vue({
     el: '#app',
     router,
-    render: (h) => h(AppView),
+    render: h => h(AppView),
     i18n,
   })
 })()

@@ -1,7 +1,7 @@
 import BreakpointMixin from '@/base/component/breakpoint-mixin'
-import { Component } from 'vue-property-decorator'
-import { NoCache } from '@/base/component/decorators'
-import { mixins } from 'vue-class-component'
+import {Component} from 'vue-property-decorator'
+import {NoCache} from '@/base/component/decorators'
+import {mixins} from 'vue-class-component'
 
 /**
  * コンポーネントの基底クラスです。
@@ -34,4 +34,4 @@ export const SampleMixin = <T extends new (...args: any[]) => {}>(superclass: T)
     }
   }
 
-export { BaseComponent, NoCache }
+export {BaseComponent, NoCache}

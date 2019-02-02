@@ -1,5 +1,5 @@
-import Vue, { ComponentOptions, ComputedOptions } from 'vue'
-import { createDecorator } from 'vue-class-component'
+import Vue, {ComponentOptions, ComputedOptions} from 'vue'
+import {createDecorator} from 'vue-class-component'
 
 /**
  * 算出プロパティがキャッシュしないようにするためのデコレーターです。

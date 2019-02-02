@@ -1,5 +1,5 @@
 {
-  "name": "vue-www-base",
+  "name": "vue-base-project",
   "scripts": {
     "dev": "node json-server.js & vue-cli-service serve --mode development",
     "stg": "vue-cli-service build --mode staging || npm run serve",
@@ -10,7 +10,7 @@
     "build:styles": "postcss --config build/postcss.config.js src/index.pcss -o dist/index.css",
     "serve": "node json-server.js & browser-sync start --port 5000 --proxy '0.0.0.0:5010' --serveStatic 'dist' --no-open",
     "docs": "postcss --config build/postcss.config.js docs/book.pcss -o docs/book.css && cd docs && ../node_modules/.bin/gitbook install && ../node_modules/.bin/gitbook serve",
-    "lint": "vue-cli-service lint"
+    "lint": "./scripts/lint.sh"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.2",
@@ -51,10 +51,10 @@
     "@vue/cli-plugin-pwa": "^3.2.0",
     "@vue/cli-plugin-typescript": "^3.2.0",
     "@vue/cli-service": "^3.2.0",
-    "babel-loader": "^8.0.4",
-    "browser-sync": "^2.26.3",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^3.2.1",
+    "babel-loader": "^8.0.4",
+    "browser-sync": "^2.26.3",
     "chai": "^4.2.0",
     "copy-webpack-plugin": "^4.6.0",
     "eslint": "^5.12.1",

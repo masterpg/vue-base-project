@@ -1,63 +1,52 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true,
+  'root': true,
+  'env': {
+    'node': true,
   },
-  parserOptions: {
-    parser: 'typescript-eslint-parser',
+  'parserOptions': {
+    'parser': 'typescript-eslint-parser',
   },
-  extends: [
-    'plugin:vue/recommended',
+  'extends': [
     'eslint:recommended',
+    'plugin:vue/essential',
     '@vue/prettier',
     '@vue/typescript',
   ],
-  plugins: [ 'typescript' ],
-  rules: {
-    'prettier/prettier': [
-      'off',
-      {
-        printWidth: 150,
-        singleQuote: true,
-        semi: false,
-        trailingComma: 'all',
-        bracketSpacing: false,
-        jsxBracketSameLine: false,
-        arrowParens: 'avoid',
-      },
-    ],
-    'array-bracket-spacing': [ 'error', 'always' ],
+  'plugins': ['typescript'],
+  'rules': {
+    'prettier/prettier': ['on'],
+    'array-bracket-spacing': ['error', 'never'],
     'comma-dangle': [
       'error',
       {
-        arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
-        exports: 'always-multiline',
-        functions: 'never',
+        'arrays': 'always-multiline',
+        'objects': 'always-multiline',
+        'imports': 'always-multiline',
+        'exports': 'always-multiline',
+        'functions': 'never',
       },
     ],
-    'comma-spacing': [ 'error', { before: false, after: true } ],
-    'computed-property-spacing': [ 'error', 'never' ],
+    'comma-spacing': ['error', {'before': false, 'after': true}],
+    'computed-property-spacing': ['error', 'never'],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-dupe-class-members': 'off',
     'no-unreachable': 'error',
     'no-var': 'error',
-    'object-curly-spacing': [ 'error', 'always' ],
-    quotes: [ 'error', 'single' ],
-    semi: [ 'error', 'never', { beforeStatementContinuationChars: 'never' } ],
+    'object-curly-spacing': ['error', 'never'],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'never', {'beforeStatementContinuationChars': 'never'}],
     'space-before-function-paren': [
       'error',
       {
-        anonymous: 'never',
-        named: 'never',
-        asyncArrow: 'always',
+        'anonymous': 'never',
+        'named': 'never',
+        'asyncArrow': 'always',
       },
     ],
-    'space-in-parens': [ 'error', 'never' ],
+    'space-in-parens': ['error', 'never'],
     'variable-name': {
-      options: [
+      'options': [
         'ban-keywords',
         'check-format',
         'allow-leading-underscore',
@@ -69,17 +58,17 @@ module.exports = {
     'typescript/member-delimiter-style': [
       'error',
       {
-        delimiter: 'none',
-        overrides: {
-          typeLiteral: {
-            delimiter: 'comma',
-            requireLast: true,
-            ignoreSingleLine: true,
+        'delimiter': 'none',
+        'overrides': {
+          'typeLiteral': {
+            'delimiter': 'comma',
+            'requireLast': true,
+            'ignoreSingleLine': true,
           },
         },
       },
     ],
-    'typescript/no-angle-bracket-type-assertion': [ 'error' ],
-    'typescript/type-annotation-spacing': [ 'error' ],
+    'typescript/no-angle-bracket-type-assertion': ['error'],
+    'typescript/type-annotation-spacing': ['error'],
   },
 }

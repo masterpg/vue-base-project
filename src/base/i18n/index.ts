@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import axios from 'axios'
-import { dateTimeFormats } from '@/base/i18n/date-time-formats'
+import {dateTimeFormats} from '@/base/i18n/date-time-formats'
 
 Vue.use(VueI18n)
 
@@ -47,7 +47,7 @@ export class AppI18n extends VueI18n {
   //----------------------------------------------------------------------
 
   d(value: number | Date, key?: VueI18n.Path, locale?: VueI18n.Locale): VueI18n.DateTimeFormatResult
-  d(value: number | Date, args?: { [key: string]: string }): VueI18n.DateTimeFormatResult
+  d(value: number | Date, args?: {[key: string]: string}): VueI18n.DateTimeFormatResult
   d(arg1: number | Date, arg2?: any, arg3?: any): VueI18n.DateTimeFormatResult {
     let locale: VueI18n.Locale
     // 引数にロケールが指定された場合
@@ -113,7 +113,7 @@ export class AppI18n extends VueI18n {
     this.m_localeData = localeData
     this.m_loadedLanguages = this.m_loadedLanguages || []
     if (this.m_loadedLanguages.indexOf(localeData.language) === -1) {
-      this.m_loadedLanguages = [ localeData.language ]
+      this.m_loadedLanguages = [localeData.language]
     }
   }
 }
@@ -148,7 +148,7 @@ class LocaleUtil {
         country = LocaleUtil.m_getDefaultCountry(language)
       }
     }
-    return { language, country, locale: `${language}-${country}` }
+    return {language, country, locale: `${language}-${country}`}
   }
 
   /**

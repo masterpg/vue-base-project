@@ -21,8 +21,8 @@
 
 <template>
   <div class="layout vertical">
-    <paper-card class="comm-pa-12" :class="{ 'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp }">
-      <div class="comm-my-16">{{ $t('hello', { today: $d(new Date(), 'short') }) }}</div>
+    <paper-card class="comm-pa-12" :class="{'comm-ma-48': f_pc, 'comm-ma-24': f_tab, 'comm-ma-12': f_sp}">
+      <div class="comm-my-16">{{ $t('hello', {today: $d(new Date(), 'short')}) }}</div>
       <paper-input label="Input Message" :value="m_message" @input="m_message = $event.target.value"></paper-input>
       <div class="comm-my-16">
         <span class="title">propA: </span><span class="value">{{ propA }}</span>
@@ -75,9 +75,9 @@ import '@polymer/paper-input/paper-input'
 import CustomCheckbox from '@/views/abc-view/custom-checkbox.vue'
 import CustomInput from '@/views/abc-view/custom-input.vue'
 import GreetMessage from '@/views/abc-view/greet-message.vue'
-import { BaseComponent } from '@/base/component'
-import { Component, Prop, Watch } from 'vue-property-decorator'
-import { mixins } from 'vue-class-component'
+import {BaseComponent} from '@/base/component'
+import {Component, Prop, Watch} from 'vue-property-decorator'
+import {mixins} from 'vue-class-component'
 
 interface Post {
   message: string
@@ -98,10 +98,10 @@ export default class AbcView extends mixins(BaseComponent) {
 
   // propの初期化は@Propのdefaultで行う
 
-  @Prop({ default: 'prop value A' })
+  @Prop({default: 'prop value A'})
   propA: string
 
-  @Prop({ default: 'prop value B' })
+  @Prop({default: 'prop value B'})
   propB: string
 
   //--------------------------------------------------
@@ -156,7 +156,7 @@ export default class AbcView extends mixins(BaseComponent) {
     console.log(`m_reversedMessageOnChange: newValue: "${newValue}", oldValue: "${oldValue}"`)
   }
 
-  @Watch('m_post', { deep: true })
+  @Watch('m_post', {deep: true})
   m_postOnChange(newValue: Post, oldValue: Post): void {
     console.log('m_postOnChange: newValue:', newValue, ', oldValue:', oldValue)
   }
@@ -179,7 +179,7 @@ export default class AbcView extends mixins(BaseComponent) {
   //--------------------------------------------------
 
   async m_sleep(ms: number): Promise<string> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         resolve(`I slept for ${ms} ms.`)
       }, ms)

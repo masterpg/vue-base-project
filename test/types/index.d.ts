@@ -1,7 +1,5 @@
-import { APIs } from '@/apis'
-import { Stores } from '@/stores'
+import {AppStore} from '@/store'
 
-declare interface TestStore<S> {
-  $apis: APIs
-  $stores: Stores
+declare interface TestModule<S> {
+  $appStore: AppStore
 }

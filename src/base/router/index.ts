@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { i18n } from '@/base/i18n'
+import {i18n} from '@/base/i18n'
 
 Vue.use(VueRouter)
 

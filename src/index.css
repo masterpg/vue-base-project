@@ -67,7 +67,7 @@ paper-input {
     & div.input-wrapper {
       & div.input-content {
         & > label[slot="label"] {
-            width: 100% !important;
+          width: 100% !important;
         }
       }
     }

@@ -115,7 +115,7 @@ app-drawer-layout {
       <app-drawer ref="drawer" slot="drawer" :swipe-open="m_narrow">
         <app-toolbar class="drawer-toolbar">
           <iron-icon src="img/icons/manifest/icon-48x48.png"></iron-icon>
-          <div main-title class="comm-ml-8">Vue WWW Base</div>
+          <div main-title class="comm-ml-8">Vue Base Project</div>
         </app-toolbar>
         <div class="drawer-list">
           <template v-for="(item, index) in m_items">
@@ -156,9 +156,9 @@ import '@polymer/paper-icon-button/paper-icon-button'
 import '@polymer/paper-toast/paper-toast'
 
 import * as sw from '@/base/service-worker'
-import { BaseComponent } from '@/base/component'
-import { Component } from 'vue-property-decorator'
-import { mixins } from 'vue-class-component'
+import {BaseComponent} from '@/base/component'
+import {Component} from 'vue-property-decorator'
+import {mixins} from 'vue-class-component'
 
 @Component
 export default class AppView extends mixins(BaseComponent) {
@@ -170,7 +170,7 @@ export default class AppView extends mixins(BaseComponent) {
 
   m_narrow: boolean = false
 
-  m_items: Array<{ title: string, path: string }> = [
+  m_items: Array<{title: string, path: string}> = [
     {
       title: 'ABC',
       path: '/pages/abc',
@@ -189,7 +189,7 @@ export default class AppView extends mixins(BaseComponent) {
   //  Elements
   //--------------------------------------------------
 
-  get m_swToast(): { open: () => void } {
+  get m_swToast(): {open: () => void} {
     return this.$refs.swToast as any
   }
 
