@@ -36,7 +36,7 @@
         <div class="title-text">{{ $t('products') }}</div>
       </div>
       <hr style="width: 100%;" />
-      <div v-for="product in $appStore.product.allProducts" :key="product.id" class="layout horizontal center product-item">
+      <div v-for="product in allProducts" :key="product.id" class="layout horizontal center product-item">
         <div class="layout vertical center-justified">
           <div class="title">{{ product.title }}</div>
           <div class="detail">
@@ -55,7 +55,7 @@
         <div class="flex"></div>
       </div>
       <hr style="width: 100%;" />
-      <div v-for="cartItem in $appStore.cart.cartItems" :key="cartItem.id" class="layout horizontal center cart-item">
+      <div v-for="cartItem in cartItems" :key="cartItem.id" class="layout horizontal center cart-item">
         <div class="layout vertical center-justified">
           <div class="title">{{ cartItem.title }}</div>
           <div class="detail">
@@ -77,12 +77,41 @@ import '@polymer/paper-card/paper-card'
 import '@polymer/paper-icon-button/paper-icon-button'
 
 import {BaseComponent} from '@/base/component'
-import {CartItem, CheckoutStatus, Product} from '@/store'
 import {Component} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
-@Component
+import {mapActions, mapGetters, mapMutations} from 'vuex'
+import {CartTypes, CheckoutStatus, Product, ProductTypes} from '@/store'
+
+@Component({
+  computed: {
+    ...mapGetters(ProductTypes.PATH, [ProductTypes.ALL_PRODUCTS]),
+    ...mapGetters(CartTypes.PATH, [CartTypes.CART_ITEMS, CartTypes.CHECKOUT_STATUS]),
+  },
+  methods: {
+    ...mapActions(ProductTypes.PATH, [ProductTypes.PULL_ALL_PRODUCTS]),
+    ...mapActions(CartTypes.PATH, [CartTypes.ADD_PRODUCT_TO_CART, CartTypes.CHECKOUT]),
+  },
+})
 export default class ShoppingView extends mixins(BaseComponent) {
+  //----------------------------------------------------------------------
+  //
+  //  Store
+  //
+  //----------------------------------------------------------------------
+
+  allProducts!: ProductTypes.allProducts
+
+  pullAllProducts!: ProductTypes.pullAllProducts
+
+  cartItems!: CartTypes.cartItems
+
+  checkoutStatus!: CartTypes.checkoutStatus
+
+  addProductToCart!: CartTypes.addProductToCart
+
+  checkout!: CartTypes.checkout
+
   //----------------------------------------------------------------------
   //
   //  Variables
@@ -90,11 +119,11 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   get m_cartIsEmpty(): boolean {
-    return this.$appStore.cart.cartItems.length === 0
+    return this.cartItems.length === 0
   }
 
   get m_checkoutStatus(): {result: boolean, message: string} {
-    const checkoutStatus = this.$appStore.cart.checkoutStatus
+    const checkoutStatus = this.checkoutStatus
     const result = checkoutStatus === CheckoutStatus.None || checkoutStatus === CheckoutStatus.Successful
     return {
       result,
@@ -109,7 +138,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   async created() {
-    await this.$appStore.product.pullAllProducts()
+    await this.pullAllProducts()
   }
 
   //----------------------------------------------------------------------
@@ -118,12 +147,12 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  m_addButtonOnClick(product: Product): void {
-    this.$appStore.cart.addProductToCart(product.id)
+  async m_addButtonOnClick(product: Product): Promise<void> {
+    await this.addProductToCart(product.id)
   }
 
   async m_checkoutButtonOnClick(): Promise<void> {
-    await this.$appStore.cart.checkout()
+    await this.checkout()
   }
 }
 </script>

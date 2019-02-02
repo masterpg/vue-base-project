@@ -1,81 +1,44 @@
-import {BaseModule} from '@/store/base'
-import {Component} from 'vue-property-decorator'
-import {NoCache} from '@/base/component'
-import {Product, ProductModule} from '@/store/types'
+import {GetterTree, MutationTree, ActionTree} from 'vuex'
+import {ProductModule, ProductState, RootState, Product, ProductTypes} from '@/store/types'
 import {apis} from '@/apis'
 
-export interface ProductState {
-  all: Product[]
-}
+export const productModule = new class implements ProductModule {
+  namespaced = true
 
-@Component
-export class ProductModuleImpl extends BaseModule<ProductState> implements ProductModule {
-  //----------------------------------------------------------------------
-  //
-  //  Constructors
-  //
-  //----------------------------------------------------------------------
-
-  constructor() {
-    super()
-    this.f_initState({
-      all: [],
-    })
+  state: ProductState = {
+    all: [],
   }
 
-  //----------------------------------------------------------------------
-  //
-  //  Properties
-  //
-  //----------------------------------------------------------------------
+  getters: GetterTree<ProductState, RootState> = {
+    [ProductTypes.ALL_PRODUCTS](state): Product[] {
+      return state.all
+    },
 
-  @NoCache
-  get allProducts(): Product[] {
-    return this.$utils.cloneDeep(this.f_state.all)
+    [ProductTypes.GET_PRODUCT_BY_ID](state) {
+      return (productId: string) => {
+        const product = state.all.find(item => item.id === productId)
+        return product
+      }
+    },
   }
 
-  //----------------------------------------------------------------------
-  //
-  //  Lifecycle hooks
-  //
-  //----------------------------------------------------------------------
+  mutations: MutationTree<ProductState> = {
+    [ProductTypes.SET_PRODUCTS](state, products: Product[]): void {
+      state.all = products
+    },
 
-  created() {}
-
-  //----------------------------------------------------------------------
-  //
-  //  Methods
-  //
-  //----------------------------------------------------------------------
-
-  getProductById(productId: string): Product | undefined {
-    const stateProduct = this.m_getStateProductById(productId)
-    return this.$utils.cloneDeep(stateProduct)
+    [ProductTypes.DECREMENT_PRODUCT_INVENTORY](state, productId: string): void {
+      const product = state.all.find(item => item.id === productId)
+      if (product) {
+        product.inventory--
+      }
+    },
   }
 
-  decrementProductInventory(productId: string): void {
-    const stateProduct = this.m_getStateProductById(productId)
-    if (stateProduct) {
-      stateProduct.inventory--
-    }
+  actions: ActionTree<ProductState, RootState> = {
+    async [ProductTypes.PULL_ALL_PRODUCTS](context): Promise<void> {
+      const products = await apis.shop.getProducts()
+      context.commit(ProductTypes.SET_PRODUCTS, products)
+    },
   }
-
-  async pullAllProducts(): Promise<void> {
-    const products = await apis.shop.getProducts()
-    this.f_state.all = products
-  }
-
-  //----------------------------------------------------------------------
-  //
-  //  Internal methods
-  //
-  //----------------------------------------------------------------------
-
-  m_getStateProductById(productId: string): Product | undefined {
-    return this.f_state.all.find(item => item.id === productId)
-  }
-}
-
-export function newProductModule(): ProductModule {
-  return new ProductModuleImpl()
-}
+}()

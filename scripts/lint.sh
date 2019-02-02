@@ -3,7 +3,6 @@
 if [ -z $1 ]; then
   prettier --write "**/*.{ts,vue,html,js}"
   vue-cli-service lint
-  vue-cli-service lint test
 else
   if [ -d $1 ]; then
     prettier --write "$1/**/*.{ts,html,vue,js}"

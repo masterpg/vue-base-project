@@ -58,7 +58,10 @@
           <span class="title">checked: </span><span class="value">{{ m_customChecked }}</span>
         </span>
       </div>
-      <div class="layout horizontal end-justified"><paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button></div>
+      <div class="layout horizontal end-justified">
+        <paper-button raised @click="m_incrementButtonOnClick">Increment</paper-button>
+        <paper-button raised @click="m_sleepButtonOnClick">Sleep</paper-button>
+      </div>
     </paper-card>
   </div>
 </template>
@@ -75,6 +78,9 @@ import {BaseComponent} from '@/base/component'
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
+import {mapGetters, mapMutations} from 'vuex'
+import {CounterTypes} from '@/store'
+
 interface Post {
   message: string
   times: number
@@ -86,8 +92,22 @@ interface Post {
     'custom-checkbox': CustomCheckbox,
     'custom-input': CustomInput,
   },
+  computed: {
+    ...mapGetters(CounterTypes.PATH, [CounterTypes.CURRENT]),
+  },
+  methods: {
+    ...mapMutations(CounterTypes.PATH, [CounterTypes.INCREMENT]),
+  },
 })
 export default class AbcView extends mixins(BaseComponent) {
+  //--------------------------------------------------
+  //  store
+  //--------------------------------------------------
+
+  current!: CounterTypes.current
+
+  increment!: CounterTypes.increment
+
   //--------------------------------------------------
   //  props
   //--------------------------------------------------
@@ -197,6 +217,11 @@ export default class AbcView extends mixins(BaseComponent) {
 
   async m_sleepButtonOnClick() {
     alert(await this.m_sleep(2000))
+  }
+
+  async m_incrementButtonOnClick() {
+    this.increment()
+    console.log(this.current)
   }
 
   //--------------------------------------------------

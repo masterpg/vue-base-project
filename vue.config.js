@@ -19,12 +19,6 @@ const pages = {
 }
 if (process.env.VUE_APP_IS_DEVELOPMENT === 'true') {
   Object.assign(pages, {
-    test: {
-      entry: 'test/test.ts',
-      template: 'test/test.html',
-      filename: 'test.html',
-      title: 'Vue WWW Base Unit Test',
-    },
     playground: {
       entry: 'src/playground.ts',
       template: 'src/playground.html',

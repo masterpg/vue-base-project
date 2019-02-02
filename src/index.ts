@@ -9,20 +9,19 @@ import {i18n, initI18n} from '@/base/i18n'
 import {initAPI} from '@/apis'
 import {initConfig} from '@/base/config'
 import {initServiceWorker} from '@/base/service-worker'
-import {initStore} from '@/store'
+import {store} from '@/store'
 import {initUtils} from '@/base/utils'
 import {router} from '@/base/router'
 
 // TODO JetBrainsIDE使用時の開発補助コード
-// import '@/views/abc-view/index.vue'
-// import '@/views/shopping-view/index.vue'
+import '@/views/abc-view/index.vue'
+import '@/views/shopping-view/index.vue'
 
 (async () => {
   initUtils()
   initConfig()
   initServiceWorker()
   initAPI()
-  initStore()
   await initI18n()
 
   Vue.filter('currency', currency)
@@ -32,5 +31,6 @@ import {router} from '@/base/router'
     router,
     render: h => h(AppView),
     i18n,
+    store,
   })
 })()
