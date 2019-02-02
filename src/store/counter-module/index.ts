@@ -1,5 +1,5 @@
 import {GetterTree, MutationTree, ActionTree} from 'vuex'
-import {CounterModule, CounterState, RootState} from '@/store/types'
+import {CounterModule, CounterState, CounterTypes, RootState} from '@/store/types'
 
 export const counterModule = new class implements CounterModule {
   namespaced = true
@@ -9,13 +9,13 @@ export const counterModule = new class implements CounterModule {
   }
 
   getters: GetterTree<CounterState, RootState> = {
-    current(state: CounterState): number {
+    [CounterTypes.CURRENT](state: CounterState): number {
       return state.counter
     },
   }
 
   mutations: MutationTree<CounterState> = {
-    increment(state: CounterState): void {
+    [CounterTypes.INCREMENT](state: CounterState): void {
       state.counter++
     },
   }
