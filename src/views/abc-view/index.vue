@@ -78,7 +78,6 @@ import {BaseComponent} from '@/base/component'
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
-import {mapGetters, mapMutations} from 'vuex'
 import {namespace} from 'vuex-class'
 import {CounterTypes} from '@/store'
 
@@ -95,22 +94,8 @@ const counterModule = namespace(CounterTypes.PATH)
     'custom-checkbox': CustomCheckbox,
     'custom-input': CustomInput,
   },
-  computed: {
-    ...mapGetters(CounterTypes.PATH, [CounterTypes.CURRENT]),
-  },
-  methods: {
-    ...mapMutations(CounterTypes.PATH, [CounterTypes.INCREMENT]),
-  },
 })
 export default class AbcView extends mixins(BaseComponent) {
-  //--------------------------------------------------
-  //  store
-  //--------------------------------------------------
-
-  @counterModule.Getter('current') current!: CounterTypes.current
-
-  @counterModule.Mutation('increment') increment!: CounterTypes.increment
-
   //--------------------------------------------------
   //  props
   //--------------------------------------------------
@@ -223,8 +208,8 @@ export default class AbcView extends mixins(BaseComponent) {
   }
 
   async m_incrementButtonOnClick() {
-    this.increment()
-    console.log(this.current)
+    this.$appStore.counter.increment()
+    console.log(this.$appStore.counter.current)
   }
 
   //--------------------------------------------------

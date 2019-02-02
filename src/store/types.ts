@@ -49,11 +49,7 @@ export namespace CounterTypes {
 
   export const CURRENT = 'current'
 
-  export type current = number
-
   export const INCREMENT = 'increment'
-
-  export type increment = () => void
 }
 
 export namespace ProductTypes {
@@ -61,23 +57,13 @@ export namespace ProductTypes {
 
   export const ALL_PRODUCTS = 'allProducts'
 
-  export type allProducts = Product[]
-
   export const GET_PRODUCT_BY_ID = 'getProductById'
-
-  export type getProductById = (productId: string) => Product | undefined
-
-  export const PULL_ALL_PRODUCTS = 'pullAllProducts'
-
-  export type pullAllProducts = () => Promise<void>
 
   export const SET_PRODUCTS = 'setProducts'
 
-  export type setProducts = (products: Product[]) => void
-
   export const DECREMENT_PRODUCT_INVENTORY = 'decrementProductInventory'
 
-  export type decrementProductInventory = (productId: string) => void
+  export const PULL_ALL_PRODUCTS = 'pullAllProducts'
 }
 
 export namespace CartTypes {
@@ -85,27 +71,15 @@ export namespace CartTypes {
 
   export const CHECKOUT_STATUS = 'checkoutStatus'
 
-  export type checkoutStatus = CheckoutStatus
-
   export const CART_ITEMS = 'cartItems'
-
-  export type cartItems = CartItem[]
 
   export const CART_TOTAL_PRICE = 'cartTotalPrice'
 
-  export type cartTotalPrice = number
-
   export const GET_CART_ITEM_BY_ID = 'getCartItemById'
-
-  export type getCartItemById = (productId: string) => CartItem | undefined
 
   export const CHECKOUT = 'checkout'
 
-  export type checkout = () => Promise<void>
-
   export const ADD_PRODUCT_TO_CART = 'addProductToCart'
-
-  export type addProductToCart = (productId: string) => Promise<void>
 
   export const m_SET_CART_ITEMS = 'm_setCartItems'
 
