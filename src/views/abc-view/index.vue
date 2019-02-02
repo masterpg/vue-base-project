@@ -79,12 +79,15 @@ import {Component, Prop, Watch} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
 import {mapGetters, mapMutations} from 'vuex'
+import {namespace} from 'vuex-class'
 import {CounterTypes} from '@/store'
 
 interface Post {
   message: string
   times: number
 }
+
+const counterModule = namespace(CounterTypes.PATH)
 
 @Component({
   components: {
@@ -104,9 +107,9 @@ export default class AbcView extends mixins(BaseComponent) {
   //  store
   //--------------------------------------------------
 
-  current!: CounterTypes.current
+  @counterModule.Getter('current') current!: CounterTypes.current
 
-  increment!: CounterTypes.increment
+  @counterModule.Mutation('increment') increment!: CounterTypes.increment
 
   //--------------------------------------------------
   //  props
