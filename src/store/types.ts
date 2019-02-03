@@ -18,7 +18,7 @@ export interface ProductState {
 }
 
 export interface CartState {
-  items: Array<{id: string, quantity: number}>
+  items: Array<{id: string; quantity: number}>
   checkoutStatus: CheckoutStatus
 }
 

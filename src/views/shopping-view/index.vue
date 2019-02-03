@@ -93,7 +93,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
     return this.$appStore.cart.cartItems.length === 0
   }
 
-  get m_checkoutStatus(): {result: boolean, message: string} {
+  get m_checkoutStatus(): {result: boolean; message: string} {
     const checkoutStatus = this.$appStore.cart.checkoutStatus
     const result = checkoutStatus === CheckoutStatus.None || checkoutStatus === CheckoutStatus.Successful
     return {
