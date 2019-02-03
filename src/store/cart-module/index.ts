@@ -5,7 +5,7 @@ import {NoCache} from '@/base/component'
 import {apis} from '@/apis'
 
 export interface CartState {
-  items: Array<{id: string, quantity: number}>
+  items: Array<{id: string; quantity: number}>
   checkoutStatus: CheckoutStatus
 }
 
