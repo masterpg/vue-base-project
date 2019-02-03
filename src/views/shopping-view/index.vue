@@ -116,7 +116,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
     return this.m_cartItems.length === 0
   }
 
-  get m_status(): {result: boolean, message: string} {
+  get m_status(): {result: boolean; message: string} {
     const checkoutStatus = this.m_checkoutStatus
     const result = checkoutStatus === CheckoutStatus.None || checkoutStatus === CheckoutStatus.Successful
     return {

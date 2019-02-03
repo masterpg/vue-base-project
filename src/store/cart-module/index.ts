@@ -53,7 +53,7 @@ export const cartModule = new class implements CartModule {
   }
 
   mutations: MutationTree<CartState> = {
-    [CartTypes.m_SET_CART_ITEMS](state, items: Array<{id: string, quantity: number}>) {
+    [CartTypes.m_SET_CART_ITEMS](state, items: Array<{id: string; quantity: number}>) {
       state.items = items
     },
 

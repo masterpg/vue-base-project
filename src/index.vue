@@ -171,7 +171,7 @@ export default class AppView extends mixins(BaseComponent) {
 
   m_narrow: boolean = false
 
-  m_items: Array<{title: string, path: string}> = [
+  m_items: Array<{title: string; path: string}> = [
     {
       title: 'ABC',
       path: '/pages/abc',

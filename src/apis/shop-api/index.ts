@@ -9,7 +9,7 @@ class ShopAPIImpl extends BaseAPI implements ShopAPI {
     return response.data
   }
 
-  buyProducts(products: Array<{id: string, quantity: number}>): Promise<void> {
+  buyProducts(products: Array<{id: string; quantity: number}>): Promise<void> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // simulate random checkout failure.
