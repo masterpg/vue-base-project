@@ -78,15 +78,10 @@ import {BaseComponent} from '@/base/component'
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
-import {namespace} from 'vuex-class'
-import {CounterTypes} from '@/store'
-
 interface Post {
   message: string
   times: number
 }
-
-const counterModule = namespace(CounterTypes.PATH)
 
 @Component({
   components: {
