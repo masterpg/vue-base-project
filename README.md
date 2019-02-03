@@ -1,4 +1,4 @@
-# vue-www-base
+# vue-base-project
 
 ## 環境構築
 

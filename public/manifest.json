@@ -1,6 +1,6 @@
 {
-  "name": "vue-www-base",
-  "short_name": "vue-www-base",
+  "name": "vue-base-project",
+  "short_name": "vue-base-project",
   "icons": [
     {
       "src": "img/icons/manifest/icon-192x192.png",

@@ -14,7 +14,7 @@ const pages = {
     // output as dist/playground.html
     filename: 'index.html',
     // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
-    title: 'Vue WWW Base',
+    title: 'Vue Base Project',
   },
 }
 if (process.env.VUE_APP_IS_DEVELOPMENT === 'true') {
@@ -23,7 +23,7 @@ if (process.env.VUE_APP_IS_DEVELOPMENT === 'true') {
       entry: 'src/playground.ts',
       template: 'src/playground.html',
       filename: 'playground.html',
-      title: 'Vue WWW Base Playground',
+      title: 'Vue Base Project Playground',
     },
   })
 }
@@ -36,7 +36,7 @@ module.exports = {
   transpileDependencies: [],
 
   pwa: {
-    name: 'vue-www-base',
+    name: 'vue-base-project',
     iconPaths: {
       favicon32: 'img/icons/manifest/favicon-32x32.png',
       favicon16: 'img/icons/manifest/favicon-16x16.png',
