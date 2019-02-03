@@ -9863,9 +9863,9 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-"vue-polymer-style-loader@https://masterpg@bitbucket.org/masterpg/vue-polymer-style-loader.git":
+"vue-polymer-style-loader@https://github.com/masterpg/vue-polymer-style-loader.git":
   version "0.0.2"
-  resolved "https://masterpg@bitbucket.org/masterpg/vue-polymer-style-loader.git#e7d7e5be513fae88e607940b0a624f2a436bce1c"
+  resolved "https://github.com/masterpg/vue-polymer-style-loader.git#427fda8479f31e4fc8df5c535a55b79253b17fb6"
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
