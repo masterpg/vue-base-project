@@ -9,12 +9,10 @@ module.exports = {
   'extends': [
     'eslint:recommended',
     'plugin:vue/essential',
-    '@vue/prettier',
     '@vue/typescript',
   ],
   'plugins': ['typescript'],
   'rules': {
-    'prettier/prettier': ['on'],
     'array-bracket-spacing': ['error', 'never'],
     'comma-dangle': [
       'error',
@@ -55,13 +53,14 @@ module.exports = {
         'allow-snake-case',
       ],
     },
+    // TODO 現段階ではこのルールの実装が未完なのでoffにし、実装が完了次第、以下の設定を再考する
     'typescript/member-delimiter-style': [
-      'error',
+      'off',
       {
         'delimiter': 'none',
         'overrides': {
           'typeLiteral': {
-            'delimiter': 'comma',
+            'delimiter': 'semi',
             'requireLast': true,
             'ignoreSingleLine': true,
           },
