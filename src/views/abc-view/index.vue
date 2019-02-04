@@ -78,7 +78,6 @@ import {BaseComponent} from '@/base/component'
 import {Component, Prop, Watch} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
-import {mapGetters, mapMutations} from 'vuex'
 import {namespace} from 'vuex-class'
 import {CounterTypes} from '@/store'
 
@@ -94,12 +93,6 @@ const counterModule = namespace(CounterTypes.PATH)
     'greet-message': GreetMessage,
     'custom-checkbox': CustomCheckbox,
     'custom-input': CustomInput,
-  },
-  computed: {
-    ...mapGetters(CounterTypes.PATH, [CounterTypes.CURRENT]),
-  },
-  methods: {
-    ...mapMutations(CounterTypes.PATH, [CounterTypes.INCREMENT]),
   },
 })
 export default class AbcView extends mixins(BaseComponent) {
