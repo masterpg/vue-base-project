@@ -13,27 +13,27 @@ export class AppStore extends Vue {
     this.cart.setStore(store)
   }
 
-  m_counter = new CounterModule()
+  m_counter = new CounterFacade()
 
-  get counter(): CounterModule {
+  get counter(): CounterFacade {
     return this.m_counter
   }
 
-  m_product = new ProductModule()
+  m_product = new ProductFacade()
 
-  get product(): ProductModule {
+  get product(): ProductFacade {
     return this.m_product
   }
 
-  m_cart = new CartModule()
+  m_cart = new CartFacade()
 
-  get cart(): CartModule {
+  get cart(): CartFacade {
     return this.m_cart
   }
 }
 
 @Component
-class CounterModule extends Vue {
+class CounterFacade extends Vue {
   m_store: Store<RootState>
 
   setStore(store: Store<RootState>) {
@@ -50,7 +50,7 @@ class CounterModule extends Vue {
 }
 
 @Component
-class ProductModule extends Vue {
+class ProductFacade extends Vue {
   m_store: Store<RootState>
 
   setStore(store: Store<RootState>) {
@@ -79,7 +79,7 @@ class ProductModule extends Vue {
 }
 
 @Component
-class CartModule extends Vue {
+class CartFacade extends Vue {
   m_store: Store<RootState>
 
   setStore(store: Store<RootState>) {
