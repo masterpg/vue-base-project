@@ -11,8 +11,9 @@ module.exports = {
     'plugin:vue/essential',
     '@vue/typescript',
   ],
-  'plugins': ['typescript'],
+  'plugins': ['typescript', 'prettier'],
   'rules': {
+    'prettier/prettier': 'error',
     'array-bracket-spacing': ['error', 'never'],
     'comma-dangle': [
       'error',
