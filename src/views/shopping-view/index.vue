@@ -96,8 +96,6 @@ export default class ShoppingView extends mixins(BaseComponent) {
 
   @productModule.Getter(ProductTypes.ALL_PRODUCTS) m_allProducts!: ProductTypes.allProducts
 
-  @productModule.Action(ProductTypes.PULL_ALL_PRODUCTS) m_pullAllProducts!: ProductTypes.pullAllProducts
-
   @cartModule.Getter(CartTypes.CART_ITEMS) m_cartItems!: CartTypes.cartItems
 
   @cartModule.Getter(CartTypes.CHECKOUT_STATUS) m_checkoutStatus!: CartTypes.checkoutStatus
@@ -131,9 +129,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  async created() {
-    await this.m_pullAllProducts()
-  }
+  created() {}
 
   //----------------------------------------------------------------------
   //

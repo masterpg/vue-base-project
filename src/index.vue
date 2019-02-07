@@ -161,8 +161,21 @@ import {BaseComponent} from '@/base/component'
 import {Component} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
+import {namespace} from 'vuex-class'
+import {ProductTypes} from '@/store'
+
+const productModule = namespace(ProductTypes.PATH)
+
 @Component
 export default class AppView extends mixins(BaseComponent) {
+  //----------------------------------------------------------------------
+  //
+  //  Store
+  //
+  //----------------------------------------------------------------------
+
+  @productModule.Action(ProductTypes.PULL_ALL_PRODUCTS) m_pullAllProducts!: ProductTypes.pullAllProducts
+
   //----------------------------------------------------------------------
   //
   //  Variables
@@ -200,8 +213,10 @@ export default class AppView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  created() {
+  async created() {
     sw.addStateChangeListener(this.m_swOnStateChange)
+
+    await this.m_pullAllProducts()
   }
 
   //----------------------------------------------------------------------
@@ -235,7 +250,6 @@ export default class AppView extends mixins(BaseComponent) {
     if (info.state === sw.ChangeState.error) {
       console.error(info.message)
     } else {
-      // tslint:disable-next-line
       console.log('Service Worker:\n', info)
     }
   }

@@ -45,7 +45,7 @@ CSS 変数を適用するには`var()`関数を使用します。
 </style>
 
 <template>
-  <greet-message class="normal" :class="{ error: isError }"></greet-message>
+  <greet-message class="normal" :class="{error: isError}"></greet-message>
 </template>
 ```
 

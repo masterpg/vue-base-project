@@ -17,7 +17,7 @@ import {router} from '@/base/router'
 import '@/views/abc-view/index.vue'
 import '@/views/shopping-view/index.vue'
 
-(async () => {
+async function init() {
   initUtils()
   initConfig()
   initServiceWorker()
@@ -33,4 +33,5 @@ import '@/views/shopping-view/index.vue'
     i18n,
     store,
   })
-})()
+}
+init()
