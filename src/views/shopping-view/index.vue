@@ -89,7 +89,6 @@ import {CartTypes, CheckoutStatus, Product, ProductTypes} from '@/store'
     ...mapGetters(CartTypes.PATH, [CartTypes.CART_ITEMS, CartTypes.CHECKOUT_STATUS]),
   },
   methods: {
-    ...mapActions(ProductTypes.PATH, [ProductTypes.PULL_ALL_PRODUCTS]),
     ...mapActions(CartTypes.PATH, [CartTypes.ADD_PRODUCT_TO_CART, CartTypes.CHECKOUT]),
   },
 })
@@ -101,8 +100,6 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //----------------------------------------------------------------------
 
   allProducts!: ProductTypes.allProducts
-
-  pullAllProducts!: ProductTypes.pullAllProducts
 
   cartItems!: CartTypes.cartItems
 
@@ -137,9 +134,7 @@ export default class ShoppingView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  async created() {
-    await this.pullAllProducts()
-  }
+  created() {}
 
   //----------------------------------------------------------------------
   //

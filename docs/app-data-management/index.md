@@ -72,7 +72,7 @@ State にアクセスするには対応する **Store** を経由する必要が
 export default class CartModal extends mixins(BaseComponent) {
   …
   get m_cartProducts(): CartProduct[] {
-    return this.$stores.cart.cartProducts;
+    return this.$stores.cart.cartProducts
   }
 }
 </script>
@@ -104,16 +104,16 @@ Store はアプリケーションデータにアクセスするためのプロ�
 
 ```ts
 interface ProductsState {
-  all: Product[];
+  all: Product[]
 }
 
 @Component
 class ProductsStoreImpl extends BaseStore<ProductsState> implements ProductsStore {
   constructor() {
-    super();
+    super()
     this.f_initState({
       all: [],
-    });
+    })
   }
 }
 ```
@@ -123,14 +123,14 @@ class ProductsStoreImpl extends BaseStore<ProductsState> implements ProductsStor
 State は Store の内部からしかアスセスできません。Store から State へは`this.f_state`でアクセスできます。次は State にアクセスしている例です。
 
 ```ts
-const allProducts = this.f_state.all;
+const allProducts = this.f_state.all
 ```
 
 アプリケーションデータを変更するということは、State の保持するデータを変更するのと同じ意味になります。アプリケーションデータを変更するには次のように State のデータを変更します。
 
 ```ts
-const firstProduct = this.f_state.all[0];
-firstProduct.inventory--;
+const firstProduct = this.f_state.all[0]
+firstProduct.inventory--
 ```
 
 ### アプリケーションデータはコピーを返す！
@@ -138,14 +138,14 @@ firstProduct.inventory--;
 Store に getter やメソッドを定義することで、利用者にアプリケーションデータを提供することができます。ただし getter やメソッドが返すデータはアプリケーションデータの**コピーでなければなりません**。
 
 ```ts
-import { NoCache } from '../../components';
+import {NoCache} from '../../components'
 
 @Component
 class ProductsStoreImpl extends BaseStore<ProductsState> implements ProductsStore {
   @NoCache
   get allProducts(): Product[] {
     // アプリケーションデータのコピーを返している
-    return this.$utils.cloneDeep(this.f_state.all);
+    return this.$utils.cloneDeep(this.f_state.all)
   }
 }
 ```
@@ -155,7 +155,7 @@ class ProductsStoreImpl extends BaseStore<ProductsState> implements ProductsStor
 ```ts
   get allProducts(): Product[] {
     // アプリケーションデータをそのまま返している
-    return this.f_state.all;
+    return this.f_state.all
   }
 ```
 
@@ -178,7 +178,7 @@ getter に`@NoCache`をつけると算出プロパティがキャッシュをし
 class ProductsStoreImpl extends BaseStore<ProductsState> implements ProductsStore {
   get allProducts(): Product[] {
     // アプリケーションデータのコピーを返している
-    return this.$utils.cloneDeep(this.f_state.all);
+    return this.$utils.cloneDeep(this.f_state.all)
   }
 }
 ```

@@ -161,8 +161,23 @@ import {BaseComponent} from '@/base/component'
 import {Component} from 'vue-property-decorator'
 import {mixins} from 'vue-class-component'
 
-@Component
+import {mapActions, mapGetters, mapMutations} from 'vuex'
+import {ProductTypes} from '@/store'
+
+@Component({
+  methods: {
+    ...mapActions(ProductTypes.PATH, [ProductTypes.PULL_ALL_PRODUCTS]),
+  },
+})
 export default class AppView extends mixins(BaseComponent) {
+  //----------------------------------------------------------------------
+  //
+  //  Store
+  //
+  //----------------------------------------------------------------------
+
+  pullAllProducts!: ProductTypes.pullAllProducts
+
   //----------------------------------------------------------------------
   //
   //  Variables
@@ -200,8 +215,10 @@ export default class AppView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  created() {
+  async created() {
     sw.addStateChangeListener(this.m_swOnStateChange)
+
+    await this.pullAllProducts()
   }
 
   //----------------------------------------------------------------------
@@ -235,7 +252,6 @@ export default class AppView extends mixins(BaseComponent) {
     if (info.state === sw.ChangeState.error) {
       console.error(info.message)
     } else {
-      // tslint:disable-next-line
       console.log('Service Worker:\n', info)
     }
   }

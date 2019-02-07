@@ -53,7 +53,7 @@ CSS 変数は`.vue`、`.css`、`.css`、`.styl`、`.scss`などさまざまフ�
 </style>
 
 <!-- テキストが青色になる -->
-<a class="blue" href="#" >hello</a>
+<a class="blue" href="#">hello</a>
 
 <!-- テキストが青色にならない -->
 <div class="blue">hello</div>
