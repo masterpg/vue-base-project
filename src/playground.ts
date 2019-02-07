@@ -6,7 +6,7 @@ import {i18n, initI18n} from '@/base/i18n'
 import Vue from 'vue'
 import PlaygroundView from '@/playground.vue'
 
-(async () => {
+async function init() {
   await initI18n()
 
   new Vue({
@@ -14,4 +14,5 @@ import PlaygroundView from '@/playground.vue'
     render: h => h(PlaygroundView),
     i18n,
   })
-})()
+}
+init()

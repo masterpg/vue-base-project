@@ -1,5 +1,8 @@
 import Vue from 'vue'
-import {clone, cloneDeep, assign, assignIn} from 'lodash'
+const clone = require('lodash/clone')
+const cloneDeep = require('lodash/cloneDeep')
+const assign = require('lodash/assign')
+const assignIn = require('lodash/assignIn')
 
 export class Utils {
   /**
@@ -92,7 +95,6 @@ export class Utils {
   /**
    * このメソッドは`assign()`とほとんど同じ動作をします。
    * 異なるのは、sourceが継承したオブジェクトのプロパティもobjectへ割り当てる点になります。
-   * assign()と異なる点は、
    *
    * @param object 適用先のオブジェクトを指定
    * @param sources ソースオブジェクトを指定

@@ -37,10 +37,10 @@
         <span class="title">custom propA: </span><span class="value">{{ m_customPropA }}</span>
       </div>
       <div class="comm-my-16">
-        <span class="title">reversed message: </span> <span class="value">{{ m_reversedMessage }}</span>
+        <span class="title">reversed message: </span><span class="value">{{ m_reversedMessage }}</span>
       </div>
       <div class="comm-my-16">
-        <span class="title">double reversed message: </span> <span class="value">{{ m_doubleReversedMessage }}</span>
+        <span class="title">double reversed message: </span><span class="value">{{ m_doubleReversedMessage }}</span>
       </div>
       <div class="layout horizontal center comm-my-16">
         <greet-message ref="greetMessage" :message="m_message" class="abc-view-greet-message"></greet-message>

@@ -199,8 +199,10 @@ export default class AppView extends mixins(BaseComponent) {
   //
   //----------------------------------------------------------------------
 
-  created() {
+  async created() {
     sw.addStateChangeListener(this.m_swOnStateChange)
+
+    await this.$appStore.product.pullAllProducts()
   }
 
   //----------------------------------------------------------------------
@@ -234,7 +236,6 @@ export default class AppView extends mixins(BaseComponent) {
     if (info.state === sw.ChangeState.error) {
       console.error(info.message)
     } else {
-      // tslint:disable-next-line
       console.log('Service Worker:\n', info)
     }
   }

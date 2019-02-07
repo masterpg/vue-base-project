@@ -19,7 +19,7 @@ import {router} from '@/base/router'
 // import '@/views/abc-view/index.vue'
 // import '@/views/shopping-view/index.vue'
 
-(async () => {
+async function init() {
   initUtils()
   initConfig()
   initServiceWorker()
@@ -35,4 +35,5 @@ import {router} from '@/base/router'
     render: h => h(AppView),
     i18n,
   })
-})()
+}
+init()
